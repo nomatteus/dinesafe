@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  establishment_id: 1
+  inspection_id: 1
+  establishment_name: MyString
+  establishment_type: MyString
+  establishment_address: MyString
+  establishment_status: MyString
+  minimum_inspections_per_year: 1
+  infraction_details: MyString
+  inspection_date: 2011-11-30
+  severity: MyString
+  action: MyString
+  court_outcome: MyString
+  amount_fined: 1.5
+
+two:
+  establishment_id: 1
+  inspection_id: 1
+  establishment_name: MyString
+  establishment_type: MyString
+  establishment_address: MyString
+  establishment_status: MyString
+  minimum_inspections_per_year: 1
+  infraction_details: MyString
+  inspection_date: 2011-11-30
+  severity: MyString
+  action: MyString
+  court_outcome: MyString
+  amount_fined: 1.5

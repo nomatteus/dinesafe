@@ -1,0 +1,20 @@
+<% @establishments.each do |e| %>
+  <%# e.inspections.each do |insp| %>
+    <%= e[:establishment_id] %> <%= e[:name] %><br>
+    <%= e[:type] %><br>
+    <%= e[:address] %><br>
+    <div class="statuses">
+      <% e[:inspections].each do |insp| %>
+        <% case insp.establishment_status %> 
+        <% when "Pass" %>
+          <span class="status pass">P</Span>
+        <% when "Conditional" %>
+          <span class="status conditional">C</Span>
+        <% when "Fail" %>
+          <span class="status fail">F</Span>
+        <% end %>
+      <% end %>
+    </div>
+    <hr />
+  <%# end %>
+<% end %>
