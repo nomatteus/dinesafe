@@ -7,11 +7,13 @@
       <% e[:inspections].each do |insp| %>
         <% case insp.establishment_status %> 
         <% when "Pass" %>
-          <span class="status pass">P</Span>
-        <% when "Conditional" %>
-          <span class="status conditional">C</Span>
-        <% when "Fail" %>
-          <span class="status fail">F</Span>
+          <span class="status pass"></span>
+        <% when "Conditional Pass" %>
+          <span class="status conditional"></span>
+        <% when "Closed" %>
+          <span class="status closed"></span>
+        <% when "Out of Business" %>
+          <span class="status out-of-business"></span>
         <% end %>
       <% end %>
     </div>

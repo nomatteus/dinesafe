@@ -1,7 +1,7 @@
 class InspectionsController < ApplicationController
   def index
     @establishments = []
-    Inspection.establishments.order(:establishment_name).first(500).each do |est|
+    Inspection.establishments.order(:establishment_name).offset(0).first(500).each do |est|
       
 
       @establishments << {
@@ -9,7 +9,7 @@ class InspectionsController < ApplicationController
         :name => est.establishment_name,
         :type => est.establishment_type,
         :address => est.establishment_address,
-        :inspections => Inspection.where(:establishment_id => est.establishment_id).order(:inspection_date)
+        :inspections => Inspection.where(:establishment_id => est.establishment_id).group(:inspection_id).order(:inspection_date)
       }
     end
   end
