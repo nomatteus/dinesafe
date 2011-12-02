@@ -9,8 +9,14 @@ namespace :dinesafe do
     #puts doc.xpath("/ROWDATA/ROW").inspect
     doc.xpath("//ROW").each do |row|
       id = row.xpath("ROW_ID").text.to_i
-      #puts row.xpath("INSPECTION_DATE").text
-      #inspection = Inspection.find_or_create(row.xpath("ROW_ID").text.to_i)
+
+      # Create or Update Establishment
+      establishment = Establishment.find_or_create_by_id( LEFT OFF HERE #......)
+      # .. TO DO ..
+      # 1. Move establishment info to separate table
+      # 2. ...
+
+      # Log inspection for Establishment
       inspection = Inspection.find_or_create_by_id(row.xpath("ROW_ID").text.to_i)
       inspection.update_attributes({
         :establishment_id              => row.xpath("ESTABLISHMENT_ID").text.to_i,

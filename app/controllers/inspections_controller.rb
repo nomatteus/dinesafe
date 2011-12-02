@@ -1,7 +1,7 @@
 class InspectionsController < ApplicationController
   def index
     @establishments = []
-    Inspection.establishments.order(:establishment_name).offset(4500).first(500).each do |est|
+    Inspection.establishments.order(:establishment_name).offset(7500).first(500).each do |est|
       
 
       @establishments << {
