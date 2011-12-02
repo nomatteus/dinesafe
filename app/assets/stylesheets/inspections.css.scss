@@ -5,8 +5,8 @@
 .statuses {
   overflow:hidden;
   .status {display:block;width:30px;height:10px;float:left;text-indent:-999px;overflow:hidden;}
-  .pass {background-color:#0f0;}
-  .conditional {background-color:yellow;}
-  .closed {background-color:red;} 
+  .pass {background-color:#08653A;}
+  .conditional {background-color:#FFE800;}
+  .closed {background-color:#EE2113;} 
   .out-of-business {background-color:black;} 
 }
