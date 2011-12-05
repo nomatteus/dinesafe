@@ -9,6 +9,7 @@ gem 'mysql2'
 
 # Add new gems here
 gem 'nokogiri'
+gem 'awesome_print'
 
 # Gems used only for assets and not required
 # in production environments by default.

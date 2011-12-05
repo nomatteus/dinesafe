@@ -11,14 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111130195323) do
+ActiveRecord::Schema.define(:version => 20111205223704) do
+
+  create_table "establishments", :force => true do |t|
+    t.string   "name"
+    t.string   "est_type"
+    t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "inspections_json"
+  end
 
   create_table "inspections", :force => true do |t|
     t.integer  "establishment_id"
-    t.integer  "inspection_id"
-    t.string   "establishment_name"
-    t.string   "establishment_type"
-    t.string   "establishment_address"
     t.string   "establishment_status"
     t.integer  "minimum_inspections_per_year"
     t.string   "infraction_details"

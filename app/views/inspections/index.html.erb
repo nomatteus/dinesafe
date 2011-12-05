@@ -4,7 +4,7 @@
     <%= e[:type] %><br>
     <%= e[:address] %><br>
     <div class="statuses">
-      <% e[:inspections].each do |insp| %>
+      <% e[:inspections_info].each do |insp| %>
         <% case insp.establishment_status %> 
         <% when "Pass" %>
           <span class="status pass"></span>
