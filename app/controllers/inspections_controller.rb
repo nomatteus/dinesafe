@@ -4,6 +4,7 @@ class InspectionsController < ApplicationController
 
     @establishments.each do |e|
       if e.inspections_json
+        Rails.logger.info e.inspections_json
         e[:inspections_info] = JSON.parse(e.inspections_json)
       end
     end

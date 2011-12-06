@@ -3,11 +3,24 @@ namespace :dinesafe do
   desc "Import/update data from dinesafe.xml file"
   task :xml_import => :environment do
 
-    # TO DO : Add new Establishment model/table, so simplify queries
+    # For progress indicator -- from http://snippets.dzone.com/posts/show/3760
+    # move cursor to beginning of line
+    cr = "\r"           
+    # ANSI escape code to clear line from cursor to end of line
+    # "\e" is an alternative to "\033"
+    # cf. http://en.wikipedia.org/wiki/ANSI_escape_code
+    clear = "\e[0K"     
+    # reset lines
+    reset = cr + clear
+
+
 
     doc = Nokogiri::XML(open(Rails.root.to_s + "/doc/dinesafe.xml"))
     #puts doc.xpath("/ROWDATA/ROW").inspect
-    doc.xpath("//ROW").each do |row|
+    rows = doc.xpath("//ROW")
+    total_rows = rows.length
+    i = 0
+    rows.each do |row|
       # Note: It appears ROW_ID will not always refer to the same establishment/restaurant
       #       Instead, we might have to use the Inspection ID as unique key
       #       So, don't rely on/use ROW_ID at all!
@@ -32,10 +45,10 @@ namespace :dinesafe do
       if current_address != establishment.address
         puts "Change detected! Old: #{current_address} New: #{establishment.address}" 
       end
-      puts "Updated establishment ID: #{establishment.id}"
+      #puts "Updated establishment ID: #{establishment.id}"
 
       # Log inspection for Establishment
-      inspection = Inspection.find_or_create_by_id(row.xpath("INSPECTION_ID").text.to_i)
+      inspection = Inspection.find_or_create_by_establishment_id_and_inspection_date(establishment.id, row.xpath("INSPECTION_DATE").text)
       inspection.update_attributes({
         :establishment_id              => establishment.id,
         :establishment_status          => row.xpath("ESTABLISHMENT_STATUS").text,
@@ -47,7 +60,11 @@ namespace :dinesafe do
         :court_outcome                 => row.xpath("COURT_OUTCOME").text,
         :amount_fined                  => row.xpath("AMOUNT_FINED").text.to_f
       })
-      puts "Updated inspection ID: #{inspection.id}"
+      # Must be an easier way to do this -- pct. with 2 decimal places
+      pct = i / total_rows
+      #puts "Updated inspection ID: #{inspection.id}              #{pct}% done"   
+      print "#{reset}Importing from XML: #{pct}%"
+      i += 1
     end
   end
 
