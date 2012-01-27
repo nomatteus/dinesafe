@@ -48,7 +48,7 @@ namespace :dinesafe do
       #puts "Updated establishment ID: #{establishment.id}"
 
       # Log inspection for Establishment
-      inspection = Inspection.find_or_create_by_establishment_id_and_inspection_date(establishment.id, row.xpath("INSPECTION_DATE").text)
+      inspection = Inspection.find_or_create_by_establishment_id_and_inspection_date_and_infraction_details(establishment.id, row.xpath("INSPECTION_DATE").text)
       inspection.update_attributes({
         :establishment_id              => establishment.id,
         :establishment_status          => row.xpath("ESTABLISHMENT_STATUS").text,
@@ -61,7 +61,7 @@ namespace :dinesafe do
         :amount_fined                  => row.xpath("AMOUNT_FINED").text.to_f
       })
       # Must be an easier way to do this -- pct. with 2 decimal places
-      pct = i / total_rows
+      pct = i.to_f / total_rows.to_f * 100
       #puts "Updated inspection ID: #{inspection.id}              #{pct}% done"   
       print "#{reset}Importing from XML: #{pct}%"
       i += 1
