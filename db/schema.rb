@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205223704) do
+ActiveRecord::Schema.define(:version => 20120417224952) do
 
   create_table "establishments", :force => true do |t|
     t.string   "name"
@@ -20,7 +20,14 @@ ActiveRecord::Schema.define(:version => 20111205223704) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "inspections_json"
+    t.decimal  "lat",                    :precision => 15, :scale => 10
+    t.decimal  "lng",                    :precision => 15, :scale => 10
+    t.string   "postal_code"
+    t.text     "geocoding_results_json"
   end
+
+  add_index "establishments", ["lat"], :name => "index_establishments_on_lat"
+  add_index "establishments", ["lng"], :name => "index_establishments_on_lng"
 
   create_table "inspections", :force => true do |t|
     t.integer  "establishment_id"
