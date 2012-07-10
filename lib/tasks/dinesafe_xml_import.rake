@@ -71,7 +71,7 @@ namespace :dinesafe do
 
   desc "Geocodes 1000 records at a time (but only if record is not geocoded already)"
   task :geocode => :environment do
-    1000.times do 
+    2500.times do 
       # Get new record to geocode
       e = Establishment.where("geocoding_results_json IS NULL").first
       puts e.id
@@ -95,10 +95,11 @@ namespace :dinesafe do
       else
         puts geo_json_raw.inspect
         puts "RESULT STATUS IS **NOT OK** Status returned is: #{geo_json["status"]}"
-        puts "sleeping for 10 seconds"
-        sleep 10
+        sleep_time_pausing = 3600 # Wait an hour before trying another query
+        puts "sleeping for #{sleep_time_pausing} seconds"
+        sleep sleep_time_pausing
       end
-      sleep_how_long = [1,2,3,4,5,6,7,8,9,11,17,23,33].sample
+      sleep_how_long = [1].sample
       puts "sleeping #{sleep_how_long} sec....."
       sleep sleep_how_long
       puts 'and go again! (or, this might be the last time)'
