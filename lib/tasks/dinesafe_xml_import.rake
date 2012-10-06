@@ -1,6 +1,31 @@
 require 'open-uri'
 
 namespace :dinesafe do 
+  desc "Download and extract latest dinesafe.xml file"
+  task :update_dinesafe_xml => :environment do 
+    file_url = "http://opendata.toronto.ca/public.health/dinesafe/dinesafe.zip"
+    dinesafe_xml_file = Rails.root.to_s + "/doc/dinesafe.xml"
+    dinesafe_xml_temp_file = Rails.root.to_s + "/doc/DELETE_OLD_dinesafe.xml"
+    dinesafe_zip_temp_path = Rails.root.to_s + "/doc/tmp_dinesafe.zip"
+    dinesafe_zip_folder = Rails.root.to_s + "/doc"
+
+    # Move current dinesafe.xml to temporary file
+    if File.exist? dinesafe_xml_file
+      FileUtils.mv(dinesafe_xml_file, dinesafe_xml_temp_file)
+    end
+    # Download latest
+    open(dinesafe_zip_temp_path, "wb") do |file|
+      file << open(file_url).read
+    end
+    # Use shell to unzip zip file
+    `unzip #{dinesafe_zip_temp_path} -d #{dinesafe_zip_folder}`
+    # If dinesafe.xml exists, assume extraction worked and remove old xml and zip file
+    if File.exist? dinesafe_xml_file
+      File.delete(dinesafe_zip_temp_path) if File.exist? dinesafe_zip_temp_path
+      File.delete(dinesafe_xml_temp_file) if File.exist? dinesafe_xml_temp_file
+    end
+  end
+
   desc "Import/update data from dinesafe.xml file"
   task :xml_import => :environment do
 
