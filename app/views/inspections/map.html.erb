@@ -1,0 +1,18 @@
+<div id="map_canvas"></div>
+
+<div id="controls">
+<textarea id="output"></textarea>
+<a href="#" id="show-hide-output" data-element="textarea#output">Show/Hide Output</a>
+</div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery.min.js">\x3C/script>')</script>
+
+<script type="text/javascript">
+// Event handlers related to non-map controls
+$("#show-hide-output").live("click", function(){
+var el = $(this).data("element");
+var $el = $(el);
+$el.toggle();
+});
+</script>

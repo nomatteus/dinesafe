@@ -1,31 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  id: 1
   establishment_id: 1
-  inspection_id: 1
-  establishment_name: MyString
-  establishment_type: MyString
-  establishment_address: MyString
-  establishment_status: MyString
+  establishment_status: Pass
   minimum_inspections_per_year: 1
-  infraction_details: MyString
+  infraction_details: 
   inspection_date: 2011-11-30
-  severity: MyString
-  action: MyString
-  court_outcome: MyString
-  amount_fined: 1.5
+  severity: 
+  action: 
+  court_outcome: 
+  amount_fined: 
 
 two:
-  establishment_id: 1
-  inspection_id: 1
-  establishment_name: MyString
-  establishment_type: MyString
-  establishment_address: MyString
-  establishment_status: MyString
-  minimum_inspections_per_year: 1
-  infraction_details: MyString
+  id: 2
+  establishment_id: 2
+  establishment_status: Conditional Pass
+  minimum_inspections_per_year: 3
+  infraction_details: Operator fail to properly remove liquid waste
   inspection_date: 2011-11-30
-  severity: MyString
-  action: MyString
-  court_outcome: MyString
-  amount_fined: 1.5
+  severity: S - Significant
+  action: Summons
+  court_outcome: Pending
+  amount_fined: 31250

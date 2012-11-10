@@ -1,5 +1,7 @@
 Dinesafe::Application.routes.draw do
   get "inspections/index"
+  get "inspections/map"
+  get "establishment/search"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
