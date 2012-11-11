@@ -11,8 +11,10 @@ gem 'pg'
 gem 'nokogiri'
 gem 'awesome_print'
 
+# Using Postgresql now, so might not need geokit. 
+# But, might be useful if I want a Geocoder in the future.
 # https://github.com/jlecour/geokit-rails3
-gem 'geokit-rails3'
+# gem 'geokit-rails3'
 
 # Gems used only for assets and not required
 # in production environments by default.

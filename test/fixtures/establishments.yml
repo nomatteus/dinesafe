@@ -4,8 +4,12 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
+one:
+  name: An establishment
+  est_type: Food Take Out
+  address: 1550 Jane St
+  postal_code: M9N 2R5
+  latlng: (43.6982039, -79.5027124)
 #
 two: {}
 #  column: value

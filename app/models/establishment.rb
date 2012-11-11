@@ -1,12 +1,10 @@
 class Establishment < ActiveRecord::Base
   has_many :inspections
 
-  acts_as_mappable  :default_units => :kilometers,
-                    :default_formula => :sphere
+  scope :near, lambda { |lat, lng, within_radius|
+    select("get_distance_km(#{lat}, #{lng}, latlng[0], latlng[1]) as distance, *")
+    .order("point(#{lat}, #{lng}) <-> latlng ASC")
+    .limit(10)
+  }
 
-  # attr_accessible :id
-
-  def inspections_json_parsed
-    JSON.parse(inspections_json)
-  end
 end
