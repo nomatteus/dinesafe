@@ -1,6 +1,6 @@
 class InspectionsController < ApplicationController
   def index
-    @establishments = Establishment.where("address LIKE '%king%'")
+    @establishments = Establishment.last(100) #where("address ILIKE '%king%'")
 
     @establishments.each do |e|
       if e.inspections_json

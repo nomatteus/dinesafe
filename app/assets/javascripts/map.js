@@ -2,7 +2,6 @@ var geocoder,
   map,
   myLatlng;
 
-
 function init() {
   // Centre map based on a geocoded location
   geocoder = new google.maps.Geocoder();

@@ -1,11 +1,8 @@
 $(function() {
-  console.log($("span").length);
-});
-$(".status").hover((function() {
-  console.log(this);
-  $(this).children(".details").show();
-}), function() {
-  console.log("bob");
-  $(this).children(".details").hide();
-});
+  $(".status").bind("mouseover", function() {
+    $(this).children(".details").show();
+  }).bind("mouseout", function() {
+    $(this).children(".details").hide();
+  });
 
+});
