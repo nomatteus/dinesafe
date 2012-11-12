@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="973" measuredH="552" mockupW="635" mockupH="510">
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="973" measuredH="552" mockupW="872" mockupH="510">
   <controls>
     <control controlID="8" controlTypeID="com.balsamiq.mockups::iPhone" x="344" y="42" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
@@ -414,23 +414,23 @@
         <text>Default%20View%20%28Default%20search%3A%20Proximity%29</text>
       </controlProperties>
     </control>
-    <control controlID="106" controlTypeID="com.balsamiq.mockups::CallOut" x="338" y="141" w="-1" h="-1" measuredW="36" measuredH="39" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="106" controlTypeID="com.balsamiq.mockups::CallOut" x="338" y="141" w="-1" h="-1" measuredW="37" measuredH="39" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>0.75</backgroundAlpha>
       </controlProperties>
     </control>
-    <control controlID="107" controlTypeID="com.balsamiq.mockups::CallOut" x="717" y="167" w="-1" h="-1" measuredW="36" measuredH="39" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="107" controlTypeID="com.balsamiq.mockups::CallOut" x="717" y="167" w="-1" h="-1" measuredW="37" measuredH="43" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>0.75</backgroundAlpha>
       </controlProperties>
     </control>
-    <control controlID="108" controlTypeID="com.balsamiq.mockups::CallOut" x="344" y="299" w="-1" h="-1" measuredW="39" measuredH="40" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="108" controlTypeID="com.balsamiq.mockups::CallOut" x="344" y="299" w="-1" h="-1" measuredW="39" measuredH="39" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>0.75</backgroundAlpha>
         <text>2</text>
       </controlProperties>
     </control>
-    <control controlID="109" controlTypeID="com.balsamiq.mockups::CallOut" x="717" y="269" w="-1" h="-1" measuredW="39" measuredH="40" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="109" controlTypeID="com.balsamiq.mockups::CallOut" x="717" y="269" w="-1" h="-1" measuredW="39" measuredH="39" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>0.75</backgroundAlpha>
         <text>2</text>
@@ -447,7 +447,7 @@
         <icon>HandPointIcon%7Clarge</icon>
       </controlProperties>
     </control>
-    <control controlID="112" controlTypeID="com.balsamiq.mockups::CallOut" x="717" y="372" w="-1" h="-1" measuredW="38" measuredH="40" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="112" controlTypeID="com.balsamiq.mockups::CallOut" x="717" y="372" w="-1" h="-1" measuredW="38" measuredH="37" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>0.75</backgroundAlpha>
         <text>3</text>
@@ -466,6 +466,11 @@
     <control controlID="115" controlTypeID="com.balsamiq.mockups::Paragraph" x="764" y="371" w="200" h="40" measuredW="200" measuredH="80" zOrder="21" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Tapping%20a%20row%20goes%20to%20a%20detailed%20info%20page%20for%20that%20establishment.</text>
+      </controlProperties>
+    </control>
+    <control controlID="116" controlTypeID="com.balsamiq.mockups::StickyNote" x="101" y="78" w="153" h="129" measuredW="109" measuredH="123" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Idea%3A%20Show%20the%20most%20new%20fails/conditional%20inspections%20on%20the%20home%20screen%20of%20app.%20%28from%20foo%29</text>
       </controlProperties>
     </control>
   </controls>

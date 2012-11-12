@@ -111,7 +111,7 @@
             </control>
           </groupChildrenDescriptors>
         </control>
-        <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="11" y="21" w="-1" h="-1" measuredW="57" measuredH="15" zOrder="4" locked="false" isInGroup="100">
+        <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="11" y="21" w="-1" h="-1" measuredW="56" measuredH="15" zOrder="4" locked="false" isInGroup="100">
           <controlProperties>
             <color>16777215</color>
             <italic>true</italic>
@@ -119,7 +119,7 @@
             <text>Food%20Takeout</text>
           </controlProperties>
         </control>
-        <control controlID="15" controlTypeID="com.balsamiq.mockups::Label" x="76" y="21" w="-1" h="-1" measuredW="56" measuredH="15" zOrder="5" locked="false" isInGroup="100">
+        <control controlID="15" controlTypeID="com.balsamiq.mockups::Label" x="76" y="21" w="-1" h="-1" measuredW="60" measuredH="15" zOrder="5" locked="false" isInGroup="100">
           <controlProperties>
             <color>16777215</color>
             <size>8</size>
@@ -147,7 +147,7 @@
         <icon>DotIcon%7Csmall</icon>
       </controlProperties>
     </control>
-    <control controlID="106" controlTypeID="com.balsamiq.mockups::CallOut" x="375" y="295" w="-1" h="-1" measuredW="36" measuredH="40" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="106" controlTypeID="com.balsamiq.mockups::CallOut" x="375" y="295" w="-1" h="-1" measuredW="37" measuredH="40" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>0.75</backgroundAlpha>
       </controlProperties>
@@ -157,7 +157,7 @@
         <text>Tapping%20a%20pin%20opens%20info%20box%20with%20place%20name%20and%20rating%20bar.%0AIdeall%20pins%20will%20encorporate%20the%20rating%20bar%20image%20as%20well%2C%20but%20that%20may%20have%20to%20come%20later.%0ATapping%20an%20infobox%20goes%20to%20a%20detailed%20info%20page%20for%20that%20establishment.</text>
       </controlProperties>
     </control>
-    <control controlID="109" controlTypeID="com.balsamiq.mockups::CallOut" x="716" y="163" w="-1" h="-1" measuredW="36" measuredH="40" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="109" controlTypeID="com.balsamiq.mockups::CallOut" x="716" y="163" w="-1" h="-1" measuredW="37" measuredH="37" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>0.75</backgroundAlpha>
       </controlProperties>
@@ -168,6 +168,11 @@
         <icon>DotIcon%7Csmall</icon>
         <labelPosition>right</labelPosition>
         <text>%3D%20%20current%20location</text>
+      </controlProperties>
+    </control>
+    <control controlID="111" controlTypeID="com.balsamiq.mockups::StickyNote" x="775" y="335" w="154" h="133" measuredW="109" measuredH="123" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>TODO%3A%0AThink%20about%20how%20a%20custom%20pin%20incorporating%20the%20scorebar%20would%20look.</text>
       </controlProperties>
     </control>
   </controls>
