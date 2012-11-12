@@ -2,7 +2,7 @@ require 'open-uri'
 
 namespace :dinesafe do 
   desc "Download and extract latest dinesafe.xml file"
-  task :update_dinesafe_xml => :environment do 
+  task :update_xml => :environment do 
     file_url = "http://opendata.toronto.ca/public.health/dinesafe/dinesafe.zip"
     dinesafe_xml_file = Rails.root.to_s + "/doc/dinesafe.xml"
     dinesafe_xml_temp_file = Rails.root.to_s + "/doc/DELETE_OLD_dinesafe.xml"
@@ -74,13 +74,16 @@ namespace :dinesafe do
       #puts "Updated establishment ID: #{establishment.id}"
 
       # Log inspection for Establishment
-      inspection = Inspection.find_or_create_by_establishment_id_and_inspection_date_and_infraction_details(establishment.id, row.xpath("INSPECTION_DATE").text)
+      Rails.logger.info establishment.id.to_s
+      Rails.logger.info row.xpath("INSPECTION_DATE").text
+      Rails.logger.info row.xpath("INFRACTION_DETAILS").text
+      inspection = Inspection.find_or_create_by_establishment_id_and_date_and_infraction_details(establishment.id, row.xpath("INSPECTION_DATE").text, row.xpath("INFRACTION_DETAILS").text)
       inspection.update_attributes({
         :establishment_id              => establishment.id,
-        :establishment_status          => row.xpath("ESTABLISHMENT_STATUS").text,
+        :status                        => row.xpath("ESTABLISHMENT_STATUS").text,
         :minimum_inspections_per_year  => row.xpath("MINIMUM_INSPECTIONS_PERYEAR").text.to_i,
         :infraction_details            => row.xpath("INFRACTION_DETAILS").text,
-        :inspection_date               => row.xpath("INSPECTION_DATE").text,
+        :date                          => row.xpath("INSPECTION_DATE").text,
         :severity                      => row.xpath("SEVERITY").text,
         :action                        => row.xpath("ACTION").text,
         :court_outcome                 => row.xpath("COURT_OUTCOME").text,
@@ -128,17 +131,6 @@ namespace :dinesafe do
       puts "sleeping #{sleep_how_long} sec....."
       sleep sleep_how_long
       puts 'and go again! (or, this might be the last time)'
-    end
-  end
-
-  desc "Generates JSON object with Inspection info, so we don't have to query the inspections table each time"
-  task :generate_inspection_json => :environment do
-    Establishment.find(:all).each do |e|
-    #Establishment.first(2).each do |e| # for testing
-      inspections = Inspection.where(:establishment_id => e.id).order(:inspection_date)
-      e.inspections_json = inspections.to_json
-      e.save
-      puts "Updated establishment ID: #{e.id}"
     end
   end
 end

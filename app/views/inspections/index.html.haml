@@ -6,7 +6,7 @@
     = establishment.address
     .statuses
       - establishment.inspections.each do |inspection|
-        .status{:class => to_class_name(inspection.establishment_status)}
+        .status{:class => to_class_name(inspection.status)}
           .details
             Action:
             = inspection.action

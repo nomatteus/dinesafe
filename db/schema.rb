@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121111075800) do
+ActiveRecord::Schema.define(:version => 20121112065027) do
 
   create_table "establishments", :force => true do |t|
     t.string   "name"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(:version => 20121111075800) do
 
   create_table "inspections", :force => true do |t|
     t.integer  "establishment_id"
-    t.string   "establishment_status"
+    t.string   "status"
     t.integer  "minimum_inspections_per_year"
     t.string   "infraction_details"
-    t.date     "inspection_date"
+    t.date     "date"
     t.string   "severity"
     t.string   "action"
     t.string   "court_outcome"
