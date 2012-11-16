@@ -10,6 +10,7 @@ gem 'pg'
 # Add new gems here
 gem 'nokogiri'
 gem 'awesome_print'
+gem 'will_paginate', '~> 3.0'
 
 # Using Postgresql now, so might not need geokit. 
 # But, might be useful if I want a Geocoder in the future.

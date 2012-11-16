@@ -1,6 +1,6 @@
 class InspectionsController < ApplicationController
-  def index
-    @establishments = Establishment.last(100) #where("address ILIKE '%king%'")
+
+  def show
   end
 
   def map

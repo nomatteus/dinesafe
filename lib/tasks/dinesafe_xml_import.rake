@@ -77,9 +77,14 @@ namespace :dinesafe do
       Rails.logger.info establishment.id.to_s
       Rails.logger.info row.xpath("INSPECTION_DATE").text
       Rails.logger.info row.xpath("INFRACTION_DETAILS").text
-      inspection = Inspection.find_or_create_by_establishment_id_and_date_and_infraction_details(establishment.id, row.xpath("INSPECTION_DATE").text, row.xpath("INFRACTION_DETAILS").text)
+      inspection = Inspection.find_or_create_by_establishment_id_and_date_and_infraction_details(
+        establishment.id, 
+        row.xpath("INSPECTION_DATE").text, 
+        row.xpath("INFRACTION_DETAILS").text,
+      )
       inspection.update_attributes({
         :establishment_id              => establishment.id,
+        :inspection_id                 => row.xpath("INSPECTION_ID").text.to_i,
         :status                        => row.xpath("ESTABLISHMENT_STATUS").text,
         :minimum_inspections_per_year  => row.xpath("MINIMUM_INSPECTIONS_PERYEAR").text.to_i,
         :infraction_details            => row.xpath("INFRACTION_DETAILS").text,
@@ -110,8 +115,9 @@ namespace :dinesafe do
       geo_json_parsed = ActiveSupport::JSON.decode(geo_json_raw)
       if geo_json_parsed["status"] == "OK"
         e.geocoding_results_json = geo_json_raw
-        e.lat = BigDecimal.new(geo_json_parsed["results"][0]["geometry"]["location"]["lat"], 10)
-        e.lng = BigDecimal.new(geo_json_parsed["results"][0]["geometry"]["location"]["lng"], 10)
+        lat = BigDecimal.new(geo_json_parsed["results"][0]["geometry"]["location"]["lat"], 10)
+        lng = BigDecimal.new(geo_json_parsed["results"][0]["geometry"]["location"]["lng"], 10)
+        e.latlng = "#{lat} ,#{lng}"
         geo_json_parsed["results"][0]["address_components"].each do |comp|
           comp["types"].each do |type|
             if type == "postal_code"
@@ -122,15 +128,20 @@ namespace :dinesafe do
         e.save
       else
         puts geo_json_raw.inspect
-        puts "RESULT STATUS IS **NOT OK** Status returned is: #{geo_json["status"]}"
-        sleep_time_pausing = 3600 # Wait an hour before trying another query
-        puts "sleeping for #{sleep_time_pausing} seconds"
-        sleep sleep_time_pausing
+        puts "RESULT STATUS IS **NOT OK** Status returned is: #{geo_json_parsed["status"]}"
+        if geo_json_parsed["status"] == "ZERO_RESULTS"
+          puts "ZERO_RESULTS found."
+          e.geocoding_results_json = geo_json_raw
+          e.save
+        else
+          sleep_time_pausing = 3600 # Wait an hour before trying another query
+          puts "sleeping for #{sleep_time_pausing} seconds"
+          sleep sleep_time_pausing
+        end
       end
       sleep_how_long = [1].sample
-      puts "sleeping #{sleep_how_long} sec....."
+      puts "sleeping #{sleep_how_long} sec..."
       sleep sleep_how_long
-      puts 'and go again! (or, this might be the last time)'
     end
   end
 end

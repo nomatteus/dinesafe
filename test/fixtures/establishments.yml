@@ -10,6 +10,11 @@ one:
   address: 1550 Jane St
   postal_code: M9N 2R5
   latlng: (43.6982039, -79.5027124)
-#
-two: {}
-#  column: value
+
+two:
+  name: Another establishment
+  est_type: Restaurance
+  address: 1550 Bloor St W
+  postal_code: M6N 2R5
+  latlng: (43.688205, -79.5027122)
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112065027) do
+ActiveRecord::Schema.define(:version => 20121114030257) do
 
   create_table "establishments", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20121112065027) do
     t.float    "amount_fined"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "inspection_id"
   end
 
 end
