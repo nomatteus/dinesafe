@@ -77,23 +77,46 @@ namespace :dinesafe do
       Rails.logger.info establishment.id.to_s
       Rails.logger.info row.xpath("INSPECTION_DATE").text
       Rails.logger.info row.xpath("INFRACTION_DETAILS").text
-      inspection = Inspection.find_or_create_by_establishment_id_and_date_and_infraction_details(
+      # The assumption here is that all inspections on the same date
+      #  will have the same establishment status and min inspections.
+      #  From what I've seen in the data, this is the case, and it makes sense.
+      inspection = Inspection.find_or_create_by_establishment_id_and_date(
         establishment.id, 
         row.xpath("INSPECTION_DATE").text, 
-        row.xpath("INFRACTION_DETAILS").text,
       )
       inspection.update_attributes({
         :establishment_id              => establishment.id,
+        # NOTE: This inspection id is stored for reference only, as it historically
+        #       didn't exist, so not all records have it. We're using the 
+        #       inspection ID as assigned by the database (primary key).
         :inspection_id                 => row.xpath("INSPECTION_ID").text.to_i,
         :status                        => row.xpath("ESTABLISHMENT_STATUS").text,
         :minimum_inspections_per_year  => row.xpath("MINIMUM_INSPECTIONS_PERYEAR").text.to_i,
-        :infraction_details            => row.xpath("INFRACTION_DETAILS").text,
         :date                          => row.xpath("INSPECTION_DATE").text,
-        :severity                      => row.xpath("SEVERITY").text,
-        :action                        => row.xpath("ACTION").text,
-        :court_outcome                 => row.xpath("COURT_OUTCOME").text,
-        :amount_fined                  => row.xpath("AMOUNT_FINED").text.to_f
       })
+      # Create each infraction if there is one.
+      infraction_attributes = {
+        :inspection_id      => inspection.id,
+        :details            => row.xpath("INFRACTION_DETAILS").text.strip, # ** infraction
+        :severity           => row.xpath("SEVERITY").text.strip, # ** infraction
+        :action             => row.xpath("ACTION").text.strip, # ** infraction
+        :court_outcome      => row.xpath("COURT_OUTCOME").text.strip, # ** infraction
+        :amount_fined       => row.xpath("AMOUNT_FINED").text.to_f # ** infraction
+      }
+      if (infraction_attributes[:details].present? or 
+        infraction_attributes[:severity].present? or 
+        infraction_attributes[:action].present? or 
+        infraction_attributes[:court_outcome].present? or 
+        infraction_attributes[:amount_fined] > 0)
+          # This combination of attributes should always be unique
+          infraction = Infraction.find_or_create_by_inspection_id_and_severity_and_details_and_amount_fined(
+            infraction_attributes[:inspection_id],
+            infraction_attributes[:severity],
+            infraction_attributes[:details],
+            infraction_attributes[:amount_fined],
+          )
+          infraction.update_attributes(infraction_attributes)
+      end
       # Must be an easier way to do this -- pct. with 2 decimal places
       pct = i.to_f / total_rows.to_f * 100
       #puts "Updated inspection ID: #{inspection.id}              #{pct}% done"   

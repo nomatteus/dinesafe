@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  details: MyString
+  severity: MyString
+  action: MyString
+  court_outcome: MyString
+  amount_fined: 
+
+two:
+  details: MyString
+  severity: MyString
+  action: MyString
+  court_outcome: MyString
+  amount_fined: 
