@@ -8,15 +8,15 @@ class EstablishmentsController < ApplicationController
       establishments = Establishment
     end
     if params[:search].present?
-      establishments = establishments.where("name ILIKE ?", "%#{params[:search]}%")
+      establishments = establishments.where("latest_name ILIKE ?", "%#{params[:search]}%")
     end
-    establishments = establishments.paginate(:page => params[:page], :per_page => 30).order(:name)
+    establishments = establishments.paginate(:page => params[:page], :per_page => 30).order(:latest_name)
     @establishment_list = []
     establishments.each do |establishment|
       establishment_content = {
         :id => establishment.id,
-        :name => establishment.name,
-        :type => establishment.est_type,
+        :latest_name => establishment.latest_name,
+        :latest_type => establishment.latest_type,
         :address => establishment.address,
         :latlng => establishment.latlng,
       }
@@ -45,10 +45,15 @@ class EstablishmentsController < ApplicationController
       establishment = Establishment.find(params[:id])
     end
     inspections_list = []
-    establishment.inspections.each do |inspection|
+    establishment.inspections.order(:date).each do |inspection|
       inspections_content = {
         :id => inspection.id,
-        :infractions => inspection.infractions
+        :status => inspection.status,
+        :date => inspection.date,
+        :infractions => inspection.infractions_by_severity,
+        :minimum_inspections_per_year => inspection.minimum_inspections_per_year,
+        :establishment_name => inspection.establishment_name,
+        :establishment_type => inspection.establishment_type,
       }
       # inspections.each do |inspection|
       #   inspections_content[:details] << {
@@ -67,10 +72,9 @@ class EstablishmentsController < ApplicationController
     end
     establishment_content = {
       :id => establishment.id,
-      :name => establishment.name,
-      :type => establishment.est_type,
+      :name => establishment.latest_name,
+      :type => establishment.latest_type,
       :address => establishment.address,
-      :postal_code => establishment.postal_code,
       :latlng => establishment.latlng,
       :inspections => inspections_list
     }

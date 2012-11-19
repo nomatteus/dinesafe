@@ -11,17 +11,15 @@ class EstablishmentsControllerTest < ActionController::TestCase
     assert_equal 2, parsed_body["data"].length
     assert_equal({"data" => [{
       "id" => est1.id,
-      "name" => est1.name,
-      "type" => est1.est_type,
+      "latest_name" => est1.latest_name,
+      "latest_type" => est1.latest_type,
       "address" => est1.address,
-      "postal_code" => est1.postal_code,
       "latlng" => est1.latlng,
       }, {
       "id" => est2.id,
-      "name" => est2.name,
-      "type" => est2.est_type,
+      "latest_name" => est2.latest_name,
+      "latest_type" => est2.latest_type,
       "address" => est2.address,
-      "postal_code" => est2.postal_code,
       "latlng" => est2.latlng,
       }
       ]}, parsed_body)
@@ -46,7 +44,6 @@ class EstablishmentsControllerTest < ActionController::TestCase
   end
 
   test "index json near & search combined parameter" do
-    flunk
     est = establishments(:two)
     get :index, :format => :json, :search => "establishment", :near => "43.688205,-79.5027122"
     parsed_body = JSON.parse(response.body)

@@ -1,15 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  details: MyString
-  severity: MyString
-  action: MyString
-  court_outcome: MyString
+  details: Operator fail to properly remove liquid waste
+  severity: C - Crucial
+  action: 
+  court_outcome: 
   amount_fined: 
+  inspection_id: 2
 
 two:
-  details: MyString
-  severity: MyString
-  action: MyString
-  court_outcome: MyString
+  details: Details for two
+  severity: S - Significant
+  action: 
+  court_outcome: 
   amount_fined: 
+  inspection_id: 2
+
+three:
+  details: Details for three
+  severity: M - Minor
+  action: 
+  court_outcome: 
+  amount_fined: 
+  inspection_id: 2

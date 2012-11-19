@@ -73,14 +73,12 @@ SET default_with_oids = false;
 
 CREATE TABLE establishments (
     id integer NOT NULL,
-    name character varying(255),
-    est_type character varying(255),
     address character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    postal_code character varying(255),
-    geocoding_results_json text,
-    latlng point
+    latlng point,
+    latest_name character varying(255),
+    latest_type character varying(255)
 );
 
 
@@ -101,6 +99,40 @@ CREATE SEQUENCE establishments_id_seq
 --
 
 ALTER SEQUENCE establishments_id_seq OWNED BY establishments.id;
+
+
+--
+-- Name: geocodes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE geocodes (
+    id integer NOT NULL,
+    address character varying(255),
+    postal_code character varying(255),
+    geocoding_results_json text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    latlng point
+);
+
+
+--
+-- Name: geocodes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE geocodes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: geocodes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE geocodes_id_seq OWNED BY geocodes.id;
 
 
 --
@@ -151,7 +183,8 @@ CREATE TABLE inspections (
     date date,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    inspection_id integer
+    establishment_name character varying(255),
+    establishment_type character varying(255)
 );
 
 
@@ -194,6 +227,13 @@ ALTER TABLE ONLY establishments ALTER COLUMN id SET DEFAULT nextval('establishme
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY geocodes ALTER COLUMN id SET DEFAULT nextval('geocodes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY infractions ALTER COLUMN id SET DEFAULT nextval('infractions_id_seq'::regclass);
 
 
@@ -210,6 +250,14 @@ ALTER TABLE ONLY inspections ALTER COLUMN id SET DEFAULT nextval('inspections_id
 
 ALTER TABLE ONLY establishments
     ADD CONSTRAINT establishments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: geocodes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY geocodes
+    ADD CONSTRAINT geocodes_pkey PRIMARY KEY (id);
 
 
 --
@@ -233,13 +281,6 @@ ALTER TABLE ONLY inspections
 --
 
 CREATE INDEX index_establishments_on_latlng ON establishments USING gist (latlng);
-
-
---
--- Name: index_establishments_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_establishments_on_name ON establishments USING btree (name);
 
 
 --
@@ -281,3 +322,11 @@ INSERT INTO schema_migrations (version) VALUES ('20121117040447');
 INSERT INTO schema_migrations (version) VALUES ('20121117062637');
 
 INSERT INTO schema_migrations (version) VALUES ('20121117170332');
+
+INSERT INTO schema_migrations (version) VALUES ('20121117211553');
+
+INSERT INTO schema_migrations (version) VALUES ('20121117212248');
+
+INSERT INTO schema_migrations (version) VALUES ('20121117213519');
+
+INSERT INTO schema_migrations (version) VALUES ('20121117222003');

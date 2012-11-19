@@ -5,16 +5,16 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  name: An establishment
-  est_type: Food Take Out
+  id: 1
+  latest_name: An establishment
+  latest_type: Food Take Out
   address: 1550 Jane St
-  postal_code: M9N 2R5
   latlng: 43.6982039,-79.5027124
 
 two:
-  name: Another establishment
-  est_type: Restaurance
+  id: 2
+  latest_name: Another establishment
+  latest_type: Restaurance
   address: 1550 Bloor St W
-  postal_code: M6N 2R5
   latlng: 43.688205,-79.5027122
 

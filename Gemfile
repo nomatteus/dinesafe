@@ -43,4 +43,6 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', '~> 0.8.3', :require => false
+  # https://github.com/thoughtbot/factory_girl_rails
+  gem 'factory_girl_rails'
 end

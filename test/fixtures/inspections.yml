@@ -5,21 +5,15 @@ one:
   establishment_id: 1
   status: Pass
   minimum_inspections_per_year: 1
-  infraction_details: 
   date: 2011-11-30
-  severity: 
-  action: 
-  court_outcome: 
-  amount_fined: 
+  establishment_name: 
+  establishment_type: 
 
 two:
   id: 2
   establishment_id: 2
   status: Conditional Pass
   minimum_inspections_per_year: 3
-  infraction_details: Operator fail to properly remove liquid waste
   date: 2011-11-30
-  severity: S - Significant
-  action: Summons
-  court_outcome: Pending
-  amount_fined: 31250
+  establishment_name: 
+  establishment_type: 
