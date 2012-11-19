@@ -18,7 +18,6 @@ class EstablishmentsController < ApplicationController
         :name => establishment.name,
         :type => establishment.est_type,
         :address => establishment.address,
-        :postal_code => establishment.postal_code,
         :latlng => establishment.latlng,
       }
       if establishment[:distance].present?

@@ -19,4 +19,17 @@ namespace :temptasks do
     end
   end
 
+  desc "Move geocodes to their own table"
+  task :nov17geo => :environment do
+    Establishment.find_each do |establishment|
+      g = Geocode.find_or_create_by_address(establishment.address)
+      g.update_attributes({
+        :address => establishment.address,
+        :postal_code => establishment.postal_code,
+        :latlng => establishment.latlng,
+        :geocoding_results_json => establishment.geocoding_results_json
+      })
+    end
+  end
+
 end

@@ -54,20 +54,20 @@ namespace :dinesafe do
 
       # Create or Update Establishment
       establishment = Establishment.find_or_create_by_id(row.xpath("ESTABLISHMENT_ID").text.to_i)
-      current_name = establishment.name
-      current_est_type = establishment.est_type
+      # current_name = establishment.name
+      # current_est_type = establishment.est_type
       current_address = establishment.address
       establishment.update_attributes({
-        :name       => row.xpath("ESTABLISHMENT_NAME").text,
-        :est_type   => row.xpath("ESTABLISHMENTTYPE").text,
-        :address    => row.xpath("ESTABLISHMENT_ADDRESS").text
+        :latest_name    => row.xpath("ESTABLISHMENT_NAME").text,
+        :latest_type    => row.xpath("ESTABLISHMENTTYPE").text,
+        :address        => row.xpath("ESTABLISHMENT_ADDRESS").text,
       })
-      if current_name != establishment.name
-        puts "Change detected! Old: #{current_name} New: #{establishment.name}" 
-      end
-      if current_est_type != establishment.est_type
-        puts "Change detected! Old: #{current_est_type} New: #{establishment.est_type}" 
-      end
+      # if current_name != establishment.name
+      #   puts "Change detected! Old: #{current_name} New: #{establishment.name}" 
+      # end
+      # if current_est_type != establishment.est_type
+      #   puts "Change detected! Old: #{current_est_type} New: #{establishment.est_type}" 
+      # end
       if current_address != establishment.address
         puts "Change detected! Old: #{current_address} New: #{establishment.address}" 
       end
@@ -80,19 +80,14 @@ namespace :dinesafe do
       # The assumption here is that all inspections on the same date
       #  will have the same establishment status and min inspections.
       #  From what I've seen in the data, this is the case, and it makes sense.
-      inspection = Inspection.find_or_create_by_establishment_id_and_date(
-        establishment.id, 
-        row.xpath("INSPECTION_DATE").text, 
-      )
+      inspection = Inspection.find_or_create_by_id(row.xpath("INSPECTION_ID").text.to_i)
       inspection.update_attributes({
         :establishment_id              => establishment.id,
-        # NOTE: This inspection id is stored for reference only, as it historically
-        #       didn't exist, so not all records have it. We're using the 
-        #       inspection ID as assigned by the database (primary key).
-        :inspection_id                 => row.xpath("INSPECTION_ID").text.to_i,
-        :status                        => row.xpath("ESTABLISHMENT_STATUS").text,
+        :establishment_name            => row.xpath("ESTABLISHMENT_NAME").text.strip,
+        :establishment_type            => row.xpath("ESTABLISHMENTTYPE").text.strip,
+        :status                        => row.xpath("ESTABLISHMENT_STATUS").text.strip,
         :minimum_inspections_per_year  => row.xpath("MINIMUM_INSPECTIONS_PERYEAR").text.to_i,
-        :date                          => row.xpath("INSPECTION_DATE").text,
+        :date                          => row.xpath("INSPECTION_DATE").text.strip,
       })
       # Create each infraction if there is one.
       infraction_attributes = {
@@ -125,37 +120,47 @@ namespace :dinesafe do
     end
   end
 
+  desc "Update latlng establishments (uses geocode table, so update geocode info first)"
+  task :update_latlngs => :environment do
+    Establishment.where("latlng IS NULL").each do |establishment|
+      g = Geocode.where(:address => establishment.address).first
+      if g.present?
+        establishment.update_attribute(:latlng, g.latlng)
+      end
+    end
+  end
+
   desc "Geocodes 1000 records at a time (but only if record is not geocoded already)"
   task :geocode => :environment do
     2500.times do 
       # Get new record to geocode
-      e = Establishment.where("geocoding_results_json IS NULL").first
-      puts e.id
-      address = e.address.gsub " ", "+" #Replace spaces with '+' to make URL-safe
+      g = Geocode.where("geocoding_results_json IS NULL").first
+      puts g.id
+      address = g.address.gsub " ", "+" #Replace spaces with '+' to make URL-safe
       map_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address},+toronto,+on&sensor=false"
       puts "Map url is: #{map_url}"
       geo_json_raw = open(map_url).read
       geo_json_parsed = ActiveSupport::JSON.decode(geo_json_raw)
       if geo_json_parsed["status"] == "OK"
-        e.geocoding_results_json = geo_json_raw
+        g.geocoding_results_json = geo_json_raw
         lat = BigDecimal.new(geo_json_parsed["results"][0]["geometry"]["location"]["lat"], 10)
         lng = BigDecimal.new(geo_json_parsed["results"][0]["geometry"]["location"]["lng"], 10)
-        e.latlng = "#{lat} ,#{lng}"
+        g.latlng = "#{lat} ,#{lng}"
         geo_json_parsed["results"][0]["address_components"].each do |comp|
           comp["types"].each do |type|
             if type == "postal_code"
-              e.postal_code = comp["long_name"]
+              g.postal_code = comp["long_name"]
             end
           end
         end
-        e.save
+        g.save
       else
         puts geo_json_raw.inspect
         puts "RESULT STATUS IS **NOT OK** Status returned is: #{geo_json_parsed["status"]}"
         if geo_json_parsed["status"] == "ZERO_RESULTS"
           puts "ZERO_RESULTS found."
-          e.geocoding_results_json = geo_json_raw
-          e.save
+          g.geocoding_results_json = geo_json_raw
+          g.save
         else
           sleep_time_pausing = 3600 # Wait an hour before trying another query
           puts "sleeping for #{sleep_time_pausing} seconds"
