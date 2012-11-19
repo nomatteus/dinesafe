@@ -21,14 +21,13 @@ class EstablishmentsController < ApplicationController
         :latlng => establishment.latlng,
       }
       if establishment[:distance].present?
-        establishment_content[:distance] = establishment.distance
+        establishment_content[:distance] = establishment.distance.to_f
       end
       @establishment_list << establishment_content
     end
     respond_to do |format|
       format.html # index.html.erb
       format.json { 
-        # Select specific fields for API
         render :json => {
           :data => @establishment_list
           }.to_json
@@ -55,36 +54,22 @@ class EstablishmentsController < ApplicationController
         :establishment_name => inspection.establishment_name,
         :establishment_type => inspection.establishment_type,
       }
-      # inspections.each do |inspection|
-      #   inspections_content[:details] << {
-      #   :status => inspection.status,
-      #   :minimum_inspections_per_year => inspection.minimum_inspections_per_year,
-      #   :infraction_details => inspection.infraction_details,
-      #   :date => inspection.date,
-      #   :severity => inspection.severity,
-      #   :action => inspection.action,
-      #   :court_outcome => inspection.court_outcome,
-      #   :amount_fined => inspection.amount_fined,
-      #   :inspection_id => inspection.inspection_id,
-      #   }
-      # end
       inspections_list << inspections_content
     end
     establishment_content = {
       :id => establishment.id,
-      :name => establishment.latest_name,
-      :type => establishment.latest_type,
+      :latest_name => establishment.latest_name,
+      :latest_type => establishment.latest_type,
       :address => establishment.address,
       :latlng => establishment.latlng,
       :inspections => inspections_list
     }
     if establishment[:distance].present?
-      establishment_content[:distance] = establishment.distance
+      establishment_content[:distance] = establishment.distance.to_f
     end
     respond_to do |format|
       format.html # index.html.erb
       format.json { 
-        # Select specific fields for API
         render :json => {
           :data => establishment_content
           }.to_json
