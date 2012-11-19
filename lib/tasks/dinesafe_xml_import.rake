@@ -126,6 +126,14 @@ namespace :dinesafe do
       g = Geocode.where(:address => establishment.address).first
       if g.present?
         establishment.update_attribute(:latlng, g.latlng)
+      else
+        # Create new geocode record so it will be caught in next geocoding run
+        geocode = Geocode.create(:address => establishment.address)
+        if geocode
+          print "new Geocode created: #{geocode.id}\n"
+        else
+          print "tried to create new geocode but failed: #{geocode.id}\n"
+        end
       end
     end
   end
