@@ -8,6 +8,11 @@ class Inspection < ActiveRecord::Base
   # Returns list of infractions, sorted by severity (as defined in SORT_ORDER)
   def infractions_by_severity
     # Use SORT_ORDER to map the severity to an array index, then sort on that
-    self.infractions.sort_by { |infraction| SORT_ORDER.index(infraction.severity[0]) }
+    # If not found in SORT_ORDER, then sort by the ascii code of character
+    #   "A".ord is 65, so these will all appear in alphabetical order after 
+    #    anything in SORT_ORDER
+    self.infractions.sort_by { |infraction| 
+      SORT_ORDER.index(infraction.severity[0].upcase) || infraction.severity[0].upcase.ord
+    }
   end
 end
