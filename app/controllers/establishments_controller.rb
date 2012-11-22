@@ -15,7 +15,7 @@ class EstablishmentsController < ApplicationController
     establishments.each do |establishment|
       establishment_content = {
         :id => establishment.id,
-        :latest_name => establishment.latest_name,
+        :latest_name => establishment.latest_name.titleize,
         :latest_type => establishment.latest_type,
         :address => establishment.address,
         :latlng => establishment.latlng,
