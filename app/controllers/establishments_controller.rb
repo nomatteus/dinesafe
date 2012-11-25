@@ -1,6 +1,12 @@
 class EstablishmentsController < ApplicationController
 
+  # TODO: DRY up this code! And move a bunch of it to the models, perhaps?
+  #       There is a lot of repetition between index and show methods....
+  #       But I want to focus on the iOS dev stuff for now...
+
   def index
+    current_page = params[:page].to_i > 0 ? params[:page].to_i : 1
+    per_page = params[:per_page].to_i > 0 ? params[:per_page].to_i : 30
     if params[:near].present? # TODO? Add regex to check format? or just check for comma?
       lat, lng = params[:near].split(",")
       establishments = Establishment.near(lat, lng)
@@ -10,15 +16,32 @@ class EstablishmentsController < ApplicationController
     if params[:search].present?
       establishments = establishments.where("latest_name ILIKE ?", "%#{params[:search]}%")
     end
-    establishments = establishments.paginate(:page => params[:page], :per_page => 30).order(:latest_name)
+    total_pages = (establishments.count.to_f / per_page.to_f).ceil
+    establishments = establishments.paginate(:page => current_page, :per_page => per_page).order(:latest_name)
     @establishment_list = []
     establishments.each do |establishment|
+
+      inspections_list = []
+      establishment.inspections.order(:date).each do |inspection|
+        # Add all inspection info, except for infractions!
+        inspections_content = {
+          :id => inspection.id,
+          :status => inspection.status,
+          :date => inspection.date,
+          :minimum_inspections_per_year => inspection.minimum_inspections_per_year,
+          :establishment_name => inspection.establishment_name.titleize,
+          :establishment_type => inspection.establishment_type,
+        }
+        inspections_list << inspections_content
+      end
+
       establishment_content = {
         :id => establishment.id,
         :latest_name => establishment.latest_name.titleize,
         :latest_type => establishment.latest_type,
-        :address => establishment.address,
+        :address => establishment.address.titleize,
         :latlng => establishment.latlng,
+        :inspections => inspections_list
       }
       if establishment[:distance].present?
         establishment_content[:distance] = establishment.distance.to_f
@@ -29,7 +52,11 @@ class EstablishmentsController < ApplicationController
       format.html # index.html.erb
       format.json { 
         render :json => {
-          :data => @establishment_list
+          :data => @establishment_list,
+          :paging => {
+            :current_page => current_page,
+            :total_pages => total_pages,
+          }
           }.to_json
       }
     end
@@ -51,16 +78,16 @@ class EstablishmentsController < ApplicationController
         :date => inspection.date,
         :infractions => inspection.infractions_by_severity,
         :minimum_inspections_per_year => inspection.minimum_inspections_per_year,
-        :establishment_name => inspection.establishment_name,
+        :establishment_name => inspection.establishment_name.titleize,
         :establishment_type => inspection.establishment_type,
       }
       inspections_list << inspections_content
     end
     establishment_content = {
       :id => establishment.id,
-      :latest_name => establishment.latest_name,
+      :latest_name => establishment.latest_name.titleize,
       :latest_type => establishment.latest_type,
-      :address => establishment.address,
+      :address => establishment.address.titleize,
       :latlng => establishment.latlng,
       :inspections => inspections_list
     }
