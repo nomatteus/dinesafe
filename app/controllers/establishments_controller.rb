@@ -22,6 +22,8 @@ class EstablishmentsController < ApplicationController
     establishments.each do |establishment|
 
       inspections_list = []
+      # TODO: use .includes(:inspections) on establishments query, then order
+      #       inspections by date using Ruby instead of DB query.
       establishment.inspections.order(:date).each do |inspection|
         # Add all inspection info, except for infractions!
         inspections_content = {
@@ -71,7 +73,7 @@ class EstablishmentsController < ApplicationController
       establishment = Establishment.find(params[:id])
     end
     inspections_list = []
-    establishment.inspections.order(:date).each do |inspection|
+    establishment.inspections.order(:date).includes(:infractions).each do |inspection|
       inspections_content = {
         :id => inspection.id,
         :status => inspection.status,
