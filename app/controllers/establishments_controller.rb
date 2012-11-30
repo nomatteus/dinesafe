@@ -74,11 +74,24 @@ class EstablishmentsController < ApplicationController
     end
     inspections_list = []
     establishment.inspections.order(:date).includes(:infractions).each do |inspection|
+      infractions_list = []
+      inspection.infractions_by_severity.each do |infraction|
+        infraction_content = {
+          :id            => infraction.id,
+          :inspection_id => inspection.id,
+          :details       => infraction.details,
+          :severity      => infraction.severity_for_api,
+          :action        => infraction.action,
+          :court_outcome => infraction.court_outcome,
+          :amount_fined  => infraction.amount_fined,
+        }
+        infractions_list << infraction_content
+      end
       inspections_content = {
         :id => inspection.id,
         :status => inspection.status,
         :date => inspection.date,
-        :infractions => inspection.infractions_by_severity,
+        :infractions => infractions_list,
         :minimum_inspections_per_year => inspection.minimum_inspections_per_year,
         :establishment_name => inspection.establishment_name.titleize,
         :establishment_type => inspection.establishment_type,
