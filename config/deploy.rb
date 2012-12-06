@@ -15,6 +15,11 @@ role :db,  "web239.webfaction.com", :primary => true # This is where Rails migra
 default_environment['PATH'] = "/home/ruten/webapps/dinesafe/bin:$PATH"
 default_environment['GEM_HOME'] = "/home/ruten/webapps/dinesafe/gems"
 default_environment['RUBYLIB'] = "/home/ruten/webapps/dinesafe/lib"
+default_environment = {
+  'PATH' => "/home/ruten/webapps/dinesafe/bin:$PATH",
+  'GEM_HOME' => "/home/ruten/webapps/dinesafe/gems",
+  'RUBYLIB' => "/home/ruten/webapps/dinesafe/lib"
+}
 
 set :user, "ruten"
 set :scm_username, "nomatteus"
