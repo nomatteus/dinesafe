@@ -23,7 +23,7 @@ group :assets do
   # gem 'libv8', '~> 3.11.8'
   # gem 'therubyracer'
   gem 'sass-rails',   '~> 3.1.5'
-  gem 'coffee-rails', '~> 3.1.1'
+  # gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
 
