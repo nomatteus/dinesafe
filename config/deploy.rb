@@ -12,6 +12,10 @@ role :web, "web239.webfaction.com"                          # Your HTTP server, 
 role :app, "web239.webfaction.com"                          # This may be the same as your `Web` server
 role :db,  "web239.webfaction.com", :primary => true # This is where Rails migrations will run
 
+default_environment['PATH'] = "/home/ruten/webapps/dinesafe/bin:$PATH"
+default_environment['GEM_HOME'] = "/home/ruten/webapps/dinesafe/gems"
+default_environment['RUBYLIB'] = "/home/ruten/webapps/dinesafe/lib"
+
 set :user, "ruten"
 set :scm_username, "nomatteus"
 set :use_sudo, false
