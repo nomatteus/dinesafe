@@ -8,7 +8,7 @@ Transferring The Database
 
 ### Dump Database
 
-		g_dump  -U mruten dinesafe_dev -f doc/database_dumps/dinesafe_dev_$(date +%Y-%m-%d).dump --format=c
+		pg_dump  -U mruten dinesafe_dev -f doc/database_dumps/dinesafe_dev_$(date +%Y-%m-%d).dump --format=c
 
 ### Load Database
 
