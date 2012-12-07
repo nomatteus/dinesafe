@@ -3,9 +3,19 @@ Dinesafe Toronto on Google Maps
 
 see doc/TODO.md for todo items
 
+Transferring The Database
+-------------------------
+
+### Dump Database
+
+		g_dump  -U mruten dinesafe_dev -f doc/database_dumps/dinesafe_dev_$(date +%Y-%m-%d).dump --format=c
+
+### Load Database
+
+		pg_restore -d database_name doc/database_dumps/filename.dump
+
 The App
 -------
-
 
 
 Toronto Open Data
