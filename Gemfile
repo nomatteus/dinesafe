@@ -39,6 +39,9 @@ gem 'jquery-rails'
 # Deploy with Capistrano
 gem 'capistrano'
 
+# Site monitoring/errors
+gem 'newrelic_rpm'
+
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
