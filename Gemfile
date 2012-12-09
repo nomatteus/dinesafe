@@ -41,6 +41,7 @@ gem 'capistrano'
 
 # Site monitoring/errors
 gem 'newrelic_rpm'
+gem "airbrake"
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
