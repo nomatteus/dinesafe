@@ -42,7 +42,7 @@ class EstablishmentsController < ApplicationController
         :latest_name => establishment.latest_name.titleize,
         :latest_type => establishment.latest_type,
         :address => establishment.address.titleize,
-        :latlng => establishment.latlng,
+        :latlng => establishment.latlng_dict,
         :inspections => inspections_list
       }
       if establishment[:distance].present?
@@ -103,7 +103,7 @@ class EstablishmentsController < ApplicationController
       :latest_name => establishment.latest_name.titleize,
       :latest_type => establishment.latest_type,
       :address => establishment.address.titleize,
-      :latlng => establishment.latlng,
+      :latlng => establishment.latlng_dict,
       :inspections => inspections_list
     }
     if establishment[:distance].present?

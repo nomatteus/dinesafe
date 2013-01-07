@@ -6,4 +6,13 @@ class Establishment < ActiveRecord::Base
     .order("distance ASC")
   }
 
+  def latlng_dict
+    # Remove brackets and split on comma
+    parts = self.latlng[1..-2].split(",")
+    return {
+      :lat => parts[0].to_f,
+      :lng => parts[1].to_f
+    }
+  end
+
 end
