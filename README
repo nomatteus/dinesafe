@@ -14,6 +14,28 @@ Transferring The Database
 
 		pg_restore -d database_name doc/database_dumps/filename.dump
 
+Rake Tasks
+----------
+
+Run these tasks in this order. This could use some optimization/refactoring.
+
+Update XML from Toronto Open Data:
+
+    rake dinesafe:update_xml
+
+Import XML to database (will only add/update changed records):
+
+    rake dinesafe:xml_import
+
+Geocode addresses that need it (updates geocodes table):
+
+    rake dinesafe:geocode
+
+Update establishment addresses from geocodes:
+
+    rake dinesafe:update_latlngs
+
+
 The App
 -------
 
