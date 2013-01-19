@@ -1,0 +1,104 @@
+<html>
+<head>
+  <title>RGB Color Scheme</title>
+  <style type="text/css">
+    /* Colors */
+    .green-light {}
+    .green-dark {}
+    .yellow-light {}
+    .yellow-dark {}
+    .red-light {}
+    .red-dark {}
+    .blue-light {}
+    .blue-dark {}
+
+    /* Layout */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #rainbow {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+    .box {
+      width: 20%;
+      height: 100%;
+      float: left;
+    }
+      .box .part {
+        height: 50%;
+      }
+        .box .part input {
+          background-color: transparent;
+          border: 0;
+          opacity: 0.5;
+          width: 100%;
+          height: 100%;
+          display: block;
+          text-align: center;
+        }
+  </style>
+</head>
+<body>
+
+<div id="rainbow"></div>
+
+<div class="box template">
+  <div class="part top"></div>
+  <div class="part bottom"></div>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+/* App Colors - RGB only, no alpha (for iOS performance) */
+var all_colors = {
+  blue: {
+    top: {r: 41, g: 135, b: 252},
+    bottom: {r: 36, g: 120, b: 228},
+  },
+  green: {
+    top: {r: 40, g: 195, b: 38},
+    bottom: {r: 35, g: 174, b: 33},
+  },
+  yellow: {
+    top: {r: 249, g: 255, b: 72},
+    bottom: {r: 222, g: 228, b: 64},
+  },
+  red: {
+    top: {r: 222, g: 45, b: 77},
+    bottom: {r: 196, g: 39, b: 68},
+  },
+  gray: {
+    top: {r: 130, g: 130, b: 130},
+    bottom: {r: 115, g: 115, b: 115},
+  },
+};
+$(function(){
+  var $el = $("#rainbow"),
+      $box_template = $(".box.template")
+      rgb_for_css = function(rgb) {
+        return "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")";
+      },
+      text_for_box = function(rgb) {
+        return "" + rgb.r + ", " + rgb.g + ", " + rgb.b + "";
+      },
+      $build_box_part = function($box, part, rgb) {
+        $box
+          .find("." + part)
+          .css("backgroundColor", rgb_for_css(rgb))
+          .html("<input type='text' value='" + text_for_box(rgb) + "'></input>")
+          ;
+      };
+  $.each(all_colors, function(name, colors) {
+    var $box = $box_template.clone();
+    $build_box_part($box, "top", colors.top);
+    $build_box_part($box, "bottom", colors.bottom);
+    $el.append($box);
+  });
+  $("input").on("click", function(){ this.select(); });
+});
+</script>
+</body>
+</html>
