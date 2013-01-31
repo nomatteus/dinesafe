@@ -1,7 +1,7 @@
 require 'bundler/capistrano'
 
 set :application, "dinesafe"
-set :repository,  "git@codebasehq.com:ruten/side-projects/dinesafe.git"
+set :repository,  "git@github.com:nomatteus/dinesafe.git"
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -32,7 +32,13 @@ namespace :deploy do
   task :restart do
     run "#{deploy_to}/bin/restart"
   end
+
+  task :link_settings, :roles => :app do
+    run "ln -s #{shared_path}/config/settings.yml #{release_path}/config/settings.yml"
+  end
 end
+
+after 'deploy:finalize_update', 'deploy:link_settings'
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
@@ -48,5 +54,5 @@ end
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
-        require './config/boot'
-        require 'airbrake/capistrano'
+require './config/boot'
+require 'airbrake/capistrano'
