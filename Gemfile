@@ -10,7 +10,9 @@ gem 'pg'
 # Add new gems here
 gem 'nokogiri'
 gem 'awesome_print'
-gem 'will_paginate', '~> 3.0'
+gem 'will_paginate',              '~> 3.0'
+gem 'comfortable_mexican_sofa',   '~>1.6.25'
+gem 'konf',                       '~>0.0.1'
 
 # Using Postgresql now, so might not need geokit. 
 # But, might be useful if I want a Geocoder in the future.
@@ -22,6 +24,7 @@ gem 'will_paginate', '~> 3.0'
 group :assets do
   gem 'libv8', '3.11.8.0'
   gem 'therubyracer', '0.11.0beta8'
+  gem 'bootstrap-sass', '~> 2.2.1.1'
   gem 'sass-rails',   '~> 3.1.5'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'

@@ -1,7 +1,13 @@
-Dinesafe Toronto on Google Maps
-===============================
+Dinesafe Toronto API
+====================
 
 see doc/TODO.md for todo items
+
+Setup
+-----
+
+Create settings.yml: `cp config/settings.example.yml config/settings.yml`,
+and add your own CMS username/password.
 
 Transferring The Database
 -------------------------
