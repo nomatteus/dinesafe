@@ -1,5 +1,10 @@
 # For more info on routes: http://guides.rubyonrails.org/routing.html
 Dinesafe::Application.routes.draw do
+  match "/app"            => "pages#app_landing"
+  match "/app/privacy"    => "pages#app_privacy"
+  match "/app/about"      => "pages#app_about"
+
+
   get "inspections/index"
   get "inspections/map"
   get "establishment/search"
@@ -10,7 +15,7 @@ Dinesafe::Application.routes.draw do
   end
 
   # Homepage
-  root :to => 'inspections#index'
+  root :to => "inspections#index"
 
   # See how all your routes lay out with "rake routes"
 
