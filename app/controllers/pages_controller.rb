@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  
+  layout "application_mobile"
 
   # Landing/promo page for app
   def app_landing

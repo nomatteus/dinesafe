@@ -15,7 +15,7 @@ Dinesafe::Application.routes.draw do
   end
 
   # Homepage
-  root :to => "inspections#index"
+  root :to => "pages#app_landing"
 
   # See how all your routes lay out with "rake routes"
 
