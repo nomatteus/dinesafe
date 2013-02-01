@@ -17,7 +17,7 @@ gem 'konf',               '~>0.0.2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'libv8',            '~>3.15.11.1'
+  gem 'libv8',            '3.11.8.0'
   gem 'therubyracer',     '0.11.0beta8'
   gem 'bootstrap-sass',   '~> 2.2.2.0'
   gem 'sass-rails',       '~> 3.2.6'
