@@ -1,11 +1,5 @@
 production:
-  cms_username: <your username>
-  cms_password: <your password>
 
 development:
-  cms_username: username
-  cms_password: password
 
 test: 
-  cms_username: username
-  cms_password: password

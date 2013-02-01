@@ -11,7 +11,6 @@ gem 'pg'
 gem 'nokogiri'
 gem 'awesome_print'
 gem 'will_paginate',              '~> 3.0'
-gem 'comfortable_mexican_sofa',   '~>1.6.25'
 gem 'konf',                       '~>0.0.1'
 
 # Using Postgresql now, so might not need geokit. 
