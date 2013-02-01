@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails',              '3.1.10'
+gem 'rails',              '~>3.2.11'
 gem 'pg',                 '~>0.14.1'
 
 # Add new gems here
@@ -17,12 +17,12 @@ gem 'konf',               '~>0.0.2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'libv8',            '3.11.8.0'
+  gem 'libv8',            '~>3.15.11.1'
   gem 'therubyracer',     '0.11.0beta8'
-  gem 'bootstrap-sass',   '~> 2.2.1.1'
-  gem 'sass-rails',       '~> 3.1.5'
-  gem 'coffee-rails',     '~> 3.1.1'
-  gem 'uglifier',         '>= 1.0.3'
+  gem 'bootstrap-sass',   '~> 2.2.2.0'
+  gem 'sass-rails',       '~> 3.2.6'
+  gem 'coffee-rails',     '~> 3.2.2'
+  gem 'uglifier',         '>= 1.3.0'
 end
 
 gem 'haml',               '~>3.1.7'
@@ -36,11 +36,11 @@ gem 'newrelic_rpm',       '~>3.5.6.46'
 gem "airbrake",           '~>3.1.7'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# gem 'ruby-debug19'#, :require => 'ruby-debug'
 
 group :test do
   # Pretty printed test output
-  gem 'turn', '~> 0.8.3', :require => false
+  gem 'turn', '~> 0.9.6'#, :require => false
   # https://github.com/thoughtbot/factory_girl_rails
   gem 'factory_girl_rails'
 end
