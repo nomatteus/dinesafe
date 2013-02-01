@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Dinesafe</title>
+
+  <!-- Mobile viewport optimization h5bp.com/ad -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0;">
+
+  <%= stylesheet_link_tag "application_mobile" %>
+  <%= javascript_include_tag "application" %>
+
+  <%= yield :head %>
+</head>
+<body>
+
+  <div id="container">
+    <div id="main" role="main">
+      <%= yield %>
+    </div>
+  </div> <!--! end of #container -->
+
+  <!--<script>
+     var _gaq=[["_setAccount","UA-XXXXXX-XX"],["_trackPageview"]];
+     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+     g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+     s.parentNode.insertBefore(g,s)}(document,"script"));
+  </script> -->
+</body>
+</html>
