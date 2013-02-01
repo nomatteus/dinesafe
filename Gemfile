@@ -1,17 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.10'
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-gem 'pg'
+gem 'rails',              '3.1.10'
+gem 'pg',                 '~>0.14.1'
 
 # Add new gems here
-gem 'nokogiri'
-gem 'awesome_print'
-gem 'will_paginate',              '~> 3.0'
-gem 'konf',                       '~>0.0.1'
+gem 'nokogiri',           '~>1.5.6'
+gem 'awesome_print',      '~>1.1.0'
+gem 'will_paginate',      '~>3.0.4'
+gem 'konf',               '~>0.0.2'
 
 # Using Postgresql now, so might not need geokit. 
 # But, might be useful if I want a Geocoder in the future.
@@ -21,29 +17,23 @@ gem 'konf',                       '~>0.0.1'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'libv8', '3.11.8.0'
-  gem 'therubyracer', '0.11.0beta8'
-  gem 'bootstrap-sass', '~> 2.2.1.1'
-  gem 'sass-rails',   '~> 3.1.5'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'libv8',            '3.11.8.0'
+  gem 'therubyracer',     '0.11.0beta8'
+  gem 'bootstrap-sass',   '~> 2.2.1.1'
+  gem 'sass-rails',       '~> 3.1.5'
+  gem 'coffee-rails',     '~> 3.1.1'
+  gem 'uglifier',         '>= 1.0.3'
 end
 
-gem 'haml'
-gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the web server
-# gem 'unicorn'
+gem 'haml',               '~>3.1.7'
+gem 'jquery-rails',       '~>2.2.0'
 
 # Deploy with Capistrano
-gem 'capistrano'
+gem 'capistrano',         '~>2.14.1'
 
 # Site monitoring/errors
-gem 'newrelic_rpm'
-gem "airbrake"
+gem 'newrelic_rpm',       '~>3.5.6.46'
+gem "airbrake",           '~>3.1.7'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
