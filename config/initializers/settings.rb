@@ -9,6 +9,3 @@ module Dinesafe
     defined?(Rails) ? Rails.env : ENV['RACK_ENV']
   end
 end
-
-ComfortableMexicanSofa::HttpAuth.username = Dinesafe.conf.cms_username
-ComfortableMexicanSofa::HttpAuth.password = Dinesafe.conf.cms_password
