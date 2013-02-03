@@ -12,10 +12,11 @@ class EstablishmentTest < ActiveSupport::TestCase
     # the correct order
   # end
 
-  # test "establishment text search" do
-    # flunk
-    # test that i can do a search for an establishment name and it returns results as expected
-    # if i will support any other fields, then test those too, but probably not for now
-  # end
+  test "latlng_dict" do
+    est1 = establishments(:one)
+    est2 = establishments(:two)
+    assert_equal({:lat => 43.6982039, :lng => -79.5027124}, est1.latlng_dict)
+    assert_equal({:lat => 43.688205, :lng => -79.5027122}, est2.latlng_dict)
+  end
 
 end

@@ -1,5 +1,5 @@
 class Establishment < ActiveRecord::Base
-  has_many :inspections
+  has_many :inspections, :order => "date ASC"
 
   scope :near, lambda { |lat, lng|
     select("get_distance_km(#{lat}, #{lng}, latlng[0], latlng[1]) as distance, *")

@@ -63,7 +63,6 @@ class EstablishmentsControllerTest < ActionController::TestCase
           "infractions" => [
             {
               "id" => 980190962,
-              "inspection_id" => 2,
               "details" => "Operator fail to properly remove liquid waste",
               "severity" => "Crucial",
               "action" => "Summons",
@@ -72,7 +71,6 @@ class EstablishmentsControllerTest < ActionController::TestCase
             },
             {
               "id" => 298486374,
-              "inspection_id" => 2,
               "details" => "Details for two",
               "severity" => "Significant",
               "action" => "Summons",
@@ -81,7 +79,6 @@ class EstablishmentsControllerTest < ActionController::TestCase
             },
             {
               "id" => 113629430,
-              "inspection_id" => 2,
               "details" => "Details for three",
               "severity" => "Minor",
               "action" => "Something",
