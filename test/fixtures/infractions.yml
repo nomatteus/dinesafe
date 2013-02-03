@@ -3,23 +3,23 @@
 one:
   details: Operator fail to properly remove liquid waste
   severity: C - Crucial
-  action: 
-  court_outcome: 
-  amount_fined: 
+  action: Summons
+  court_outcome: Guilty
+  amount_fined: 100
   inspection_id: 2
 
 two:
   details: Details for two
   severity: S - Significant
-  action: 
-  court_outcome: 
-  amount_fined: 
+  action: Summons
+  court_outcome: Stayed
+  amount_fined: 0
   inspection_id: 2
 
 three:
   details: Details for three
   severity: M - Minor
-  action: 
-  court_outcome: 
-  amount_fined: 
+  action: Something
+  court_outcome: An Outcome
+  amount_fined: 1000
   inspection_id: 2

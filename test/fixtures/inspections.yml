@@ -6,14 +6,14 @@ one:
   status: Pass
   minimum_inspections_per_year: 1
   date: 2011-11-30
-  establishment_name: 
-  establishment_type: 
+  establishment_name: Establishment Name
+  establishment_type: Restaurant
 
 two:
   id: 2
   establishment_id: 2
   status: Conditional Pass
   minimum_inspections_per_year: 3
-  date: 2011-11-30
-  establishment_name: 
-  establishment_type: 
+  date: 2011-11-29
+  establishment_name: Establishment Name 2
+  establishment_type: Food Take Out
