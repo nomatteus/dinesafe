@@ -27,6 +27,7 @@ end
 
 gem 'haml',               '~>3.1.7'
 gem 'jquery-rails',       '~>2.2.0'
+gem 'jbuilder',           '~>1.0.2'
 
 # Deploy with Capistrano
 gem 'capistrano',         '~>2.14.1'
