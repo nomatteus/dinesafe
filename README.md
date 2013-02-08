@@ -1,6 +1,8 @@
 Dinesafe Toronto API
 ====================
 
+[![Code Climate](https://codeclimate.com/github/nomatteus/dinesafe.png)](https://codeclimate.com/github/nomatteus/dinesafe)
+
 see doc/TODO.md for todo items
 
 Setup
