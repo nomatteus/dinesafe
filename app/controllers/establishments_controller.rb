@@ -6,6 +6,7 @@ class EstablishmentsController < ApplicationController
 
     establishments_scope = establishment_proximity_scope
     if params[:search].present?
+      params[:search].strip!
       establishments_scope = establishments_scope.where("latest_name ILIKE ?", "%#{params[:search]}%")
     end
 
