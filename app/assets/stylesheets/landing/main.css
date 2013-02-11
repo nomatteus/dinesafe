@@ -35,8 +35,8 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 .header-container h1{
 	text-indent: -10000em;
 	position: relative;
-	width: 271px; /* Adjust Width for Logo if needed */
-	height: 93px; /* Adjust Height for Logo if needed */
+	width: 394px; /* Adjust Width for Logo if needed */
+	height: 63px; /* Adjust Height for Logo if needed */
 	background: url(/assets/landing/logo.png) no-repeat center 0; /* Change Your Logo Name */
 	background-size: 100%;
 	margin: 0 auto;
@@ -278,8 +278,8 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 .footer-container h1{
 	text-indent: -10000em;
 	position: relative;
-	width: 142px; /* Adjust Width for Logo if needed */
-	height: 19px; /* Adjust Height for Logo if needed */
+	width: 163px; /* Adjust Width for Logo if needed */
+	height: 23px; /* Adjust Height for Logo if needed */
 	background: url(/assets/landing/logo_foot.png) no-repeat center 0; /* Change Logo */
 	background-size: 100%;
 	margin: 0 auto 40px;
@@ -387,7 +387,7 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 @media only screen and (min-width: 870px) {
 	.header-container h1{
 		background: url(/assets/landing/logo.png) no-repeat 0 0; /* Logo */
-		margin: 0;
+		margin: 0 0 0 -14px;
 	}
 	.ctaColumn { float: right; width: 52%; padding-bottom: 80px; text-align: left; padding-top: 70px; }
 	.signup:after{ right: 15%; }
@@ -395,7 +395,17 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	.header-container { padding-top: 120px; }
 	.fader .flexslider1{ left: 9px; }
 	.fader:before{ content: ""; position: absolute; background-position: 0 0; width: 593px; height: 782px; left: -240px;top: 0px; }
-	
+}
+/* Same as above but for retina logo */
+@media only screen and (min-width: 870px) and (min--moz-device-pixel-ratio: 1.5),
+	(-o-min-device-pixel-ratio: 3/2),
+	(-webkit-min-device-pixel-ratio: 1.5),
+	(min-device-pixel-ratio: 1.5),
+	(min-resolution: 1.5dppx) {
+	/* on retina, use image that's scaled by 2 */
+.header-container h1{
+	background: url(/assets/landing/logo@2x.png) no-repeat 0 0; /* Change Retina Logo */
+}
 }
 @media only screen and (min-width: 1140px) {
     .wrapper { width: 1026px; /* 1140px - 10% for margins */ margin: 0 auto; }
