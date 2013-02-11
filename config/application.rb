@@ -57,7 +57,7 @@ module Dinesafe
       landing/main.css
       landing/normalize.min.css
       landing/vendor/jquery-1.8.0.min.js
-      landing/vendor/mondernizr-2.6.1-respond-1.1.0.min.js
+      landing/vendor/modernizr-2.6.1-respond-1.1.0.min.js
       landing/jquery.flexslider-min.js
       landing/main.js
       landing/retina.js
