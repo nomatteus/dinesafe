@@ -1,9 +1,9 @@
 class PagesController < ApplicationController
-  layout "application_mobile", :except => :app_landing
-  layout "landing", :only => :app_landing
+  layout "application_mobile"
 
   # Landing/promo page for app
   def app_landing
+    render :layout => "landing"
   end
 
   # About page for use in UIWebView in app
