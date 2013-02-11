@@ -102,6 +102,15 @@ class EstablishmentsControllerTest < ActionController::TestCase
     assert_equal est.id, parsed_body["data"][0]["id"]
   end
 
+  test "search will strip leading/trailing spaces" do
+    est = establishments(:one)
+    get :index, :format => :json, :search => " An establishment "
+    parsed_body = JSON.parse(response.body)
+    assert_response :success
+    assert_equal 1, parsed_body["data"].length
+    assert_equal est.id, parsed_body["data"][0]["id"]
+  end
+
   test "index json near parameter" do
     est = establishments(:one)
     get :index, :format => :json, :near => "43.6982039,-79.5027124"
