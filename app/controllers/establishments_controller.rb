@@ -1,4 +1,5 @@
 class EstablishmentsController < ApplicationController
+  before_filter :load_establishment, :only => [ :show, :show_app ]
 
   def index
     @current_page = params[:page].to_i > 0 ? params[:page].to_i : 1
@@ -23,16 +24,23 @@ class EstablishmentsController < ApplicationController
   end
 
   def show
-    @establishment = establishment_proximity_scope
-                        .includes(:inspections => :infractions)
-                        .find(params[:id])
-
     respond_to do |format|
       format.json # show.json.jbuilder 
     end
   end
 
+  # Establishment view with app promo (landing page style)
+  def show_app
+    # raise params[:id].to_yaml
+  end
+
 protected
+
+  def load_establishment
+    @establishment = establishment_proximity_scope
+                        .includes(:inspections => :infractions)
+                        .find(params[:id])
+  end
 
   # Return Establishment proximity scope if "near" parameter set and valid
   def establishment_proximity_scope

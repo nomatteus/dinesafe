@@ -5,6 +5,7 @@ Dinesafe::Application.routes.draw do
     match "/privacy"    => "pages#app_privacy"
     match "/about"      => "pages#app_about"
     match "/contact"    => "pages#app_contact"
+    match "/establishment/:id"    => "establishments#show_app"
   end
 
   # match "/app"            => "pages#app_landing"
