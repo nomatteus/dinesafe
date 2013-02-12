@@ -15,6 +15,10 @@ class EstablishmentsControllerTest < ActionController::TestCase
       "latest_type" => est1.latest_type,
       "address" => est1.address.titleize,
       "latlng" => {"lat" => 43.6982039, "lng" => -79.5027124},
+      "share" => {
+        "text" => est1.share_text,
+        "url" => est1.share_url
+      },
       "inspections" => [
           "id" => 1,
           "status" => "Pass",
@@ -29,6 +33,10 @@ class EstablishmentsControllerTest < ActionController::TestCase
       "latest_type" => est2.latest_type,
       "address" => est2.address.titleize,
       "latlng" => {"lat" => 43.688205, "lng" => -79.5027122},
+      "share" => {
+        "text" => est2.share_text,
+        "url" => est2.share_url
+      },
       "inspections" => [
           "id" => 2,
           "status" => "Conditional Pass",
@@ -56,6 +64,10 @@ class EstablishmentsControllerTest < ActionController::TestCase
       "latest_type" => est2.latest_type,
       "address" => est2.address.titleize,
       "latlng" => {"lat" => 43.688205, "lng" => -79.5027122},
+      "share" => {
+        "text" => est2.share_text,
+        "url" => est2.share_url
+      },
       "inspections" => [
           "id" => 2,
           "status" => "Conditional Pass",

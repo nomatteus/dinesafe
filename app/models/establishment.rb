@@ -15,4 +15,14 @@ class Establishment < ActiveRecord::Base
     }
   end
 
+  def share_text
+    # TODO: Update this. Make configurable in settings.yml?
+    "My share text... for #{self.latest_name.titleize}"
+  end
+
+  def share_url
+    # TODO: Use _path helper for url gen instead of hardcoding
+    "#{Dinesafe::SITE_URL}/app/establishment/#{self.id}"
+  end
+
 end

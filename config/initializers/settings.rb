@@ -9,3 +9,6 @@ module Dinesafe
     defined?(Rails) ? Rails.env : ENV['RACK_ENV']
   end
 end
+
+Dinesafe::HOST     = Dinesafe.conf.host
+Dinesafe::SITE_URL = "http://#{Dinesafe.conf.host}"

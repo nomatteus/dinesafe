@@ -22,3 +22,7 @@ json.inspections establishment.inspections do |json, inspection|
     end
   end
 end
+json.share do
+  json.text establishment.share_text
+  json.url establishment.share_url
+end
