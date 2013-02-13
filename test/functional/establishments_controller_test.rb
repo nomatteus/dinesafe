@@ -16,7 +16,9 @@ class EstablishmentsControllerTest < ActionController::TestCase
       "address" => est1.address.titleize,
       "latlng" => {"lat" => 43.6982039, "lng" => -79.5027124},
       "share" => {
-        "text" => est1.share_text,
+        "text_short" => est1.share_text_short,
+        "text_long" => est1.share_text_long,
+        "text_long_html" => est1.share_text_long_html,
         "url" => est1.share_url
       },
       "inspections" => [
@@ -34,7 +36,9 @@ class EstablishmentsControllerTest < ActionController::TestCase
       "address" => est2.address.titleize,
       "latlng" => {"lat" => 43.688205, "lng" => -79.5027122},
       "share" => {
-        "text" => est2.share_text,
+        "text_short" => est2.share_text_short,
+        "text_long" => est2.share_text_long,
+        "text_long_html" => est2.share_text_long_html,
         "url" => est2.share_url
       },
       "inspections" => [
@@ -65,7 +69,9 @@ class EstablishmentsControllerTest < ActionController::TestCase
       "address" => est2.address.titleize,
       "latlng" => {"lat" => 43.688205, "lng" => -79.5027122},
       "share" => {
-        "text" => est2.share_text,
+        "text_short" => est2.share_text_short,
+        "text_long" => est2.share_text_long,
+        "text_long_html" => est2.share_text_long_html,
         "url" => est2.share_url
       },
       "inspections" => [

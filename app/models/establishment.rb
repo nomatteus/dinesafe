@@ -15,9 +15,22 @@ class Establishment < ActiveRecord::Base
     }
   end
 
-  def share_text
+  # Short version of share text. TWEET Length or less.
+  def share_text_short
     # TODO: Update this. Make configurable in settings.yml?
     "My share text... for #{self.latest_name.titleize}"
+  end
+
+  # Longer version of share text
+  def share_text_long
+    # For now, just make it the same as short version
+    "(Share Text Long) " + self.share_text_short
+  end
+
+  # HTML Version of long share text, for Email
+  def share_text_long_html
+    # For now, just make it the same as short version
+    "(<b>HTML</b>) " + self.share_text_long
   end
 
   def share_url
