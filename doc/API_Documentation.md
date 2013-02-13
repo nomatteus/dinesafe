@@ -24,6 +24,10 @@ are presumed to be in Toronto.)
 * `distance` (float, in km): when performing a search with `near` values, 
 distance is returned as km between the establishment and the lat,lng
 specified in the `near` parameter.
+* `share` (hash): Returns text to be used to pre-fill sharing (i.e. Twitter, FB, Email)
+    * `text_short`: A short version of the share text. Will be Tweet length (140 chars minus space for URL) or less. (A URL only counts for max 22/23 chars, as reported here: https://api.twitter.com/1/help/configuration.json)
+    * `text_long`: A longer version of the share text, to be used in email or other places where there's no hard limit. May be same as short text at first, but will expand with more info in the future. 
+    * `url`: The URL of the establishment, to be used for sharing.
 
 **Query for establishments by calling the url:**
 

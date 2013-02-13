@@ -21,8 +21,16 @@ class EstablishmentTest < ActiveSupport::TestCase
     assert_equal({:lat => 43.688205, :lng => -79.5027122}, @est2.latlng_dict)
   end
 
-  test "share text" do
-    assert_equal "My share text... for #{@est1.latest_name.titleize}", @est1.share_text
+  test "share text short" do
+    assert_equal "My share text... for #{@est1.latest_name.titleize}", @est1.share_text_short
+  end
+
+  test "share text long" do
+    assert_equal "(Share Text Long) My share text... for #{@est1.latest_name.titleize}", @est1.share_text_long
+  end
+
+  test "share text long HTML" do
+    assert_equal "(<b>HTML</b>) (Share Text Long) My share text... for #{@est1.latest_name.titleize}", @est1.share_text_long_html
   end
 
   test "share url" do
