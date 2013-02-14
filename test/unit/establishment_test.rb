@@ -21,6 +21,16 @@ class EstablishmentTest < ActiveSupport::TestCase
     assert_equal({:lat => 43.688205, :lng => -79.5027122}, @est2.latlng_dict)
   end
 
+  test "name" do
+    @est1.update_attribute(:latest_name, "AN UPPERCASE NAME")
+    assert_equal "An Uppercase Name", @est1.name
+  end
+
+  test "slug" do
+    assert_equal "an-establishment", @est1.slug
+    assert_equal "another-establishment", @est2.slug
+  end
+
   test "share text short" do
     assert_equal "My share text... for #{@est1.latest_name.titleize}", @est1.share_text_short
   end
@@ -34,7 +44,7 @@ class EstablishmentTest < ActiveSupport::TestCase
   end
 
   test "share url" do
-    assert_equal "#{Dinesafe::SITE_URL}/app/establishment/#{@est1.id}", @est1.share_url
+    assert_equal "#{Dinesafe::SITE_URL}/app/place/#{@est1.id}/#{@est1.slug}", @est1.share_url
   end
 
 end

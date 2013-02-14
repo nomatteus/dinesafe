@@ -1,1 +1,26 @@
-testing
+/ START HEADER
+.header-container
+  %header.wrapper.clearfix
+    .ctaColumn
+      / LOGO Replace
+      %h1 Dinesafe Toronto App
+      / START HEADER TEXT
+      %h3= @establishment.name
+      %p
+        View restaurant health inspections on the go. Browse nearby establishments,
+        or search for your faves. View inspection history up to 3 years.
+      / STORES
+      %ul.clearfix{:style => "opacity:0.2;"}
+        (Not quite
+        %li
+          %a{:href => "#ComingSoon"}= image_tag "landing/appStore_Btn@2x.png", :alt => "Download App"
+        , but soon!)
+    / START IPHONE SLIDER
+    .fader
+      .flexslider1
+        %ul.slides
+          / IPHONE SLIDES
+          - (1..5).each do |i|
+            %li= image_tag "landing/screens/0#{i}.png", :alt => "Dinesafe App Screen #{i}"
+    / END HEADER
+

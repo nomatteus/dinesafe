@@ -1,4 +1,6 @@
 class Establishment < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
+
   has_many :inspections, :order => "date ASC"
 
   scope :near, lambda { |lat, lng|
@@ -13,6 +15,14 @@ class Establishment < ActiveRecord::Base
       :lat => parts[0].to_f,
       :lng => parts[1].to_f
     }
+  end
+
+  def name
+    self.latest_name.present? ? self.latest_name.titleize : ""
+  end
+
+  def slug
+    self.name.parameterize
   end
 
   # Short version of share text. TWEET Length or less.
@@ -34,8 +44,7 @@ class Establishment < ActiveRecord::Base
   end
 
   def share_url
-    # TODO: Use _path helper for url gen instead of hardcoding
-    "#{Dinesafe::SITE_URL}/app/establishment/#{self.id}"
+    Dinesafe::SITE_URL + establishment_landing_path(self.id, self.slug)
   end
 
 end

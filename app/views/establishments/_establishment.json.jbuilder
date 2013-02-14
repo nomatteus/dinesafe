@@ -1,6 +1,6 @@
 json.(establishment, :id,
                      :latest_type )
-json.latest_name establishment.latest_name.present? ? establishment.latest_name.titleize : ""
+json.latest_name establishment.name
 json.address establishment.address.present? ? establishment.address.titleize : ""
 json.latlng establishment.latlng_dict
 json.distance establishment.distance.to_f if establishment[:distance].present?

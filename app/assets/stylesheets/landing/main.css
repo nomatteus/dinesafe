@@ -392,7 +392,7 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	.ctaColumn { float: right; width: 52%; padding-bottom: 80px; text-align: left; padding-top: 70px; }
 	.signup:after{ right: 15%; }
 	.fader { float: left; width: 35%; }
-	.header-container { padding-top: 120px; }
+	.header-container { padding-top: 50px; }
 	.fader .flexslider1{ left: 9px; }
 	.fader:before{ content: ""; position: absolute; background-position: 0 0; width: 593px; height: 782px; left: -240px;top: 0px; }
 }
