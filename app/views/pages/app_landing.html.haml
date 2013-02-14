@@ -1,1 +1,55 @@
-%h1 Landing
+/ START HEADER
+.header-container
+  %header.wrapper.clearfix
+    .ctaColumn
+      / LOGO Replace
+      %h1 Dinesafe Toronto App
+      / START HEADER TEXT
+      %h3 When eating out, don’t forget to “Dinesafe it”.
+      %p
+        View restaurant health inspections on the go. Browse nearby establishments,
+        or search for your faves. View inspection history up to 3 years.
+      / STORES
+      %ul.clearfix{:style => "opacity:0.2;"}
+        (Not quite
+        %li
+          %a{:href => "#ComingSoon"}= image_tag "landing/appStore_Btn@2x.png", :alt => "Download App"
+        , but soon!)
+    / START IPHONE SLIDER
+    .fader
+      .flexslider1
+        %ul.slides
+          / IPHONE SLIDES
+          - (1..5).each do |i|
+            %li= image_tag "landing/screens/0#{i}.png", :alt => "Dinesafe App Screen #{i}"
+    / END HEADER
+
+/ START FEATURES
+.main-container
+  .main.wrapper.clearfix
+    %article
+      %header{:style => "display:none;"}
+        .flexslider2.quote
+          %ul.slides
+            / INSERT QUOTE
+            %li “ This app actually does everything it says and does it well, with style. ”
+            / INSERT QUOTE
+            %li “ Where has this app been all my iPhone owning life?”
+            / INSERT QUOTE
+            %li “ It’s official – I love this app, I couldn’t be without it now.”
+      / INSERT FEATURE TEXT
+      %section
+        %h6 1.
+        %h2 Scorebar
+        %p Get a quick colour-coded overview of the inspection history of each establishment as you browse!
+      / INSERT FEATURE TEXT
+      %section
+        %h6 2.
+        %h2 Up to 3 Year History
+        %p View inspection history as far back as 2010 for some establishments. Data is updated biweekly.
+      / INSERT FEATURE TEXT
+      %section.last
+        %h6 3.
+        %h2 Search Nearby
+        %p Search and browse results are sorted by proximity, so you can see what's nearby.
+    / END MAIN

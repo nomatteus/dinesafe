@@ -5,7 +5,9 @@ Dinesafe::Application.routes.draw do
     match "/privacy"    => "pages#app_privacy"
     match "/about"      => "pages#app_about"
     match "/contact"    => "pages#app_contact"
-    match "/establishment/:id"    => "establishments#show_app"
+    # URLs look like this: dinesafe.to/app/place/10344670/savoy-pub
+    # "place" instead of "establishment" for brevity
+    match "/place/:id/:slug"    => "establishments#show_app", :as => :establishment_landing
   end
 
   # match "/app"            => "pages#app_landing"
