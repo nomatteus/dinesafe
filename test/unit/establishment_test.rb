@@ -44,7 +44,9 @@ class EstablishmentTest < ActiveSupport::TestCase
   end
 
   test "share text long HTML" do
-    assert_equal "(<b>HTML</b>) (Share Text Long) My share text... for #{@est1.latest_name.titleize}", @est1.share_text_long_html
+    expected_share_text =  %Q{<b>(Share Text Long) My share text... for #{@est1.latest_name.titleize}</b>
+       <p>View on Web: <a href=\"#{@est1.share_url}\">#{@est1.share_url}</a></p>}
+    assert_equal expected_share_text, @est1.share_text_long_html
   end
 
   test "share url" do
