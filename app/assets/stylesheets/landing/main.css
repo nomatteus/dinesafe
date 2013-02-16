@@ -149,6 +149,77 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	background: url(/assets/landing/iphone_nohand@2x.png) no-repeat center 0; /*Image of iphone 5 in hand */
 }
 }
+.iphone-frame {
+	width: 286px;
+	height: 605px;
+	background: url(/assets/landing/iphone_nohand.png) no-repeat center 0; /*Image of iphone 5 in hand */
+	background-size: 100%;
+	margin: 0 auto;
+	overflow: auto;
+}
+@media (min--moz-device-pixel-ratio: 1.5),
+	(-o-min-device-pixel-ratio: 3/2),
+	(-webkit-min-device-pixel-ratio: 1.5),
+	(min-device-pixel-ratio: 1.5),
+	(min-resolution: 1.5dppx) {
+	/* on retina, use image that's scaled by 2 */
+.iphone-frame {
+	background: url(/assets/landing/iphone_nohand@2x.png) no-repeat center 0; /*Image of iphone 5 in hand */
+}
+}
+.iphone-frame .iphone-screen {
+	margin: 89px auto 0;
+	background-color: white;
+	width: 239px;
+	height: 429px;
+	background: #fff url(/assets/landing/iphone_title.png) no-repeat 0 0;
+	background-size: 100%;
+	padding-top: 32px;
+}
+	.iphone-screen .establishment-wrap {
+		font: normal 12px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+		color: #000;
+		padding: 15px;
+		text-align: left;
+	}
+	.iphone-screen .establishment-wrap .name {
+		font-weight: bold;
+	}
+	.iphone-screen .establishment-wrap .scorebar {
+		overflow: hidden;
+		margin: 5px 0;
+	}
+	.iphone-screen .establishment-wrap .scorebar .inspection {
+		width: 15px;
+		float: left;
+		position: relative;
+	}
+	.iphone-screen .establishment-wrap .scorebar .inspection .box-top {
+		height: 6px;
+	}
+	.iphone-screen .establishment-wrap .scorebar .inspection .box-bottom {
+		height: 6px;
+	}
+	.iphone-screen .establishment-wrap .scorebar .inspection .right-line {
+		border-right: 1px solid rgba(255, 255, 255, 0.4);
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 12px;
+	}
+	.scorebar .inspection .box-top {background-color: rgb(130, 130, 130);}
+	.scorebar .inspection .box-bottom {background-color: rgb(115, 115, 115);}
+	.scorebar .inspection.pass .box-top {background-color: rgb(40, 195, 38);}
+	.scorebar .inspection.pass .box-bottom {background-color: rgb(35, 174, 33);}
+	.scorebar .inspection.conditional-pass .box-top {background-color: rgb(249, 255, 72);}
+	.scorebar .inspection.conditional-pass .box-bottom {background-color: rgb(222, 228, 64);}
+	.scorebar .inspection.closed .box-top {background-color: rgb(222, 45, 77);}
+	.scorebar .inspection.closed .box-bottom {background-color: rgb(196, 39, 68);}
+	.iphone-screen .establishment-wrap .address {
+	}
+	.iphone-screen .establishment-wrap .type {
+		font-style: oblique;
+	}
 .fader{
 	position: relative;
 	padding-bottom: 268px;
@@ -411,7 +482,16 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
     .wrapper { width: 1026px; /* 1140px - 10% for margins */ margin: 0 auto; }
 }
 
-
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-width : 320px) 
+and (max-width : 768px) {
+	/* Styles */
+	.header-container h1 {
+		width: 300px;
+		height: 48px;
+	}	
+}
 
 
 /* ==========================================================================

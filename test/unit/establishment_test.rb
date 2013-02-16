@@ -26,6 +26,10 @@ class EstablishmentTest < ActiveSupport::TestCase
     assert_equal "An Uppercase Name", @est1.name
   end
 
+  test "address full" do
+    flunk    # TODO
+  end
+
   test "slug" do
     assert_equal "an-establishment", @est1.slug
     assert_equal "another-establishment", @est2.slug
