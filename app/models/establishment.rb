@@ -21,6 +21,11 @@ class Establishment < ActiveRecord::Base
     self.latest_name.present? ? self.latest_name.titleize : ""
   end
 
+  # Full address. All Toronto for now!
+  def address_full
+    "#{self.address}, Toronto, ON"
+  end
+
   def slug
     self.name.parameterize
   end

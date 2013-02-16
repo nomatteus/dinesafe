@@ -1,4 +1,3 @@
-/ START HEADER
 .header-container
   %header.wrapper.clearfix
     .ctaColumn
@@ -6,6 +5,20 @@
       %h1 Dinesafe Toronto App
       / START HEADER TEXT
       %h3= @establishment.name
+      .iphone-frame
+        .iphone-screen
+          .establishment-wrap
+            .name= @establishment.name
+            .scorebar
+              - @establishment.inspections.each do |inspection|
+                .inspection{:class => inspection.status.parameterize}
+                  .box-top
+                  .box-bottom
+                  .right-line
+            .address= @establishment.address.titleize
+            .type= @establishment.latest_type
+          .google-map
+            %img{:src => google_static_map_link(@establishment.address_full, "600x300")}
       %p
         View restaurant health inspections on the go. Browse nearby establishments,
         or search for your faves. View inspection history up to 3 years.
@@ -22,5 +35,4 @@
           / IPHONE SLIDES
           - (1..5).each do |i|
             %li= image_tag "landing/screens/0#{i}.png", :alt => "Dinesafe App Screen #{i}"
-    / END HEADER
 
