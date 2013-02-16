@@ -177,16 +177,16 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	padding-top: 32px;
 	font: normal 14px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #000;
+	text-align: left;
 }
 	.iphone-screen ul, .iphone-screen ul li {
 		padding: 0;
 		margin: 0;
 		text-align: left;
-		
+		display: block;
 	}
 	.iphone-screen .establishment-wrap {
 		padding: 15px;
-		text-align: left;
 	}
 	.iphone-screen .establishment-wrap .name {
 		font-weight: bold;
@@ -501,8 +501,8 @@ and (min-width : 320px)
 and (max-width : 768px) {
 	/* Styles */
 	.header-container h1 {
-		width: 300px;
-		height: 48px;
+		width: 264px;
+		height: 44px;
 	}	
 }
 
