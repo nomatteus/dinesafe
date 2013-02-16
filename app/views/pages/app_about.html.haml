@@ -12,7 +12,7 @@
 %ul
   %li
     App Homepage: 
-    = link_to "http://dinesafe.to", "http://dinesafe.to", :target => "_blank"
+    = link_to "http://dinesafe.to/app", "http://dinesafe.to/app", :target => "_blank"
   %li
     Contact:
     = link_to "http://dinesafe.to/app/contact", "http://dinesafe.to/app/contact", :target => "_blank"
@@ -22,7 +22,8 @@
 %ul  
   %li
     Twitter: 
-    = link_to "http://twitter.com/mattruten", "http://twitter.com/mattruten", :target => "_blank"
+    = link_to "@mattruten", "http://twitter.com/mattruten", :target => "_blank"
+    (#{link_to "Open in Twitter App", "twitter://user?screen_name=mattruten"})
   %li
     Email:
     = link_to "matt@ruten.ca", "mailto:matt@ruten.ca"

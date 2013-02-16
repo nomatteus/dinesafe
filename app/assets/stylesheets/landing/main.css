@@ -423,11 +423,6 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 
 
 
-
-
-
-
-
 /* ==========================================================================
    Media Queries
    ========================================================================== */
@@ -473,7 +468,11 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 		background: url(/assets/landing/logo.png) no-repeat 0 0; /* Logo */
 		margin: 0 0 0 -14px;
 	}
+	.no-slider.header-container h1 {
+		margin: 0 auto;
+	}
 	.ctaColumn { float: right; width: 52%; padding-bottom: 80px; text-align: left; padding-top: 70px; }
+	.no-slider .ctaColumn { width: auto; text-align: center; }
 	.signup:after{ right: 15%; }
 	.fader { float: left; width: 35%; }
 	.header-container { padding-top: 50px; }
