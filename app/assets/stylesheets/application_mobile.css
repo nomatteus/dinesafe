@@ -208,6 +208,24 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.pages.app_about {
+  
+}
+
+  .pages.app_about ul, .pages.app_about ul li {
+    padding: 0;
+    list-style: none;
+  }
+
+  .pages.app_about .annotated-image {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .pages.app_about .annotated-image img {
+    width: 100%;    
+  }
+
 
 
 

@@ -1,15 +1,36 @@
-%h2 About Dinesafe Toronto App
+/%h2 About Dinesafe Toronto App
 
-/ %h3 Basic info
+%p Dinesafe Toronto app shows the history of all health inspections for every food establishment in Toronto, going back up to 3 years. This app arranges those inspections in a timeline-like scorebar, so you can have a quick overview of an establishment's inspections.
 
-/ %p A photo with description will be here soon
+%h3 Overview of Inspection History
 
-/ %h3 Extended Info
+.annotated-image
+  %img{:src => "/assets/app/Annotated_Establishment_Record.png"}
 
-%p Dinesafe is the City of Toronto's restaurant and food establishment inspection system. Establishments are inspected up to 3 times per year, depending on their risk factor.
+%h3 More Info
 
-%p You have probably seen the green "Pass" sign in restaurant windows. This sign shows the result of the establishment's latest health inspection. Occasionally you may see a yellow ("Conditional Pass") or red ("Closed") sign instead. A conditional pass means that the restaurant is allowed to stay open, but must quickly fix any issues found by the inspector, within a couple days. When the infractions are so severe that it would be hazardous for the establishment I remain open, they must close down until they remedy the infractions.
+%ul
+  %li
+    App Homepage: 
+    = link_to "http://dinesafe.to", "http://dinesafe.to", :target => "_blank"
+  %li
+    Contact:
+    = link_to "http://dinesafe.to/app/contact", "http://dinesafe.to/app/contact", :target => "_blank"
 
-%p When an establishment gets a conditional pass or closed rating, the yellow/red sign will be displayed in their window, but only for a couple of days. Once they fix the infractions and are successfully re-inspected, the green "Pass" sign goes back up. There is no insight into the history of an establishments Dinesafe ratings. That's where this app comes in.
+%strong Made by Matt Ruten in Toronto
 
-%p Dinesafe Toronto app shows the history of all health inspections for each food establishment in Toronto, going back up to 3 years. This app arranges those inspections in a timeline-like scorebar, so you can have a quick overview of an establishments inspections.
+%ul  
+  %li
+    Twitter: 
+    = link_to "http://twitter.com/mattruten", "http://twitter.com/mattruten", :target => "_blank"
+  %li
+    Email:
+    = link_to "matt@ruten.ca", "mailto:matt@ruten.ca"
+
+View app code and contribute at 
+= link_to "https://github.com/nomatteus/dinesafe-ios", "https://github.com/nomatteus/dinesafe-ios", :target => "_blank"
+
+%p
+  %em 
+    This app contains public sector Datasets made available under the City of Toronto's Open Data Licence v2.0.
+    Visit #{link_to "toronto.ca/open", "http://toronto.ca/open", :target => "_blank"}
