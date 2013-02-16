@@ -171,7 +171,7 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	margin: 89px auto 0;
 	background-color: white;
 	width: 239px;
-	height: 429px;
+	height: 398px;
 	background: #fff url(/assets/landing/iphone_title.png) no-repeat 0 0;
 	background-size: 100%;
 	padding-top: 32px;
@@ -219,6 +219,10 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	}
 	.iphone-screen .establishment-wrap .type {
 		font-style: oblique;
+	}
+	.iphone-screen .google-map img {
+		width: 100%;
+		height: auto;
 	}
 .fader{
 	position: relative;
