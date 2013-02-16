@@ -18,7 +18,14 @@
             .address= @establishment.address.titleize
             .type= @establishment.latest_type
           .google-map
-            %img{:src => google_static_map_link(@establishment.latlng_dict, "620x318")}
+            %img{:src => google_static_map_link(@establishment.latlng_dict, "240x140")}
+          .inspections-summary
+            %strong Inspections Summary
+            %ul
+              %li= "Pass: #{@establishment.inspections.pass.count}"
+              %li= "Conditional Pass: #{@establishment.inspections.conditional.count}"
+              %li= "Closed: #{@establishment.inspections.closed.count}"
+              %li= "Total: #{@establishment.inspections.count} inspections"
       %p
         View restaurant health inspections on the go. Browse nearby establishments,
         or search for your faves. View inspection history up to 3 years.
