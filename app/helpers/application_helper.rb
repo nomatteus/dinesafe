@@ -4,8 +4,8 @@ module ApplicationHelper
     return text.downcase.gsub(%r{\s+}, '-')
   end
 
-  def google_static_map_link(address, size)
-    "http://maps.googleapis.com/maps/api/staticmap?center=#{URI.escape(address)}&zoom=13&size=#{size}&key=#{Dinesafe.conf.google_maps_browser_api_key}&sensor=false"
+  def google_static_map_link(latlng, size)
+    "http://maps.googleapis.com/maps/api/staticmap?center=#{latlng[:lat]},#{latlng[:lng]}&markers=color:red%7C#{latlng[:lat]},#{latlng[:lng]}&zoom=16&size=#{size}&key=#{Dinesafe.conf.google_maps_browser_api_key}&sensor=true"
   end
 
 end
