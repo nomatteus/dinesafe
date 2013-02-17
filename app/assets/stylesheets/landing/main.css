@@ -197,6 +197,7 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	}
 	.iphone-screen .establishment-wrap .scorebar .inspection {
 		width: 15px;
+		height: 22px;
 		float: left;
 		position: relative;
 	}
@@ -212,6 +213,10 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 		right: 0;
 		top: 0;
 		height: 12px;
+	}
+	.iphone-screen .establishment-wrap .scorebar .inspection .year {
+		font-size: 8px;
+		line-height: 8px;
 	}
 	.scorebar .inspection .box-top {background-color: rgb(130, 130, 130);}
 	.scorebar .inspection .box-bottom {background-color: rgb(115, 115, 115);}
