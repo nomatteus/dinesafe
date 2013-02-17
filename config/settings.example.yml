@@ -3,15 +3,18 @@ production:
   google_maps_browser_api_key: 
   app_store_link: # http://...
   app_store_id: # 9-digit app store ID
+  newrelic_license_key: 
 
 development:
   host: dinesafe.dev
   google_maps_browser_api_key: 
   app_store_link: # http://...
   app_store_id: # 9-digit app store ID
+  newrelic_license_key: 
 
 test: 
   host: 
   google_maps_browser_api_key: 
   app_store_link:
   app_store_id:
+  newrelic_license_key: 
