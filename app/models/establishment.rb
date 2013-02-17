@@ -9,6 +9,7 @@ class Establishment < ActiveRecord::Base
   }
 
   def latlng_dict
+    return if self.latlng.nil?
     # Remove brackets and split on comma
     parts = self.latlng[1..-2].split(",")
     return {
