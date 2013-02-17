@@ -50,8 +50,7 @@ class EstablishmentTest < ActiveSupport::TestCase
   end
 
   test "share text long HTML" do
-    expected_share_text =  %Q{<b>I'm looking at #{@est1.latest_name.titleize} on Dinesafe.</b>
-       <p>View on Web: <a href=\"#{@est1.share_url}\">#{@est1.share_url}</a></p>}
+    expected_share_text =  %Q{<b>I'm looking at #{@est1.latest_name.titleize} on Dinesafe.</b>}
     assert_equal expected_share_text, @est1.share_text_long_html
   end
 

@@ -46,8 +46,7 @@ class Establishment < ActiveRecord::Base
   # HTML Version of long share text, for Email
   def share_text_long_html
     # For now, just make it the same as short version
-    %Q{<b>#{self.share_text_long}</b>
-       <p>View on Web: <a href=\"#{self.share_url}\">#{self.share_url}</a></p>}
+    "<b>#{self.share_text_long}</b>"
   end
 
   def share_url
