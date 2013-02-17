@@ -21,6 +21,12 @@ class EstablishmentTest < ActiveSupport::TestCase
     assert_equal({:lat => 43.688205, :lng => -79.5027122}, @est2.latlng_dict)
   end
 
+  test "latlng_dict with nil latlng returns nil" do
+    @est1.update_attribute(:latlng, nil)
+    assert_nil @est1.latlng
+    assert_nil @est1.latlng_dict
+  end
+
   test "name" do
     @est1.update_attribute(:latest_name, "AN UPPERCASE NAME")
     assert_equal "An Uppercase Name", @est1.name
