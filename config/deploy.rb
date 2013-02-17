@@ -35,6 +35,7 @@ namespace :deploy do
 
   task :link_settings, :roles => :app do
     run "ln -s #{shared_path}/config/settings.yml #{release_path}/config/settings.yml"
+    run "ln -s #{shared_path}/config/newrelic.yml #{release_path}/config/newrelic.yml"
   end
 end
 
