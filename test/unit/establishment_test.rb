@@ -27,7 +27,7 @@ class EstablishmentTest < ActiveSupport::TestCase
   end
 
   test "address full" do
-    flunk    # TODO
+    assert_equal "1550 Jane St, Toronto, ON", @est1.address_full
   end
 
   test "slug" do
@@ -36,15 +36,15 @@ class EstablishmentTest < ActiveSupport::TestCase
   end
 
   test "share text short" do
-    assert_equal "My share text... for #{@est1.latest_name.titleize}", @est1.share_text_short
+    assert_equal "I'm looking at #{@est1.latest_name.titleize} on Dinesafe.", @est1.share_text_short
   end
 
   test "share text long" do
-    assert_equal "(Share Text Long) My share text... for #{@est1.latest_name.titleize}", @est1.share_text_long
+    assert_equal "I'm looking at #{@est1.latest_name.titleize} on Dinesafe.", @est1.share_text_long
   end
 
   test "share text long HTML" do
-    expected_share_text =  %Q{<b>(Share Text Long) My share text... for #{@est1.latest_name.titleize}</b>
+    expected_share_text =  %Q{<b>I'm looking at #{@est1.latest_name.titleize} on Dinesafe.</b>
        <p>View on Web: <a href=\"#{@est1.share_url}\">#{@est1.share_url}</a></p>}
     assert_equal expected_share_text, @est1.share_text_long_html
   end
