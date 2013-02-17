@@ -10,11 +10,16 @@
           .establishment-wrap
             .name= @establishment.name
             .scorebar
-              - @establishment.inspections.each do |inspection|
+              - previous_year = nil
+              - @establishment.inspections.last(13).each do |inspection|
+                - year = inspection.date.year
                 .inspection{:class => inspection.status.parameterize}
                   .box-top
                   .box-bottom
                   .right-line
+                  - if year != previous_year
+                    .year= year
+                - previous_year = inspection.date.year
             .address= @establishment.address.titleize
             .type= @establishment.latest_type
           .google-map
