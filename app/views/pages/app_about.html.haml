@@ -1,37 +1,40 @@
-/%h2 About Dinesafe Toronto App
+= render :partial => "shared/header"
 
-%p Dinesafe Toronto app shows the history of all health inspections for every food establishment in Toronto, going back up to 3 years. This app arranges those inspections in a timeline-like scorebar, so you can have a quick overview of an establishment's inspections.
+#content
+  %h2 About the App
 
-%h3 Overview of Inspection History
+  %p Dinesafe Toronto app shows the history of all health inspections for every food establishment in Toronto, going back up to 3 years. This app arranges those inspections in a timeline-like scorebar, so you can have a quick overview of an establishment's inspections.
 
-.annotated-image
-  %img{:src => "/assets/app/Annotated_Establishment_Record.png"}
+  %h3 Overview of Inspection History
 
-%h3 More Info
+  .annotated-image
+    %img{:src => "/assets/app/Annotated_Establishment_Record.png"}
 
-%ul
-  %li
-    App Homepage: 
-    = link_to "http://dinesafe.to/app", "http://dinesafe.to/app", :target => "_blank"
-  %li
-    Contact:
-    = link_to "http://dinesafe.to/app/contact", "http://dinesafe.to/app/contact", :target => "_blank"
+  %h3 More Info
 
-%strong Made by Matt Ruten in Toronto
+  %ul
+    %li
+      App Homepage: 
+      = link_to "http://dinesafe.to/app", "http://dinesafe.to/app", :target => "_blank"
+    %li
+      Contact:
+      = link_to "http://dinesafe.to/app/contact", "http://dinesafe.to/app/contact", :target => "_blank"
 
-%ul  
-  %li
-    Twitter: 
-    = link_to "@mattruten", "http://twitter.com/mattruten", :target => "_blank"
-    (#{link_to "Open in Twitter App", "twitter://user?screen_name=mattruten"})
-  %li
-    Email:
-    = link_to "matt@ruten.ca", "mailto:matt@ruten.ca"
+  %strong Made by Matt Ruten in Toronto
 
-View app code and contribute at 
-= link_to "https://github.com/nomatteus/dinesafe-ios", "https://github.com/nomatteus/dinesafe-ios", :target => "_blank"
+  %ul  
+    %li
+      Twitter: 
+      = link_to "@mattruten", "http://twitter.com/mattruten", :target => "_blank"
+      (#{link_to "Open in Twitter App", "twitter://user?screen_name=mattruten"})
+    %li
+      Email:
+      = link_to "matt@ruten.ca", "mailto:matt@ruten.ca"
 
-%p
-  %em 
-    This app contains public sector Datasets made available under the City of Toronto's Open Data Licence v2.0.
-    Visit #{link_to "toronto.ca/open", "http://toronto.ca/open", :target => "_blank"}
+  View app code and contribute at 
+  = link_to "https://github.com/nomatteus/dinesafe-ios", "https://github.com/nomatteus/dinesafe-ios", :target => "_blank"
+
+  %p
+    %em 
+      This app contains public sector Datasets made available under the City of Toronto's Open Data Licence v2.0.
+      Visit #{link_to "toronto.ca/open", "http://toronto.ca/open", :target => "_blank"}

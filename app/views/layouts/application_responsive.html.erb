@@ -20,9 +20,9 @@
     <%= stylesheet_link_tag "landing/flexslider.css" %>
     <%= javascript_include_tag "landing/vendor/modernizr-2.6.1-respond-1.1.0.min.js" %>
   </head>
-  <body>
+  <body class="<%= controller.action_name %> <%= controller.controller_name %>">
     <div id="wrap">
-      
+
       <%= yield %>
 
       <!-- START FOOTER  -->
