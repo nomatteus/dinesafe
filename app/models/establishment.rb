@@ -24,7 +24,7 @@ class Establishment < ActiveRecord::Base
 
   # Full address. All Toronto for now!
   def address_full
-    "#{self.address}, Toronto, ON"
+    "#{self.address.titleize}, Toronto, ON"
   end
 
   def slug

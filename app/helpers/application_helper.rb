@@ -25,4 +25,10 @@ module ApplicationHelper
     }.html_safe
   end
 
+  # Set title in views by calling <%- title "Reading #{@post.name}" %>
+  # http://stackoverflow.com/a/3841549/76710
+  def title(page_title)
+    content_for(:title) { page_title }
+  end
+
 end
