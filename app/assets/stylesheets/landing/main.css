@@ -25,7 +25,7 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
   background: #f3f8fc; /* Adjust Background colour of header */
   color: #525b60;  /* Adjust colour of header text */
 	text-shadow: 1px 1px 0 #ffffff;
-	padding-top: 50px;
+	padding: 4% 0;
 }
 
 
@@ -39,7 +39,10 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	height: 63px; /* Adjust Height for Logo if needed */
 	background: url(/assets/landing/logo.png) no-repeat center 0; /* Change Your Logo Name */
 	background-size: 100%;
-	margin: 0 auto;
+	margin: 0;
+}
+.no-slider.header-container h1 {
+	float: left;
 }
 @media (min--moz-device-pixel-ratio: 1.5),
 	(-o-min-device-pixel-ratio: 3/2),
@@ -51,8 +54,6 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	background: url(/assets/landing/logo@2x.png) no-repeat 0 0; /* Change Retina Logo */
 }
 }
-
-
 
 .header-container h3{
 	color: #2e353a;
@@ -97,7 +98,23 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 .ctaColumn{
 	text-align: center;
 	padding-top: 0px;
-	margin-bottom: 50px;
+}
+.no-slider .ctaColumn {
+	overflow: hidden;
+}
+.ctaColumn nav {
+	float: right;
+	margin-top: 20px;
+}
+.ctaColumn nav ul {
+	padding: 0;
+}
+.ctaColumn nav ul li {
+	
+}
+.ctaColumn nav ul li a {
+	color: #222;
+	width: auto;
 }
 .available{
 	font-size: .9em;
@@ -384,8 +401,6 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 }
 }
 
-
-
 .footer-container ul{
 	padding: 0;
 	margin: 0;
@@ -437,6 +452,7 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	/* Center logo on this page */
 	.establishments.show_app .no-slider.header-container h1 {
 	  margin: 0 auto;
+	  float: none;
 	}
 
 
@@ -444,7 +460,7 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
   
 }
 
-  .pages.app_about ul, .pages.app_about ul li {
+  .pages.app_about #content ul, .pages.app_about #content ul li {
     padding: 0;
     list-style: none;
   }
@@ -515,7 +531,6 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	.no-slider .ctaColumn { width: auto; text-align: center; padding-top: 0; padding-bottom: 0; float: none;}
 	.signup:after{ right: 15%; }
 	.fader { float: left; width: 35%; }
-	.header-container { padding-top: 50px; }
 	.fader .flexslider1{ left: 9px; }
 	.fader:before{ content: ""; position: absolute; background-position: 0 0; width: 593px; height: 782px; left: -240px;top: 0px; }
 }
@@ -539,10 +554,16 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 and (min-width : 320px) 
 and (max-width : 768px) {
 	/* Styles */
-	.header-container h1 {
+	.header-container h1, .no-slider.header-container h1 {
 		width: 264px;
 		height: 44px;
+		float: none;
+		margin: 0 auto;
 	}	
+	.ctaColumn nav {
+		float: none;
+		clear: both;
+	}
 }
 
 
