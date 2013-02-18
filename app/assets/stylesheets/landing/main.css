@@ -477,7 +477,7 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 		margin: 0 auto;
 	}
 	.ctaColumn { float: right; width: 52%; padding-bottom: 80px; text-align: left; padding-top: 70px; }
-	.no-slider .ctaColumn { width: auto; text-align: center; }
+	.no-slider .ctaColumn { width: auto; text-align: center; padding-top: 0; }
 	.signup:after{ right: 15%; }
 	.fader { float: left; width: 35%; }
 	.header-container { padding-top: 50px; }
