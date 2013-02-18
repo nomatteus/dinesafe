@@ -36,6 +36,12 @@ gem 'capistrano',         '~>2.14.1'
 gem 'newrelic_rpm',       '~>3.5.6.46'
 gem "airbrake",           '~>3.1.7'
 
+# SEO
+gem 'sitemap_generator',  '~> 3.4'
+
+# Cron Job Management
+gem 'whenever',           '~>0.8.2', :require => false
+
 # To use debugger
 # gem 'ruby-debug19'#, :require => 'ruby-debug'
 
