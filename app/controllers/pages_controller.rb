@@ -1,9 +1,8 @@
 class PagesController < ApplicationController
-  layout "application_mobile"
+  layout "application_responsive"
 
   # Landing/promo page for app
   def app_landing
-    render :layout => "landing"
   end
 
   # About page for use in UIWebView in app
@@ -16,5 +15,9 @@ class PagesController < ApplicationController
 
   # Privacy Policy page
   def app_privacy
+  end
+
+  # Press page
+  def app_press
   end
 end

@@ -22,8 +22,8 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 
 
 .header-container {
-    background: #f3f8fc; /* Adjust Background colour of header */
-    color: #525b60;  /* Adjust colour of header text */
+  background: #f3f8fc; /* Adjust Background colour of header */
+  color: #525b60;  /* Adjust colour of header text */
 	text-shadow: 1px 1px 0 #ffffff;
 	padding-top: 50px;
 }
@@ -423,6 +423,41 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
    ========================================================================== */
 
 
+#content {
+	width: 90%;
+	margin: 0 5%;
+	padding: 10px 0 25px;
+}
+
+/* Establishment Landing Pages */
+.establishments.show_app {
+  
+}
+
+	/* Center logo on this page */
+	.establishments.show_app .no-slider.header-container h1 {
+	  margin: 0 auto;
+	}
+
+
+.pages.app_about {
+  
+}
+
+  .pages.app_about ul, .pages.app_about ul li {
+    padding: 0;
+    list-style: none;
+  }
+
+  .pages.app_about .annotated-image {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .pages.app_about .annotated-image img {
+    width: 100%;    
+  }
+
 
 
 
@@ -474,10 +509,10 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 		margin: 0 0 0 -14px;
 	}
 	.no-slider.header-container h1 {
-		margin: 0 auto;
+		margin: 0;
 	}
 	.ctaColumn { float: right; width: 52%; padding-bottom: 80px; text-align: left; padding-top: 70px; }
-	.no-slider .ctaColumn { width: auto; text-align: center; padding-top: 0; }
+	.no-slider .ctaColumn { width: auto; text-align: center; padding-top: 0; padding-bottom: 0; float: none;}
 	.signup:after{ right: 15%; }
 	.fader { float: left; width: 35%; }
 	.header-container { padding-top: 50px; }
@@ -496,7 +531,7 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 }
 }
 @media only screen and (min-width: 1140px) {
-    .wrapper { width: 1026px; /* 1140px - 10% for margins */ margin: 0 auto; }
+    .slider .wrapper { width: 1026px; /* 1140px - 10% for margins */ margin: 0 auto; }
 }
 
 /* Smartphones (portrait and landscape) ----------- */

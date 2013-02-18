@@ -32,7 +32,7 @@ class EstablishmentsController < ApplicationController
   # Establishment view with app promo (landing page style)
   def show_app
     # raise params[:id].to_yaml
-    render :layout => "landing"
+    render :layout => "application_responsive"
   end
 
 protected
