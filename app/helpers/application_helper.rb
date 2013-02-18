@@ -31,4 +31,8 @@ module ApplicationHelper
     content_for(:title) { page_title }
   end
 
+  def app_store_link
+    Dinesafe.conf.app_store_link
+  end
+
 end
