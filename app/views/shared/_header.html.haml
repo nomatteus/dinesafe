@@ -1,9 +1,9 @@
 .header-container.no-slider
   %header.wrapper.clearfix
     .ctaColumn
-      %h1 Dinesafe Toronto App
+      %h1= link_to "Dinesafe Toronto App", app_landing_path
       %nav
         %ul
           %li= link_to "App Store", app_store_link, :target => "_blank"
           %li= link_to "About", about_path
-          %li= link_to "Contact/Support", contact_path
+          %li= link_to "Contact", contact_path

@@ -20,4 +20,8 @@ class PagesController < ApplicationController
   # Press page
   def app_press
   end
+
+  # Press Release #1
+  def app_press_release1
+  end
 end
