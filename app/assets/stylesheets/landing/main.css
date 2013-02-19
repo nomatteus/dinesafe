@@ -27,6 +27,9 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	text-shadow: 1px 1px 0 #ffffff;
 	padding: 4% 0;
 }
+.header-container.slider {
+	padding-bottom: 0;
+}
 
 a { color: #174cb3; }
 a:hover { opacity: 0.7; }
