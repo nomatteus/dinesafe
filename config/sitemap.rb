@@ -30,6 +30,8 @@ SitemapGenerator::Sitemap.create do
   add about_path
   add app_landing_path
   add contact_path
+  add press_path
+  # add press_release_path
 
   # Establishment Landing Pages
   Establishment.all.each do |establishment|
