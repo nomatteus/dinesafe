@@ -19,6 +19,10 @@
     <%= stylesheet_link_tag "landing/main.css" %>
     <%= stylesheet_link_tag "landing/flexslider.css" %>
     <%= javascript_include_tag "landing/vendor/modernizr-2.6.1-respond-1.1.0.min.js" %>
+
+    <% if (content_for?(:head)) %>
+      <%= yield :head %>
+    <% end %>
   </head>
   <body class="<%= controller.action_name %> <%= controller.controller_name %>">
     <div id="wrap">
@@ -54,6 +58,10 @@
     <%= javascript_include_tag "landing/jquery.flexslider-min.js", :defer => true %>
     <%= javascript_include_tag "landing/main.js" %>     
     
+    <% if (content_for?(:footer_js)) %>
+      <%= yield :footer_js %>
+    <% end %>
+
     <!-- INSERT GOOGLE ANALYTICS SNIPPET -->
     <script>
         var _gaq=[['_setAccount','UA-335824-16'],['_trackPageview']];
