@@ -35,11 +35,12 @@
       %p
         View restaurant health inspections on the go. Browse nearby establishments,
         or search for your faves. View inspection history up to 3 years.
+      = render :partial => "shared/mailchimp_signup"
       / STORES
-      %ul.clearfix{:style => "opacity:0.2;"}
-        (Not quite
-        %li
-          %a{:href => app_store_link}= image_tag "landing/appStore_Btn@2x.png", :alt => "Download App"
-        , but soon!)
+      /%ul.clearfix{:style => "opacity:0.2;"}
+      /  (Not quite
+      /  %li
+      /    %a{:href => app_store_link}= image_tag "landing/appStore_Btn@2x.png", :alt => "Download App"
+      /  , but soon!)
 
 
