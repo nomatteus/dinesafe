@@ -39,10 +39,13 @@ Geocode addresses that need it (updates geocodes table):
 
     rake dinesafe:geocode
 
-Update establishment addresses from geocodes:
+Update establishment addresses from geocodes (and create blank Geocodes for unknown addresses):
 
     rake dinesafe:update_latlngs
 
+Fix typos (based on list of manual fixes in task):
+
+    rake dinesafe:fix_data_typos
 
 The App
 -------

@@ -4,6 +4,8 @@ namespace :dinesafe do
   desc "Download and extract latest dinesafe.xml file"
   task :update_xml => :environment do 
     file_url = "http://opendata.toronto.ca/public.health/dinesafe/dinesafe.zip"
+    # TODO: Sometimes the xml filename isn't "dinesafe.xml" (was "dinesafe2011.xml" once),
+    #       so should adapt script to work with any .xml filename within the zip.
     dinesafe_xml_file = Rails.root.to_s + "/doc/dinesafe.xml"
     dinesafe_xml_temp_file = Rails.root.to_s + "/doc/DELETE_OLD_dinesafe.xml"
     dinesafe_zip_temp_path = Rails.root.to_s + "/doc/tmp_dinesafe.zip"
@@ -178,6 +180,26 @@ namespace :dinesafe do
       sleep_how_long = [1].sample
       puts "sleeping #{sleep_how_long} sec..."
       sleep sleep_how_long
+    end
+  end
+
+  desc "Fix establishment names and other information manually"
+  task :fix_data_typos => :environment do
+    # Need a task to help fix typos/invalid data from API. Can make this more
+    #   extensible later if needed. For now, just fix the cases I've seen.
+    # TODO: Move the rules into their own file so they're easier to define/modify.
+    ESTABLISHMENT_NAME_FIXES = [
+      { from: "KHAO SAN ROAP", to: "KHAO SAN ROAD" }
+    ]
+    ESTABLISHMENT_NAME_FIXES.each do |fix|
+      establishments = Establishment.where(latest_name: fix[:from])
+      establishments.each do |establishment|
+        if establishment.update_attribute(:latest_name, fix[:to])
+          puts "Establishment ID #{establishment.id} updated. Latest Name was: #{fix[:from]}, and is now: #{fix[:to]}"
+        else
+          puts "There was a problem updating establishment #{establishment.id}. Perhaps the name is invalid?"
+        end
+      end
     end
   end
 end
