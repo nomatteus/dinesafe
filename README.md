@@ -27,6 +27,16 @@ Update Sitemap XML
 
 It's important to update the sitemap.xml file for SEO purposes.
 
+Run this on server to generate sitemap and ping search engines:
+
+    rake sitemap:refresh
+
+Or, generate sitemap but don't ping search engines: 
+
+    rake sitemap:refresh:no_ping
+
+TODO: Move sitemap updating to a cron job.
+
 Rake Tasks
 ----------
 
