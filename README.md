@@ -22,6 +22,11 @@ Transferring The Database
 
 		pg_restore -d database_name doc/database_dumps/filename.dump
 
+Update Sitemap XML
+------------------
+
+It's important to update the sitemap.xml file for SEO purposes.
+
 Rake Tasks
 ----------
 
