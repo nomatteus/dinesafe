@@ -31,6 +31,8 @@ gem 'jbuilder',           '~>1.0.2'
 
 # Deploy with Capistrano
 gem 'capistrano',         '~>2.14.1'
+gem 'capistrano-ext'
+gem 'rvm-capistrano'
 
 # Site monitoring/errors
 gem 'newrelic_rpm',       '~>3.5.6.46'
