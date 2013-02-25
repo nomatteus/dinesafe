@@ -1,6 +1,7 @@
 # For more info on routes: http://guides.rubyonrails.org/routing.html
 Dinesafe::Application.routes.draw do
   scope "/app" do
+    match "/app_store"  => redirect(Dinesafe.conf.app_store_link)
     match "/" => "pages#app_landing", :as => :app_landing
     match "/privacy"    => "pages#app_privacy"
     match "/about"      => "pages#app_about"

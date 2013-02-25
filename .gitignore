@@ -16,3 +16,4 @@
 
 config/settings.yml
 config/newrelic.yml
+.rvmrc
