@@ -20,7 +20,9 @@ Transferring The Database
 
 ### Load Database
 
-		pg_restore -d database_name doc/database_dumps/filename.dump
+    pg_restore -d database_name doc/database_dumps/filename.dump
+
+NOTE: On production, make sure to switch to postgres user.
 
 Update Sitemap XML
 ------------------
