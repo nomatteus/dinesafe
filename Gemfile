@@ -35,7 +35,7 @@ gem 'capistrano-ext'
 gem 'rvm-capistrano'
 
 # Site monitoring/errors
-gem 'newrelic_rpm',       '~>3.5.6.46'
+gem 'newrelic_rpm',       '~>3.5.7.59'
 gem "airbrake",           '~>3.1.7'
 
 # SEO
