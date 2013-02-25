@@ -12,10 +12,12 @@ class EstablishmentsController < ApplicationController
     end
 
     @total_pages = (establishments_scope.count.to_f / @per_page.to_f).ceil
-    @establishments = establishments_scope
-                        .includes(:inspections)
-                        .paginate(:page => @current_page, :per_page => @per_page)
-                        .order(:latest_name)
+    if establishments_scope.count > 0
+      @establishments = establishments_scope
+                          .includes(:inspections)
+                          .paginate(:page => @current_page, :per_page => @per_page)
+                          .order(:latest_name)
+    end
 
     respond_to do |format|
       # format.html # index.html.erb
