@@ -18,5 +18,4 @@ config/settings.yml
 config/newrelic.yml
 config/database.yml
 .rvmrc
-
 doc/database_dumps/*
