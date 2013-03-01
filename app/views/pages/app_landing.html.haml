@@ -14,12 +14,9 @@
         @media only screen and (min-width: 870px) {
           #mc_embed_signup {margin:0;}
         }
-      = render :partial => "shared/mailchimp_signup"
-      /%ul.clearfix{:style => "opacity:0.2;"}
-      /  (Not quite
-      /  %li
-      /    %a{:href => app_store_link}= image_tag "landing/appStore_Btn@2x.png", :alt => "Download App"
-      /  , but soon!)
+      %ul.clearfix
+        %li
+          %a{:href => app_store_link, :target => "_blank"}= image_tag "landing/appStore_Btn@2x.png", :alt => "Download App"
     / START IPHONE SLIDER
     .fader
       .flexslider1
