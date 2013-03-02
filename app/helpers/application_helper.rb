@@ -37,4 +37,8 @@ module ApplicationHelper
     Dinesafe.conf.app_store_link
   end
 
+  def onclick_conversion_track
+    "trackConversion(1071773858, '5_HnCMu2pQQQovGH_wM'); return true;".html_safe
+  end
+
 end

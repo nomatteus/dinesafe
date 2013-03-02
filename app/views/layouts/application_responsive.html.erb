@@ -63,6 +63,13 @@
       <%= yield :footer_js %>
     <% end %>
 
+  <!-- goog conversion tracking. from http://stackoverflow.com/a/5092940/76710 -->
+  <script type="text/javascript"> 
+   function trackConversion(google_conversion_id,google_conversion_label) {
+           var image = new Image(1,1); 
+           image.src = "http://www.googleadservices.com/pagead/conversion/"+google_conversion_id+"/?label="+google_conversion_label +"&script=0"; } 
+   </script>
+
     <!-- INSERT GOOGLE ANALYTICS SNIPPET -->
     <script>
         var _gaq=[['_setAccount','UA-335824-16'],['_trackPageview']];
