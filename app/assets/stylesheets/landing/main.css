@@ -101,7 +101,7 @@ a:hover { opacity: 0.7; }
 .ctaColumn li a:hover{
   opacity: .7;
 }
-.ctaColumn li a img{
+.ctaColumn .app-store li a img{
   width: 100%;
 }
 .ctaColumn{
@@ -111,6 +111,24 @@ a:hover { opacity: 0.7; }
 .no-slider .ctaColumn {
   overflow: hidden;
 }
+.ctaColumn .as-seen-in {
+  margin: 20px 0;
+}
+  .ctaColumn .as-seen-in p {
+    margin: 0;
+  }
+  .ctaColumn .as-seen-in ul {
+    overflow: hidden;
+    margin: 5px auto;
+    padding: 0;
+    display: inline-block;
+  }
+  .ctaColumn .as-seen-in ul li {
+   
+  }
+  .ctaColumn .as-seen-in ul li a {
+    width: auto;
+  }
 .ctaColumn nav {
   float: right;
   margin-top: 20px;
@@ -357,6 +375,9 @@ a:hover { opacity: 0.7; }
   text-align: center;
   padding-bottom: .5em;
   width: 244px;
+}
+.quote .slides li a {
+  color: white;
 }
 .quote .flex-control-paging li a {
   width: 11px; 

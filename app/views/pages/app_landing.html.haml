@@ -7,17 +7,37 @@
       / START HEADER TEXT
       %h3 When eating out, don’t forget to “Dinesafe it”.
       %p
-        View restaurant health inspections on the go. Browse nearby establishments,
-        or search for your faves. View inspection history up to 3 years.
+        - # Variations of LP copy for Google Analytics Experiment
+        - case params[:cp]
+        - when "1"
+          Make safe dining decisions by viewing the health inspection history
+          for restaurants in TO. Scorebar gives quick visual overview of restaurant
+          inspection history. Browse or search on the go for your favourite places.
+        - when "2"
+          View restaurant health inspections on the go, using the GPS features of
+          your iPhone. Scorebar gives quick visual overview of each establishment's
+          history.
+        - when "3"
+          &bull; View restaurant health inspections on the go. 
+          %br
+          &bull; Browse nearby establishments, or search for your faves. 
+          %br
+          &bull; View inspection history up to 3 years.
+        - else
+          View restaurant health inspections on the go. 
+          Browse nearby establishments, or search for your faves. 
+          View inspection history up to 3 years.
       / STORES
-      :css
-        @media only screen and (min-width: 870px) {
-          #mc_embed_signup {margin:0;}
-        }
-      %ul.clearfix
+      %ul.app-store.clearfix
         %li
           %a{:href => app_store_link, :target => "_blank", :onclick => onclick_conversion_track}
             = image_tag "landing/appStore_Btn@2x.png", :alt => "Download App"
+      .as-seen-in
+        %p As seen in:
+        %ul
+          %li= link_to image_tag("landing/press-logos/thestar.png"), "http://www.thestar.com/news/gta/2013/03/06/new_dinesafe_app_helps_diners_watch_where_they_eat.html", :target => "_blank"
+          %li= link_to image_tag("landing/press-logos/metronews.png"), "http://metronews.ca/news/toronto/584542/new-dinesafe-app-desined-in-to-helps-diners-watch-where-they-eat/", :target => "_blank"
+          %li= link_to image_tag("landing/press-logos/torontoist.png"), "http://torontoist.com/2013/03/new-dinesafe-iphone-app-caters-to-the-germaphobe-in-all-of-us/", :target => "_blank"
     / START IPHONE SLIDER
     .fader
       .flexslider1
@@ -31,15 +51,23 @@
 .main-container
   .main.wrapper.clearfix
     %article
-      %header{:style => "display:none;"}
+      %header
         .flexslider2.quote
           %ul.slides
-            / INSERT QUOTE
-            %li “ This app actually does everything it says and does it well, with style. ”
-            / INSERT QUOTE
-            %li “ Where has this app been all my iPhone owning life?”
-            / INSERT QUOTE
-            %li “ It’s official – I love this app, I couldn’t be without it now.”
+            %li 
+              “The new app promises to take some of the risk and mystery out of dining in Toronto by making DineSafe inspections available on your iPhone.”
+              = "<br>&ndash;".html_safe
+              = link_to "Toronto Star", "http://www.thestar.com/news/gta/2013/03/06/new_dinesafe_app_helps_diners_watch_where_they_eat.html", :target => "_blank"
+            %li 
+              “It’s a simple app, but it’s extremely usable. If you’re sure you want this information with you at all times, it’s worth the money.”
+              = "<br>&ndash;".html_safe
+              = link_to "Torontoist.com", "http://torontoist.com/2013/03/new-dinesafe-iphone-app-caters-to-the-germaphobe-in-all-of-us/", :target => "_blank"
+            %li 
+              “The app has a simple interface that presents a list of restaurants nearby, along with their distance, and a series of icons detailing the eatery’s inspection history.”
+              = "<br>&ndash;".html_safe
+              = link_to "Metro News", "http://metronews.ca/news/toronto/584542/new-dinesafe-app-desined-in-to-helps-diners-watch-where-they-eat/", :target => "_blank"
+            /%li “ Where has this app been all my iPhone owning life?”
+            /%li “ It’s official – I love this app, I couldn’t be without it now.”
       / INSERT FEATURE TEXT
       %section
         %h6 1.
