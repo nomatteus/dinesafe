@@ -14,9 +14,15 @@ and add your own CMS username/password.
 Transferring The Database
 -------------------------
 
+### Dump Database - Production
+
+Run as `deploy` user.
+
+    pg_dump -U postgres -h localhost dinesafe_production -f ~/db_dumps/dinesafe_production_$(date +%Y-%m-%d).dump --password --format=c
+
 ### Dump Database
 
-		pg_dump  -U mruten dinesafe_dev -f doc/database_dumps/dinesafe_dev_$(date +%Y-%m-%d).dump --format=c
+    pg_dump  -U mruten dinesafe_dev -f doc/database_dumps/dinesafe_dev_$(date +%Y-%m-%d).dump --format=c
 
 ### Load Database
 
