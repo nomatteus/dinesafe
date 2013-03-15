@@ -1,0 +1,106 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1199" measuredH="721" mockupW="1138" mockupH="707">
+  <controls>
+    <control controlID="0" controlTypeID="__group__" x="80" y="210" w="227" h="74" measuredW="227" measuredH="74" zOrder="0" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="64" w="227" h="-1" measuredW="100" measuredH="10" zOrder="0" locked="false" isInGroup="0"/>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Label" x="30" y="0" w="-1" h="-1" measuredW="146" measuredH="21" zOrder="1" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>Papas%20Pizza%20Place%20and...</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="9" y="45" w="-1" h="-1" measuredW="71" measuredH="17" zOrder="2" locked="false" isInGroup="0">
+          <controlProperties>
+            <size>10</size>
+            <text>321%20Main%20Lane</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="__group__" x="11" y="20" w="180" h="10" measuredW="180" measuredH="10" zOrder="3" locked="false" isInGroup="0">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="0" w="39" h="-1" measuredW="100" measuredH="10" zOrder="0" locked="false" isInGroup="3">
+              <controlProperties>
+                <color>40463</color>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::HRule" x="34" y="0" w="39" h="-1" measuredW="100" measuredH="10" zOrder="1" locked="false" isInGroup="3">
+              <controlProperties>
+                <color>40463</color>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="65" y="0" w="39" h="-1" measuredW="100" measuredH="10" zOrder="2" locked="false" isInGroup="3">
+              <controlProperties>
+                <color>13576743</color>
+              </controlProperties>
+            </control>
+            <control controlID="3" controlTypeID="com.balsamiq.mockups::HRule" x="91" y="0" w="39" h="-1" measuredW="100" measuredH="10" zOrder="3" locked="false" isInGroup="3">
+              <controlProperties>
+                <color>16776960</color>
+              </controlProperties>
+            </control>
+            <control controlID="4" controlTypeID="com.balsamiq.mockups::HRule" x="111" y="0" w="39" h="-1" measuredW="100" measuredH="10" zOrder="4" locked="false" isInGroup="3">
+              <controlProperties>
+                <color>40463</color>
+              </controlProperties>
+            </control>
+            <control controlID="5" controlTypeID="com.balsamiq.mockups::HRule" x="141" y="0" w="39" h="-1" measuredW="100" measuredH="10" zOrder="5" locked="false" isInGroup="3">
+              <controlProperties>
+                <color>40463</color>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="177" y="2" w="-1" h="-1" measuredW="36" measuredH="17" zOrder="4" locked="false" isInGroup="0">
+          <controlProperties>
+            <size>10</size>
+            <text>0.4%20km</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="8" y="28" w="-1" h="-1" measuredW="126" measuredH="17" zOrder="5" locked="false" isInGroup="0">
+          <controlProperties>
+            <size>10</size>
+            <text>Latest%3A%20%20%20%20%20%20March%2014%2C%202013</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::HRule" x="44" y="31" w="10" h="-1" measuredW="100" measuredH="10" zOrder="6" locked="false" isInGroup="0">
+          <controlProperties>
+            <color>40463</color>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::Icon" x="9" y="3" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="7" locked="false" isInGroup="0">
+          <controlProperties>
+            <icon>CircleIcon%7Cxsmall</icon>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="61" y="20" w="569" h="-1" measuredW="537" measuredH="50" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>New%20establishment%20cell%20design.</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Paragraph" x="80" y="85" w="530" h="125" measuredW="200" measuredH="80" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Goals%3A%0A*%20Add%20latest%20inspection%20date%0A*%20Remove%20establishment%20type%20text%2C%20and%20use%20icons%20instead%0A*%20Doing%20both%20of%20these%20will%20keep%20the%20cells%20at%20the%20same%20height%2C%20while%20adding%20information%0A*%20Using%20icons%20is%20fine%2C%20because%20the%20establishment%20type%20isn%27t%20very%20useful.%20%0A*%20Add%20icon%20legend%20to%20%22About%22%20page%2C%20for%20those%20that%20actually%20care%20and%20want%20to%20know.</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Paragraph" x="702" y="107" w="282" h="614" measuredW="200" measuredH="80" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%20%20%20%20Restaurant%3A%206957%0A%20%20%20%20Food%20Take%20Out%3A%202740%0A%20%20%20%20Food%20Store%20%28Convenience%20/%20Variety%29%3A%202489%0A%20%20%20%20Supermarket%3A%20486%0A%20%20%20%20Food%20Court%20Vendor%3A%20438%0A%20%20%20%20Bakery%3A%20421%0A%20%20%20%20Food%20Processing%20Plant%3A%20231%0A%20%20%20%20Butcher%20Shop%3A%20189%0A%20%20%20%20Food%20Depot%3A%20175%0A%20%20%20%20Banquet%20Facility%3A%20161%0A%20%20%20%20Secondary%20School%20Food%20Services%3A%20143%0A%20%20%20%20Cocktail%20Bar%20/%20Beverage%20Room%3A%20137%0A%20%20%20%20Food%20Caterer%3A%20127%0A%20%20%20%20Hot%20Dog%20Cart%3A%20114%0A%20%20%20%20Private%20Club%3A%20101%0A%20%20%20%20Cafeteria%20-%20Public%20Access%3A%2097%0A%20%20%20%20Community%20Kitchen%20Meal%20Program%3A%2082%0A%20%20%20%20Ice%20Cream%20/%20Yogurt%20Vendors%3A%2079%0A%20%20%20%20Commissary%3A%2056%0A%20%20%20%20Refreshment%20Stand%20%28Stationary%29%3A%2056%0A%20%20%20%20Fish%20Shop%3A%2045%0A%20%20%20%20Food%20Bank%3A%2029%0A%20%20%20%20Mobile%20Food%20Preparation%20Premises%3A%2027%0A%20%20%20%20Bake%20Shop%3A%2025%0A%20%20%20%20Chartered%20Cruise%20Boats%3A%2021%0A%20%20%20%20Food%20Vending%20Facility%3A%2015%0A%20%20%20%20Church%20Banquet%20Facility%3A%2011%0A%20%20%20%20Meat%20Processing%20Plant%3A%207%0A%20%20%20%20Flea%20Market%3A%205%0A%20%20%20%20Toronto%20A%20La%20Cart%3A%204%0A%20%20%20%20Bottling%20Plant%3A%203%0A%20%20%20%20Bed%20%26%20Breakfast%3A%202%0A%20%20%20%20Farmer%27s%20Market%3A%202%0A%20%20%20%20Milk%20Products%20Plant%3A%202%0A%20%20%20%20Brew%20Your%20Own%20Beer%20/%20Wine%3A%201%0A%20%20%20%20Catering%20Vehicle%3A%201%0A%20%20%20%20Food%20Cart%3A%201%0A%20%20%20%20Locker%20Plant%3A%201</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::SubTitle" x="702" y="70" w="-1" h="-1" measuredW="497" measuredH="33" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Establishment%20types%20%28and%20number%20of%20each%20type%29</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Paragraph" x="999" y="102" w="200" h="365" measuredW="200" measuredH="80" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Samples%20Icons%20to%20use%3A%0A*%20fork/knife%0A*%20take-out%20box%0A*%20big%20box%20store%20%28food%20store%2C%20supermarket%29%0A*%20bread%20%28bakery%29%0A*%20factory/smokestack%20%28food%20processing%20plant%29%0A*%20hot%20dog%20%28hot%20dog%20cart%29%0A*%20...%0A%20%0A%20%0ANeed%20to%20map%20all%20establishment%20types%20to%20an%20icon.</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Title" x="687" y="14" w="125" h="-1" measuredW="99" measuredH="50" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Icons</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
