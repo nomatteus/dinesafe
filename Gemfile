@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails',              '~>3.2.13'
+gem 'rails',              '~>3.2.17'
 gem 'pg',                 '~>0.14.1'
 
 # Add new gems here
@@ -17,15 +17,15 @@ gem 'konf',               '~>0.0.2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'libv8',            '3.11.8.0'
-  gem 'therubyracer',     '0.11.0beta8'
-  gem 'bootstrap-sass',   '~> 2.2.2.0'
+  gem 'libv8',            '3.16.14.3'
+  gem 'therubyracer',     '0.12.1'
+  gem 'bootstrap-sass',   '2.3.2.2'
   gem 'sass-rails',       '~> 3.2.6'
   gem 'coffee-rails',     '~> 3.2.2'
   gem 'uglifier',         '>= 1.3.0'
 end
 
-gem 'haml',               '~>3.1.7'
+gem 'haml',               '~>4.0.5'
 gem 'jquery-rails',       '~>2.2.0'
 gem 'jbuilder',           '~>1.0.2'
 
