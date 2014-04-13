@@ -40,10 +40,11 @@ a:hover { opacity: 0.7; }
 .header-container h1{
   text-indent: -10000em;
   position: relative;
-  width: 394px; /* Adjust Width for Logo if needed */
-  height: 63px; /* Adjust Height for Logo if needed */
-  background: url(/assets/landing/logo.png) no-repeat center 0; /* Change Your Logo Name */
-  background-size: 100%;
+  width: 394px;
+  height: 63px;
+  background-image: url(/assets/landing/logo.png);
+  background-repeat: no-repeat;
+  background-size: contain;
   margin: 0;
 }
 .header-container h1 a {
@@ -60,7 +61,7 @@ a:hover { opacity: 0.7; }
   (min-resolution: 1.5dppx) {
   /* on retina, use image that's scaled by 2 */
 .header-container h1{
-  background: url(/assets/landing/logo@2x.png) no-repeat 0 0; /* Change Retina Logo */
+  background-image: url(/assets/landing/logo@2x.png); /* Change Retina Logo */
 }
 }
 
@@ -180,7 +181,7 @@ a:hover { opacity: 0.7; }
   background: url(/assets/landing/mailIcon.png) no-repeat center 0; /*Image of iphone 5 in hand */
   width: 28px;
   height: 14px;
-  background-size: 100%;
+  background-size: contain;
   display: none;
 }
 @media (min--moz-device-pixel-ratio: 1.5),
@@ -197,7 +198,7 @@ a:hover { opacity: 0.7; }
   width: 286px;
   height: 605px;
   background: url(/assets/landing/iphone_nohand.png) no-repeat center 0; /*Image of iphone 5 in hand */
-  background-size: 100%;
+  background-size: contain;
   margin: 0 auto;
   overflow: auto;
 }
@@ -209,6 +210,7 @@ a:hover { opacity: 0.7; }
   /* on retina, use image that's scaled by 2 */
 .iphone-frame {
   background: url(/assets/landing/iphone_nohand@2x.png) no-repeat center 0; /*Image of iphone 5 in hand */
+  background-size: contain;
 }
 }
 .iphone-frame .iphone-screen {
@@ -217,7 +219,7 @@ a:hover { opacity: 0.7; }
   width: 239px;
   height: 398px;
   background: #fff url(/assets/landing/iphone_title.png) no-repeat 0 0;
-  background-size: 100%;
+  background-size: contain;
   padding-top: 32px;
   font: normal 14px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #000;
@@ -289,7 +291,7 @@ a:hover { opacity: 0.7; }
   margin-right: auto;
   margin-left: auto;
   background: url(/assets/landing/iphone_nohand.png) no-repeat center 0; /*Image of iphone 5 in hand */
-  background-size: 100%;
+  background-size: contain;
 }
 @media (min--moz-device-pixel-ratio: 1.5),
   (-o-min-device-pixel-ratio: 3/2),
@@ -299,6 +301,7 @@ a:hover { opacity: 0.7; }
   /* on retina, use image that's scaled by 2 */
 .fader{
   background: url(/assets/landing/iphone_nohand@2x.png) no-repeat center 0; /*Image of iphone 5 in hand */
+  background-size: contain;
 }
 }
 .fader .flexslider1{
@@ -429,7 +432,7 @@ a:hover { opacity: 0.7; }
   width: 163px; /* Adjust Width for Logo if needed */
   height: 23px; /* Adjust Height for Logo if needed */
   background: url(/assets/landing/logo_foot.png) no-repeat center 0; /* Change Logo */
-  background-size: 100%;
+  background-size: contain;
   margin: 0 auto 40px;
 }
 @media (min--moz-device-pixel-ratio: 1.5),
@@ -440,6 +443,7 @@ a:hover { opacity: 0.7; }
   /* on retina, use image that's scaled by 2 */
 .footer-container h1{
   background: url(/assets/landing/logo_foot@2x.png) no-repeat 0 0; /*Change Retina Logo */
+  background-size: contain;
 }
 }
 
@@ -556,7 +560,7 @@ a:hover { opacity: 0.7; }
   .fader{ padding-bottom: 348px;  margin: 0; background: none;}
   .fader:before {
     background: url(/assets/landing/iphone.png) 0 0; /*Image of iphone 5 in hand */ 
-    background-size: 100%;
+    background-size: contain;
     left: -40px; 
     width: 593px;
     height: 782px;
@@ -570,6 +574,7 @@ a:hover { opacity: 0.7; }
     /* on retina, use image that's scaled by 2 */
   .fader:before {
     background: url(/assets/landing/iphone@2x.png) 0 0; /*Image of iphone 5 in hand */ 
+    background-size: contain;
   }
   }
     
@@ -585,7 +590,7 @@ a:hover { opacity: 0.7; }
 }
 @media only screen and (min-width: 870px) {
   .header-container h1{
-    background: url(/assets/landing/logo.png) no-repeat 0 0; /* Logo */
+    background-image: url(/assets/landing/logo.png); /* Logo */
     margin: 0 0 0 -14px;
   }
   .no-slider.header-container h1 {
@@ -606,7 +611,7 @@ a:hover { opacity: 0.7; }
   (min-resolution: 1.5dppx) {
   /* on retina, use image that's scaled by 2 */
 .header-container h1{
-  background: url(/assets/landing/logo@2x.png) no-repeat 0 0; /* Change Retina Logo */
+  background-image: url(/assets/landing/logo@2x.png); /* Change Retina Logo */
 }
 }
 @media only screen and (min-width: 1140px) {
