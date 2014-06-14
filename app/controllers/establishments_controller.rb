@@ -11,8 +11,8 @@ class EstablishmentsController < ApplicationController
       establishments_scope = establishments_scope.where("latest_name ILIKE ?", "%#{params[:search]}%")
     end
 
-    @total_pages = (establishments_scope.count.to_f / @per_page.to_f).ceil
-    if establishments_scope.count > 0
+    @total_pages = (establishments_scope.count(:all).to_f / @per_page.to_f).ceil
+    if establishments_scope.count(:all) > 0
       @establishments = establishments_scope
                           .includes(:inspections)
                           .paginate(:page => @current_page, :per_page => @per_page)

@@ -5,9 +5,9 @@ class Inspection < ActiveRecord::Base
   belongs_to :establishment
   has_many :infractions
 
-  scope :pass, where(status: "Pass")
-  scope :conditional, where(status: "Conditional Pass")
-  scope :closed, where(status: "Closed")
+  scope :pass, -> { where(status: "Pass") }
+  scope :conditional, -> { where(status: "Conditional Pass") }
+  scope :closed, -> { where(status: "Closed") }
 
   # Returns list of infractions, sorted by severity (as defined in SORT_ORDER)
   def infractions_by_severity

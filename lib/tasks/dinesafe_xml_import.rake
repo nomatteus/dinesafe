@@ -1,6 +1,20 @@
+# encoding: UTF-8
 require 'open-uri'
 
 namespace :dinesafe do 
+  desc "Update task"
+  task update_data: :environment do
+    Rake::Task["dinesafe:update_xml"].execute
+    Rake::Task["dinesafe:xml_import"].execute
+    Rake::Task["dinesafe:fix_data_typos"].execute
+    Rake::Task["dinesafe:geocode"].execute
+    Rake::Task["dinesafe:update_latlngs"].execute
+    # Run again to catch any geocodes created
+    Rake::Task["dinesafe:geocode"].execute
+    Rake::Task["dinesafe:update_latlngs"].execute
+  end
+
+
   desc "Download and extract latest dinesafe.xml file"
   task :update_xml => :environment do 
     file_url = "http://opendata.toronto.ca/public.health/dinesafe/dinesafe.zip"
@@ -30,48 +44,32 @@ namespace :dinesafe do
 
   desc "Import/update data from dinesafe.xml file"
   task :xml_import => :environment do
-
-    # For progress indicator -- from http://snippets.dzone.com/posts/show/3760
-    # move cursor to beginning of line
-    cr = "\r"           
-    # ANSI escape code to clear line from cursor to end of line
-    # "\e" is an alternative to "\033"
-    # cf. http://en.wikipedia.org/wiki/ANSI_escape_code
-    clear = "\e[0K"     
-    # reset lines
-    reset = cr + clear
-
-
-
     doc = Nokogiri::XML(open(Rails.root.to_s + "/doc/dinesafe.xml"))
-    #puts doc.xpath("/ROWDATA/ROW").inspect
     rows = doc.xpath("//ROW")
     total_rows = rows.length
-    i = 0
+
+    progress_bar = ProgressBar.create(
+      throttle_rate: 1,
+      format: "%a |%b>%i| %p%% %e Rows: %c/%C",
+      total: total_rows,
+    )
+
     rows.each do |row|
       # Note: It appears ROW_ID will not always refer to the same establishment/restaurant
       #       Instead, we might have to use the Inspection ID as unique key
       #       So, don't rely on/use ROW_ID at all!
-      #id = row.xpath("ROW_ID").text.to_i
 
       # Create or Update Establishment
-      establishment = Establishment.find_or_create_by_id(row.xpath("ESTABLISHMENT_ID").text.to_i)
-      # current_name = establishment.name
-      # current_est_type = establishment.est_type
+      establishment = Establishment.find_or_create_by(id: row.xpath("ESTABLISHMENT_ID").text.to_i)
       current_address = establishment.address
       establishment.update_attributes({
         :latest_name    => row.xpath("ESTABLISHMENT_NAME").text,
         :latest_type    => row.xpath("ESTABLISHMENTTYPE").text,
         :address        => row.xpath("ESTABLISHMENT_ADDRESS").text,
       })
-      # if current_name != establishment.name
-      #   puts "Change detected! Old: #{current_name} New: #{establishment.name}" 
-      # end
-      # if current_est_type != establishment.est_type
-      #   puts "Change detected! Old: #{current_est_type} New: #{establishment.est_type}" 
-      # end
+
       if current_address != establishment.address
-        puts "Change detected! Old: #{current_address} New: #{establishment.address}" 
+        Rails.logger.info "Change detected! Old: #{current_address} New: #{establishment.address}" 
       end
       #puts "Updated establishment ID: #{establishment.id}"
 
@@ -82,7 +80,7 @@ namespace :dinesafe do
       # The assumption here is that all inspections on the same date
       #  will have the same establishment status and min inspections.
       #  From what I've seen in the data, this is the case, and it makes sense.
-      inspection = Inspection.find_or_create_by_id(row.xpath("INSPECTION_ID").text.to_i)
+      inspection = Inspection.find_or_create_by(id: row.xpath("INSPECTION_ID").text.to_i)
       inspection.update_attributes({
         :establishment_id              => establishment.id,
         :establishment_name            => row.xpath("ESTABLISHMENT_NAME").text.strip,
@@ -106,19 +104,16 @@ namespace :dinesafe do
         infraction_attributes[:court_outcome].present? or 
         infraction_attributes[:amount_fined] > 0)
           # This combination of attributes should always be unique
-          infraction = Infraction.find_or_create_by_inspection_id_and_severity_and_details_and_amount_fined(
-            infraction_attributes[:inspection_id],
-            infraction_attributes[:severity],
-            infraction_attributes[:details],
-            infraction_attributes[:amount_fined],
-          )
+          infraction = Infraction.where(
+            inspection_id: infraction_attributes[:inspection_id],
+            severity: infraction_attributes[:severity],
+            details: infraction_attributes[:details],
+            amount_fined: infraction_attributes[:amount_fined]
+          ).first_or_create
           infraction.update_attributes(infraction_attributes)
       end
-      # Must be an easier way to do this -- pct. with 2 decimal places
-      pct = i.to_f / total_rows.to_f * 100
-      #puts "Updated inspection ID: #{inspection.id}              #{pct}% done"   
-      print "#{reset}Importing from XML: #{pct}%"
-      i += 1
+
+      progress_bar.increment
     end
   end
 
@@ -142,9 +137,8 @@ namespace :dinesafe do
 
   desc "Geocodes 1000 records at a time (but only if record is not geocoded already)"
   task :geocode => :environment do
-    2500.times do 
+    Geocode.where("geocoding_results_json IS NULL").first(2500).each do |g|
       # Get new record to geocode
-      g = Geocode.where("geocoding_results_json IS NULL").first
       puts g.id
       address = g.address.gsub " ", "+" #Replace spaces with '+' to make URL-safe
       map_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address},+toronto,+on&sensor=false"

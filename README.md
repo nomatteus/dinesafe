@@ -20,6 +20,10 @@ Run as `deploy` user.
 
     pg_dump -U postgres -h localhost dinesafe_production -f ~/db_dumps/dinesafe_production_$(date +%Y-%m-%d).dump --password --format=c
 
+### Download Database - Production
+
+    rsync --partial --progress --rsh=ssh <user>@<hostname>:~/db_dumps/<filename>.dump db/dumps/
+
 ### Dump Database
 
     pg_dump  -U mruten dinesafe_dev -f doc/database_dumps/dinesafe_dev_$(date +%Y-%m-%d).dump --format=c
@@ -48,7 +52,11 @@ TODO: Move sitemap updating to a cron job.
 Rake Tasks
 ----------
 
-Run these tasks in this order. This could use some optimization/refactoring.
+**Run this to update all Dinesafe data:**
+
+    rake dinesafe:update_data
+
+Or, you can run individual tasks as needed.
 
 Update XML from Toronto Open Data:
 

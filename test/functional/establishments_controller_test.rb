@@ -162,14 +162,4 @@ class EstablishmentsControllerTest < ActionController::TestCase
     assert_equal 1, parsed_body["paging"]["current_page"]
     assert_equal 2, parsed_body["paging"]["total_pages"]
   end
-
-  test "bug: searching for 'tone.%20sushi' breaks the api" do
-    skip "TODO"
-    # Write test for this error:
-    # http://dinesafe.to/api/1.0/establishments.json?page=0&search=tone.%20sushi&near=43.650977,-79.476945
-    # Fixed it already by wrapping "@establishments = establishments_scope ... " in conditional statement
-    #   to set only if there's a count > 0. SHould have a test for this though. (comment out the
-    # conditional to trigger the error again and then replicate it in test, watch it fail, then watch it pass)
-  end
-
 end
