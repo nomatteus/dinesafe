@@ -10,6 +10,9 @@ set :rvm_type, :system
 
 require 'bundler/capistrano'
 
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 set :use_sudo, false
 default_run_options[:pty] = true
 
