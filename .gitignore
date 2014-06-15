@@ -19,3 +19,5 @@ config/newrelic.yml
 config/database.yml
 .rvmrc
 db/dumps/
+
+config/initializers/secret_token.rb
