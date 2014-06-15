@@ -1,0 +1,327 @@
+/*   
+Theme Name: torontoist 2011
+Description: Torontoist Redesign Styles, 2011
+*/
+
+/* =START RESET STYLES */
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent;}									
+
+article, aside, figure, footer, header, hgroup, nav, section {display: block;}
+
+
+
+ul {list-style: none;}
+
+blockquote, q {quotes: none;}
+
+blockquote:before, 
+blockquote:after, 
+q:before, 
+q:after {content: ''; content: none;}
+
+a {margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+
+del {text-decoration: line-through;}
+
+abbr[title], dfn[title] {border-bottom: 1px dotted #000; cursor: help;}
+
+table {border-collapse: collapse; border-spacing: 0;}
+th {font-weight: bold; vertical-align: bottom;}
+td {font-weight: normal; vertical-align: top;}
+
+hr {display: block; height: 1px; border: 0; border-top: 1px solid #B2B2B2; margin: 1em 0; padding: 0;}
+
+input, select {vertical-align: middle;}
+
+pre {
+	white-space: pre; /* CSS2 */
+	white-space: pre-wrap; /* CSS 2.1 */
+	white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+	word-wrap: break-word; /* IE */
+}
+
+input[type="radio"] {vertical-align: text-bottom;}
+input[type="checkbox"] {vertical-align: bottom; vertical-align: baseline;}
+.ie6 input {vertical-align: text-bottom;}
+
+select, input, textarea {font: 99% sans-serif;}
+
+table {font-size: inherit; font: 100%;}
+ 
+/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active {outline: none;}
+
+small {font-size: 85%;}
+
+strong, th {font-weight: bold;}
+
+td, td img {vertical-align: top;} 
+
+sub, sup {font-size: 75%; line-height: 0; position: relative;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+
+pre, code, kbd, samp {font-family: monospace, sans-serif;}
+
+.clickable,
+label, 
+input[type=button], 
+input[type=submit], 
+button {cursor: pointer;}
+
+button, input, select, textarea {margin: 0;}
+
+
+ 
+.ie7 img {-ms-interpolation-mode: bicubic;}
+
+.ie6 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));}
+
+/* =END RESET STYLES */
+
+/* CLASSES FOR HIDING AND SHOWING DIVS UNTIL PAGE LOADS THIS IS FLIPPED AT THE BOTTOM OF sidebar.php*/
+.hide {
+     visibility:hidden;
+ }
+.show {
+     visibility:visible;
+ }
+
+
+/* =START PRINT & MEDIA QUERY STYLES */
+
+@media print { }
+
+/* Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
+@media screen and (max-device-width: 480px) { }
+
+@media all and (orientation: portrait) { }
+
+@media all and (orientation: landscape) { }
+/* =END PRINT & MEDIA QUERY STYLES */
+
+
+/* =START BASE STYLES*/
+html {height:100%; background:#FFF;}
+
+body {min-height:100%; width:1010px; margin:0 auto; padding:0 15px; background:#FFF; font-size:14px; line-height:1.625; font-family:'Open Sans', sans-serif;}
+
+body, select, input, textarea {color:#252525;}
+
+a:link, a:visited, a:hover, a:active {color:#9E0B0F; text-decoration:none;}
+a:hover, a:active {text-decoration:underline;}
+
+h1, h2, h3, h4, h5, h6 {font-weight:normal;}
+
+p {margin:15px 0;}
+
+::-moz-selection {background:#CCDDF1; color:#000; text-shadow:none;}
+::selection {background:#CCDDF1; color:#000; text-shadow:none;} 
+
+a:link {-webkit-tap-highlight-color:#EFEFEF;} 
+
+small {font-size:11px;}
+
+ins {background-color:#EFEFEF; color:#000; text-decoration: none;}
+mark {background-color:#EFEFEF; color:#000; font-style:italic; font-weight:bold;}
+
+hr {border:none; padding:0; margin:20px 0; border-bottom:1px solid #B2B2B2;}
+hr.invisible {border:none; padding:0; margin:30px 0 0 0;}
+
+a.post-edit-link {display:none; float:right; color:#252525!important; padding:1px 4px 2px 4px; margin-left:8px; background:#CCDDF1; font-size:12px;}
+
+#content {width:100%; font-size:12pt; border:none; } 
+
+
+/* =START SITE HEADER */
+header.global .container {display:block;}
+ 
+header.global h1 {display:none;}
+header.global h1.print {display:block;}
+
+header.global .weather {display:none;} 
+header.global .tools {display:none;} 
+
+section#breaking-news {font-weight: bold; color:#ff0000;}
+section#breaking-news table {width:1007px; margin:-10px;}
+section#breaking-news th {color:#FFFFFF; text-align:left; background:#9E0C0F; font-size:12px; padding:0 10px; text-transform:uppercase; letter-spacing:1px;}
+section#breaking-news #breaking2 th {color:#FFFFFF; text-align:left; background:#252525; font-size:12px; padding:0 10px; text-transform:uppercase; letter-spacing:1px;}
+section#breaking-news td {text-align:center; background:#ffe8e0;}
+section#breaking-news #breaking2 td {text-align:center; background:#fff8c6;}
+section#breaking-news td.hed {color:#252525; font-size:48px; font-weight: bold; text-transform:uppercase; padding:5px; line-height:1;}
+section#breaking-news td.dek {color:#252525; font-size:32px; font-weight: normal; line-height:1;}
+section#breaking-news td.links {padding:6px;}
+section#breaking-news td.links li {display:inline; list-style:none; padding:5px; color:#9e0c0f; text-transform:uppercase; font-weight:bold;}
+section#breaking-news dd {border:0!important; background:none!important;}
+section#breaking-news .skin-default dl.slidedeck {margin-bottom:10px;}
+
+/* =START GLOBAL NAV (header and footer) */
+.global nav {display:none;}
+
+/* =START FOOTER */
+footer.global {display:block;}
+footer.global nav {display:none;}
+footer.global div#copyright {display:none;}
+footer.global div#sitemeter {display:none;}
+
+/* =START ARTICLE & PAGE HEADERS */
+#content article h2 {font-size:30px; font-weight:bold; margin:15px 0; line-height:1.1;}
+
+#content article h3 {display:none;}
+
+#content article h2 a:hover {color:#9E0B0F; text-decoration:none;}
+#content article h2 a {color:#252525;}
+
+
+
+#content h2.page-title {border-bottom:1px dotted #777; border-top:1px solid #777; color:#252525; background:#EEE; text-align:center; font-size:14px; font-weight:bold; padding:2px 4px; text-transform:uppercase; letter-spacing:1px;}
+
+
+/* =START FEATURE ARTICLE STYLES */
+#feature-story {display:none;}
+
+
+
+/* =START ARTICLE STYLES */
+#content article.imported-post p > br {margin: 0 0 15px 0;} /*should only affect posts imported from Movable Type*/
+
+#content article {padding:20px 0; border-bottom:1px solid #B2B2B2; float:left; width:100%;} /*float corrects overflow in IE*/
+#content article p {margin-right:20px;}
+#content article ul {margin:0 0 0 40px;}
+#content article ul li {list-style:outside disc; margin:10px 0;}
+
+#content article time, #content article a.comments-link {float:right; text-transform:uppercase; color:#777; font-weight:600; font-size:10px; display:block;}
+#content article a.comments-link {display:none; padding-left:8px; border-left:1px solid #B2B2B2; margin-left:8px; color:#777;}
+
+#content article .dek {font-size:18px; font-weight:600; margin:5px 0; line-height:1.2;}
+#content article .byline {font-size:12px; font-weight:600; text-transform:uppercase; margin:10px 0px;}
+#content article .morelink {font-size:14px; font-weight:bold; text-transform:uppercase;}
+
+#content article .alignleft {float:left; margin:0 10px 20px 0; clear:left;}
+#content article .alignright {float:right; margin:0 0 20px 10px; clear:right;}
+#content article .aligncenter {clear:both; margin:20px auto;}
+#content article .wp-caption-text {font-size:12px; color:#777; margin:0; line-height:1.2;}
+#content article span.mt-enclosure i {font-style:normal; font-size:12px; color:#777; margin:0; line-height:1.2;} /*imported posts*/
+
+#content article #related-posts {display:none;}
+#content article footer {display:none;}			        
+
+
+#content article section.related {margin-top:15px;}
+#content article section.related h4 {font-weight:600; text-transform:uppercase;}
+#content article section.related ul {margin:0;}
+#content article section.related ul li {list-style:outside none; float:left; width:100px; padding:13px; border-right:1px solid #EEEEEE; line-height:1.2; height:215px;}
+#content article section.related ul li:hover {background:#EEE;}
+#content article section.related ul li:last-child {border:none;}
+#content article section.related ul li a {color:#252525; display:block; font-size:14px; font-weight:600;}
+#content article section.related ul li a img {margin:0 0 5px 0; border:1px solid #EEEE;}
+
+#content article nav.pagination {border-top:1px solid #B2B2B2; position:relative; padding:10px; height:30px; overflow:hidden;}
+#content article nav.pagination .previous {float:left;}
+#content article nav.pagination .page-number {position:absolute; left:42%;}
+#content article nav.pagination .next {float:right;}
+
+.single #content article {border-bottom:none;}
+
+
+/* =START ARTICLE LIST STYLES (INDEX.PHP) */
+#content article.shortview {}
+#content article.shortview header {float:right; width:425px; }
+#content article.shortview header h2 {font-size:20px; margin:0 0 5px 0;}
+#content article.shortview p {float:right; width:425px; margin:5px 0 0 0;}
+#content article.shortview a.comments-link {margin:0; padding:0; border:none; float:none; font-size:12px;}
+#content article.shortview img {display:block;}
+#content article.shortview .dek {font-size:14px; font-weight:normal;}
+
+
+/* =START COMMENTS */
+
+#content #post-comments {clear:both; width:600px; margin-top:10px; padding-top:10px; border-top:1px solid #B2B2B2;}
+#content #post-comments h4#comments {display:none;}
+#content #post-comments #disqus_thread {display:none;}
+}
+
+
+/* =START SLIDESHOW STYLES */
+#content article .gallery dl.gallery-item {width:90px;}
+#content article .gallery dl.gallery-item dd.gallery-caption {display:none;}
+#content article .gallery dl.gallery-item img {border:1px solid #EEE!important; width:80px; height:80px;}
+#content article .gallery dl.gallery-item a:hover img {border:1px solid #252525!important;}
+
+.slideshow #wpadminbar {display:none;}
+
+.slideshow header {margin:40px 0 0 0;}
+.slideshow header h1 {float:left; margin-right:20px;}
+.slideshow header h1 a {width:200px; height:28px; background:url(torontoist-logo-slideshow.png) top left no-repeat; display:block; text-indent:-9999em;}
+.slideshow header h2 a {color:#252525; text-transform:uppercase;}
+
+.slideshow #content {min-height:800px; height:auto!important; height:800px;}
+.slideshow #content article {text-align:center; border-bottom:none;}
+
+.slideshow #sidebar section {margin:10px 0 0 0; border-bottom:1px dotted #B2B2B2;}
+
+.slideshow #sidebar #gallery-nav span {margin:0 15px 10px 15px; float:left; display:block;} 
+.slideshow #sidebar #gallery-nav span.slide-count {margin-top:10px; font-weight:600;}
+.slideshow #sidebar #gallery-nav span.previous {margin-left:60px;}
+.slideshow #sidebar #gallery-nav span a {display:block; text-indent:-9999em; width:41px; height:41px; background: url(prev-grey.png) 0 0 no-repeat;}
+.slideshow #sidebar #gallery-nav span.next a {background-image: url(next-grey.png);}
+.slideshow #sidebar #gallery-nav span.previous a:hover {background-image: url(prev-black.png);}
+.slideshow #sidebar #gallery-nav span.next a:hover {background-image: url(next-black.png);}
+
+.slideshow #sidebar #slide-info span p {margin:8px 0;}
+.slideshow #sidebar #slide-info .title {font-weight:600;}
+.slideshow #sidebar #slide-info .description p {color:#777;}
+.slideshow #sidebar #slide-info .caption p {color:#777; font-size:12px;}
+.slideshow #sidebar #social-media span.icon {padding-top:10px; float:left; display:block;}
+
+.slideshow footer {clear:both;}
+
+
+/* =START AD & SPONSORSHIP STYLES */
+#leaderboard {width:728px; height:90px; margin:10px auto 15px auto; display:none;}
+.big-box {width:300px; height:250px; background:#B2B2B2; margin:0 25px 20px 24px; clear:both;}
+.big-box.lower {margin-top:40px;}
+
+.slideshow #sidebar .big-box {margin-top:36px;}
+
+#content article.category-sponsored-post h3 {background:#FCF000;}
+#content article.category-sponsored-post h3 a {color:#252525;}
+#content article.category-sponsored-post {background:#FEFDE6; padding:10px 0;}
+#content article.category-sponsored-post .byline, #content article.category-sponsored-post time, #content article.category-sponsored-post .comments-link, #content article.category-sponsored-post .tag-list, #content article.category-sponsored-post .related {display:none;}
+.single #content article.category-sponsored-post {padding:10px 0 0 0;}
+
+
+/* =START SIDEBAR */
+#sidebar {display:none;}
+
+/* =POST NAVIGATION (index, category, etc.) */
+#content .post-nav {font-weight:bold; height:26px; padding:16px 0;}
+#content .post-nav div a {}
+#content .post-nav .older-posts {float:left;}
+#content .post-nav .newer-posts {float:right;}
+
+
+/* =SEARCH RESULTS PAGE */
+.search-results #content article {border-bottom:1px dotted #777; font-size:14px; padding-bottom:24px;}
+.search-results #content article h2 {font-size:24px;}
+.search-results #content article p {margin:10px 0 14px 0;}
+.search-results #content article footer {color:#777; overflow:hidden; line-height:1.2;}
+.search-results #content article footer a {color:#777;}
+.search-results #content article footer span.byline, .search-results #content article footer time, .search-results #content article footer a.comments-link {display:block; float:left; margin-left:8px; padding-left:8px; border-left:1px solid #B2B2B2;}
+.search-results #content article footer span.byline {border-left:none; margin-left:0; margin-top:0; padding-left:0;}
+
+
+/* =START 404 ERROR PAGE */
+.error404 #content h2 {font-size:32px; font-weight:bold; line-height:1.3;}
+
+.error404 #content ol {margin:0 20px 0 60px;}
+
+.error404 #content form {text-align:center; padding:20px; background:#EFEFEF; margin:30px 0;}
+.error404 #content form input {width:360px; font-size:24px; padding:8px 8px 4px 8px; border:1px solid #777; color:#666;}
+.error404 #content form input.go {width:41px; height:41px; border:none; padding:0;}
+
+.error404 #content section.latest h3 {font-weight:bold; text-transform:uppercase;}
+.error404 #content section.latest ul li {float:left; width:100px; padding-right:12px; margin-right:12px; line-height:1.2; height: 260px}
+.error404 #content section.latest ul li a {color:#252525; display:block;}
+.error404 #content section.latest ul li a.title {font-size:14px; font-weight:bold;}
+.error404 #content section.latest ul li a.image {margin:5px 0;}f
