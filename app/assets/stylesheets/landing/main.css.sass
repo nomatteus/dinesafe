@@ -1,0 +1,700 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+
+html, button, input, select, textarea
+  color: #222
+
+body
+  font-size: 1em
+  line-height: 1.4
+
+\::-moz-selection, ::selection
+  background: #b3d4fc
+  text-shadow: none
+
+.chromeframe
+  margin: 0.2em 0
+  background: #ccc
+  color: #000
+  padding: 0.2em 0
+
+hr
+  display: block
+  height: 1px
+  border: 0
+  border-top: 1px solid #ccc
+  margin: 1em 0
+  padding: 0
+
+img
+  vertical-align: middle
+
+a
+  text-decoration: none
+
+body
+  font: 16px / 26px Helvetica, Helvetica Neue, Arial
+  -webkit-font-smoothing: antialiased
+  font-smooth: always
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004)
+
+.wrapper
+  width: 92%
+  margin: 0 4%
+
+
+/* ==========================================================================
+   Main Theme Styles
+   ========================================================================== */
+
+
+.header-container
+  background: #f3f8fc
+  // Adjust Background colour of header
+  color: #525b60
+  // Adjust colour of header text
+  text-shadow: 1px 1px 0 #ffffff
+  padding: 4% 0
+  &.slider
+    padding-bottom: 0
+
+a
+  color: #174cb3
+  &:hover
+    opacity: 0.7
+
+/* ==========================================================================
+   LOGO
+   ========================================================================== */
+.header-container h1
+  text-indent: -10000em
+  position: relative
+  width: 394px
+  height: 63px
+  background-image: asset-url("landing/logo.png")
+  background-repeat: no-repeat
+  background-size: contain
+  margin: 0
+  a
+    display: block
+    height: 100%
+
+.no-slider.header-container h1
+  float: left
+
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)
+  // on retina, use image that's scaled by 2
+  .header-container h1
+    background-image: asset-url("landing/logo@2x.png")
+    // Change Retina Logo
+
+.header-container
+  h3
+    color: #2e353a
+    font-weight: normal
+    font-size: 1.6em
+    line-height: 1.2
+  h4
+    font-weight: 700
+    color: #0ca2d9
+    margin-bottom: 5px
+    margin-top: 40px
+
+.ctaColumn ul
+  margin: 0
+  padding: 20px 0
+
+.header-container li
+  list-style-type: none
+
+.ctaColumn
+  li
+    display: inline-block
+    text-align: center
+    margin: 5px
+    a
+      opacity: .999
+      -webkit-transition: all 300ms ease-in-out
+      -moz-transition: all 300ms ease-in-out
+      -ms-transition: all 300ms ease-in-out
+      -o-transition: all 300ms ease-in-out
+      transition: all 300ms ease-in-out
+      width: 190px
+      display: block
+      &:hover
+        opacity: .7
+  .app-store li a img
+    width: 100%
+  text-align: center
+  padding-top: 0px
+
+.no-slider .ctaColumn
+  overflow: hidden
+
+.ctaColumn
+  .as-seen-in
+    margin: 20px 0
+    p
+      margin: 0
+    ul
+      overflow: hidden
+      margin: 5px auto
+      padding: 0
+      display: inline-block
+      li a
+        width: auto
+  nav
+    float: right
+    margin-top: 20px
+    ul
+      padding: 0
+      li a
+        color: #222
+        width: auto
+
+.available
+  font-size: .9em
+  font-weight: 700
+  color: #c1d0dc
+  // Change colour of alt app store links
+  -webkit-transition: all 300ms ease-in-out
+  -moz-transition: all 300ms ease-in-out
+  -ms-transition: all 300ms ease-in-out
+  -o-transition: all 300ms ease-in-out
+  transition: all 300ms ease-in-out
+  a
+    font-weight: 700
+    color: #c1d0dc
+    // Change colour of alt app store links
+    -webkit-transition: all 300ms ease-in-out
+    -moz-transition: all 300ms ease-in-out
+    -ms-transition: all 300ms ease-in-out
+    -o-transition: all 300ms ease-in-out
+    transition: all 300ms ease-in-out
+    &:hover
+      color: #6b7d84
+      // Change colour of alt app store links on hover
+
+.ctaColumn input[type="text"]
+  border-radius: 4px
+  padding: 0.8em
+  width: 85%
+  border: 1px solid #e1e8ed
+  color: #657884
+  text-align: center
+  outline: none
+  box-shadow: none
+  -webkit-appearance: none
+
+.signup
+  position: relative
+  &:after
+    content: ""
+    position: absolute
+    right: 10%
+    top: 15px
+    background: asset-url("landing/mailIcon.png") no-repeat center 0
+    //Image of iphone 5 in hand
+    width: 28px
+    height: 14px
+    background-size: contain
+    display: none
+
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)
+  // on retina, use image that's scaled by 2
+  .signup:after
+    background: asset-url("landing/iphone_nohand@2x.png") no-repeat center 0
+    //Image of iphone 5 in hand
+
+.iphone-frame
+  width: 286px
+  height: 605px
+  background: asset-url("landing/iphone_nohand.png") no-repeat center 0
+  //Image of iphone 5 in hand
+  background-size: contain
+  margin: 0 auto
+  overflow: auto
+  .iphone-screen
+    margin: 89px auto 0
+    background-color: white
+    width: 239px
+    height: 398px
+    background: white asset-url("landing/iphone_title.png") no-repeat 0 0
+    background-size: contain
+    padding-top: 32px
+    font: normal 14px / 20px "Helvetica Neue", Helvetica, Arial, sans-serif
+    color: #000
+    text-align: left
+
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)
+  // on retina, use image that's scaled by 2
+  .iphone-frame
+    background: asset-url("landing/iphone_nohand@2x.png") no-repeat center 0
+    //Image of iphone 5 in hand
+    background-size: contain
+
+.iphone-screen
+  ul
+    padding: 0
+    margin: 0
+    text-align: left
+    display: block
+    li
+      padding: 0
+      margin: 0
+      text-align: left
+      display: block
+  .establishment-wrap
+    padding: 15px
+    .name
+      font-weight: bold
+    .scorebar
+      overflow: hidden
+      margin: 8px 0
+      .inspection
+        width: 15px
+        height: 22px
+        float: left
+        position: relative
+        .box-top, .box-bottom
+          height: 6px
+        .right-line
+          border-right: 1px solid rgba(255, 255, 255, 0.4)
+          position: absolute
+          right: 0
+          top: 0
+          height: 12px
+        .year
+          font-size: 8px
+          line-height: 8px
+
+.scorebar .inspection
+  .box-top
+    background-color: rgb(130, 130, 130)
+  .box-bottom
+    background-color: rgb(115, 115, 115)
+  &.pass
+    .box-top
+      background-color: rgb(40, 195, 38)
+    .box-bottom
+      background-color: rgb(35, 174, 33)
+  &.conditional-pass
+    .box-top
+      background-color: rgb(249, 255, 72)
+    .box-bottom
+      background-color: rgb(222, 228, 64)
+  &.closed
+    .box-top
+      background-color: rgb(222, 45, 77)
+    .box-bottom
+      background-color: rgb(196, 39, 68)
+
+.iphone-screen
+  .establishment-wrap
+    .address!
+    .type
+      font-style: oblique
+  .google-map img
+    width: 100%
+    height: auto
+  .inspections-summary
+    padding: 15px
+
+.fader
+  position: relative
+  padding-bottom: 268px
+  width: 286px
+  margin-right: auto
+  margin-left: auto
+  background: asset-url("landing/iphone_nohand.png") no-repeat center 0
+  //Image of iphone 5 in hand
+  background-size: contain
+  .flexslider1
+    width: 244px
+    height: 434px
+    position: relative
+    top: 89px
+    margin-bottom: 0
+    margin-right: auto
+    margin-left: auto
+  .flex-control-nav
+    bottom: -60px
+  &:before
+    content: ""
+    position: absolute
+    left: 0px
+    top: 2px
+    width: 286px
+    height: 605px
+  .flex-control-paging li a
+    width: 11px
+    height: 11px
+    display: block
+    background: #485762
+    // Change colour of iphone nav dots
+    cursor: pointer
+    text-indent: -9999px
+    border-radius: 20px
+    -webkit-transition: all 300ms ease-in-out
+    -moz-transition: all 300ms ease-in-out
+    -ms-transition: all 300ms ease-in-out
+    -o-transition: all 300ms ease-in-out
+    transition: all 300ms ease-in-out
+    &:hover
+      background: #5a6c79
+      // Change colour of iphone nav dots on hover
+    &.flex-active
+      background: #0ca2d9
+      // Change colour of iphone nav dots when active
+      cursor: default
+  .slides li img
+    width: 100%
+
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)
+  // on retina, use image that's scaled by 2
+  .fader
+    background: asset-url("landing/iphone_nohand@2x.png") no-repeat center 0
+    //Image of iphone 5 in hand
+    background-size: contain
+
+.main-container
+  background: #293034
+  // Adjust Background colour of Main Area
+  color: #bbc7d1
+  // Adjust colour of Main Text
+
+.main
+  padding: 80px 0 50px
+  > article
+    overflow: hidden
+
+.main-container
+  h2
+    color: #f3f8fc
+  h6
+    color: #3c444a
+    font-size: 6em
+    margin: 0.5em 0
+  section
+    border-top: 1px solid #586168
+    padding-top: 1em
+    margin-top: 40px
+  a.app-store-link
+    width: 190px
+    display: block
+    margin: 40px auto 0
+    overflow: hidden
+    img
+      width: 100%
+
+.flexslider2
+  margin-bottom: 90px
+
+.quote
+  .slides li
+    font-size: 1.8em
+    line-height: 1.4
+    font-weight: 100
+    text-align: center
+    padding-bottom: .5em
+    width: 244px
+    a
+      color: white
+  .flex-control-paging li a
+    width: 11px
+    height: 11px
+    display: block
+    background: #485762
+    // Change colour of iphone nav dots
+    cursor: pointer
+    text-indent: -9999px
+    border-radius: 20px
+    -webkit-transition: all 300ms ease-in-out
+    -moz-transition: all 300ms ease-in-out
+    -ms-transition: all 300ms ease-in-out
+    -o-transition: all 300ms ease-in-out
+    transition: all 300ms ease-in-out
+    &:hover
+      background: #5a6c79
+      // Change colour of iphone nav dots on hover
+    &.flex-active
+      background: #f3f8fc
+      // Change colour of iphone nav dots when active
+      cursor: default
+
+.footer-container
+  background: #363d42
+  // Adjust Background colour of Footer Area
+  font-size: .8em
+  padding-bottom: 100px
+  padding-top: 40px
+
+
+/* ==========================================================================
+   FOOTER LOGO
+   ========================================================================== */ 
+.footer-container
+  h1
+    text-indent: -10000em
+    position: relative
+    width: 163px
+    // Adjust Width for Logo if needed
+    height: 23px
+    // Adjust Height for Logo if needed
+    background: asset-url("landing/logo_foot.png") no-repeat center 0
+    // Change Logo
+    background-size: contain
+    margin: 0 auto 40px
+  ul
+    padding: 0
+    margin: 0
+    text-align: center
+  li
+    display: inline-block
+    text-align: center
+    list-style-type: none
+    margin-left: 30px
+    &:first-child
+      margin-left: 0
+    a
+      color: #aabdcd
+      // Change colour of footer links
+      font-weight: 700
+      -webkit-transition: all 300ms ease-in-out
+      -moz-transition: all 300ms ease-in-out
+      -ms-transition: all 300ms ease-in-out
+      -o-transition: all 300ms ease-in-out
+      transition: all 300ms ease-in-out
+      &:hover
+        color: #fbfdff
+        // Change colour of footer links on hover
+  footer
+    color: #fff
+    padding: 20px 0
+
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)
+  // on retina, use image that's scaled by 2
+  .footer-container h1
+    background: asset-url("landing/logo_foot@2x.png") no-repeat 0 0
+    //Change Retina Logo
+    background-size: contain
+
+/* ==========================================================================
+   Insert Author's custom styles
+   ========================================================================== */
+
+#content
+  width: 90%
+  margin: 0 5%
+  padding: 10px 0 25px
+  overflow: hidden
+  .left-bar
+    float: left
+    width: 76%
+  .right-bar
+    float: right
+    width: 20%
+
+// Establishment Landing Pages
+
+.establishments.show_app .no-slider.header-container h1
+  margin: 0 auto
+  float: none
+
+// Center logo on this page
+
+.pages
+  &.app_about
+    #content ul
+      padding: 0
+      list-style: none
+      li
+        padding: 0
+        list-style: none
+    .annotated-image
+      width: 100%
+      max-width: 320px
+      img
+        width: 100%
+  &.app_press .right-bar ul
+    margin: 0
+    padding: 0
+    list-style: none
+
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 480px)
+
+@media only screen and (min-width: 680px)
+  .wrapper
+    width: 90%
+    margin: 0 5%
+  .ctaColumn input[type="text"]
+    text-align: left
+  .signup:after
+    display: block
+  .fader
+    .flexslider1
+      left: 209px
+      margin-right: 0
+      margin-left: 0
+    padding-bottom: 348px
+    margin: 0
+    background: none
+    &:before
+      background: asset-url("landing/iphone.png") 0 0
+      //Image of iphone 5 in hand
+      background-size: contain
+      left: -40px
+      width: 593px
+      height: 782px
+      top: 0px
+  @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)
+    // on retina, use image that's scaled by 2
+    .fader:before
+      background: asset-url("landing/iphone@2x.png") 0 0
+      //Image of iphone 5 in hand
+      background-size: contain
+
+@media only screen and (min-width: 768px)
+  .main-container section
+    width: 25%
+    float: left
+    margin-right: 12%
+    &.last
+      margin-right: 0px
+  .footer-container
+    h1
+      float: left
+    ul
+      float: right
+  .fader
+    .flexslider1
+      left: 225px
+    &:before
+      left: -24px
+  .flexslider2
+    margin-bottom: 60px
+
+@media only screen and (min-width: 870px)
+  .header-container h1
+    background-image: asset-url("landing/logo.png")
+    // Logo
+    margin: 0 0 0 -14px
+  .no-slider.header-container h1
+    margin: 0
+  .ctaColumn
+    float: right
+    width: 52%
+    padding-bottom: 80px
+    text-align: left
+    padding-top: 70px
+  .no-slider .ctaColumn
+    width: auto
+    text-align: center
+    padding-top: 0
+    padding-bottom: 0
+    float: none
+  .signup:after
+    right: 15%
+  .fader
+    float: left
+    width: 35%
+    .flexslider1
+      left: 9px
+    &:before
+      content: ""
+      position: absolute
+      background-position: 0 0
+      width: 593px
+      height: 782px
+      left: -240px
+      top: 0px
+
+// Same as above but for retina logo
+
+@media only screen and (min-width: 870px) and (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx)
+  // on retina, use image that's scaled by 2
+  .header-container h1
+    background-image: asset-url("landing/logo@2x.png")
+    // Change Retina Logo
+
+@media only screen and (min-width: 1140px)
+  .slider .wrapper
+    width: 1026px
+    // 1140px - 10% for margins
+    margin: 0 auto
+
+// Smartphones (portrait and landscape) -----------
+
+@media only screen and (min-width: 320px) and (max-width: 768px)
+  // Styles
+  .header-container h1, .no-slider.header-container h1
+    width: 264px
+    height: 44px
+    float: none
+    margin: 0 auto
+  .ctaColumn nav
+    float: none
+    clear: both
+  #content
+    .right-bar, .left-bar
+      width: 100%
+      float: none
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.clearfix
+  &:before
+    content: " "
+    display: table
+  &:after
+    content: " "
+    display: table
+    clear: both
+  *zoom: 1
+
+
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print
+  *
+    background: transparent !important
+    color: #000 !important
+    box-shadow: none !important
+    text-shadow: none !important
+  a
+    text-decoration: underline
+    &:visited
+      text-decoration: underline
+    &[href]:after
+      content: " (" attr(href) ")"
+  abbr[title]:after
+    content: " (" attr(title) ")"
+  .ir a:after
+    content: ""
+  a
+    &[href^="javascript:"]:after, &[href^="#"]:after
+      content: ""
+  img
+    max-width: 100% !important
+    page-break-inside: avoid
+  @page
+    margin: 0.5cm
+
+  p, h2, h3
+    orphans: 3
+    widows: 3
+  h2, h3
+    page-break-after: avoid
