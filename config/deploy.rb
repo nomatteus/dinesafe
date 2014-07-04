@@ -29,6 +29,7 @@ namespace :deploy do
     run "ln -s #{shared_path}/config/settings.yml #{release_path}/config/settings.yml"
     run "ln -s #{shared_path}/config/newrelic.yml #{release_path}/config/newrelic.yml"
     run "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -s #{shared_path}/config/initializers/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
   end
 
   task :copy_old_sitemap do
