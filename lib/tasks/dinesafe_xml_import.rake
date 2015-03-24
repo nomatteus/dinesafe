@@ -195,5 +195,7 @@ namespace :dinesafe do
         end
       end
     end
+    # Do not include this establishment, as it is a sensitive address (Red Door Family Shelter)
+    Establishment.where(id: 10507645).destroy_all
   end
 end
