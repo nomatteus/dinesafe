@@ -30,6 +30,9 @@ gem 'whenever',           '~>0.9.2', require: false
 # Progress bar for rake tasks
 gem 'ruby-progressbar',   '~>1.5.1'
 
+# Soft Delete
+gem 'paranoia',           '~>2.1.3'
+
 # To use debugger
 # gem 'ruby-debug19'#, :require => 'ruby-debug'
 

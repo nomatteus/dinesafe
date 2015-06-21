@@ -58,4 +58,18 @@ class EstablishmentTest < ActiveSupport::TestCase
     assert_equal "#{Dinesafe::SITE_URL}/app/place/#{@est1.id}/#{@est1.slug}", @est1.share_url
   end
 
+  test "soft delete" do
+    assert_difference "Establishment.count", -1 do
+      assert_no_difference "Establishment.with_deleted.count" do
+        @est1.destroy
+      end
+    end
+  end
+
+  test "soft delete deleted at" do
+    assert_difference "Establishment.count", -1 do
+      @est1.update_column(:deleted_at, Time.zone.now)
+    end
+  end
+
 end
