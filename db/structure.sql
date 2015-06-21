@@ -79,7 +79,8 @@ CREATE TABLE establishments (
     updated_at timestamp without time zone,
     latlng point,
     latest_name character varying(255),
-    latest_type character varying(255)
+    latest_type character varying(255),
+    deleted_at timestamp without time zone
 );
 
 
@@ -278,6 +279,13 @@ ALTER TABLE ONLY inspections
 
 
 --
+-- Name: index_establishments_on_deleted_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_establishments_on_deleted_at ON establishments USING btree (deleted_at);
+
+
+--
 -- Name: index_establishments_on_latlng; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -336,3 +344,4 @@ INSERT INTO schema_migrations (version) VALUES ('20121117222003');
 
 INSERT INTO schema_migrations (version) VALUES ('20121207041154');
 
+INSERT INTO schema_migrations (version) VALUES ('20150621165743');
