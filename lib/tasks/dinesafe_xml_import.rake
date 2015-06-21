@@ -14,7 +14,6 @@ namespace :dinesafe do
     Rake::Task["dinesafe:update_latlngs"].execute
   end
 
-
   desc "Download and extract latest dinesafe.xml file"
   task :update_xml => :environment do
     file_url = "http://opendata.toronto.ca/public.health/dinesafe/dinesafe.zip"
@@ -40,6 +39,19 @@ namespace :dinesafe do
       File.delete(dinesafe_zip_temp_path) if File.exist? dinesafe_zip_temp_path
       File.delete(dinesafe_xml_temp_file) if File.exist? dinesafe_xml_temp_file
     end
+  end
+
+  # TODO: Could turn this into a task to delete all establishments not in current XML
+  #       For now, that's being done in xml_import task.
+  desc "Get a list of all establishment ids in doc/dinesafe.xml"
+  task current_establishment_ids: :environment do
+    doc = Nokogiri::XML(open(Rails.root.to_s + "/doc/dinesafe.xml"))
+    rows = doc.xpath("//ROW")
+    total_rows = rows.length
+    establishment_ids = rows.collect { |row| row.xpath("ESTABLISHMENT_ID") }
+    puts "There are #{total_rows} establishments in the current XML file."
+    puts "establishment_ids: "
+    puts establishment_ids.join(", ")
   end
 
   desc "Import/update data from dinesafe.xml file"
