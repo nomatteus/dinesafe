@@ -26,7 +26,7 @@ Vagrant.configure(2) do |config|
     sudo sed -i -e 's/^#PS1=/PS1=/' /root/.bashrc # enable the colorful root bash prompt
     sudo sed -i -e "s/^#alias ll='ls -l'/alias ll='ls -al'/" /root/.bashrc # enable ll list long alias <3
     sudo aptitude -y install build-essential libpcre3-dev libssl-dev libcurl4-openssl-dev libreadline5-dev libxml2-dev libxslt1-dev libmysqlclient-dev openssh-server git-core
-    sudo aptitude -y install git-core libmysqlclient15-dev curl build-essential libcurl4-openssl-dev zlib1g-dev libssl-dev libreadline6 libreadline6-dev libperl-dev gcc libjpeg62-dev libbz2-dev libtiff4-dev libwmf-dev libx11-dev libxt-dev libxext-dev libxml2-dev libfreetype6-dev liblcms1-dev libexif-dev perl libjasper-dev libltdl3-dev graphviz gs-gpl pkg-config
+    sudo aptitude -y install git-core libmysqlclient15-dev curl build-essential libcurl4-openssl-dev zlib1g-dev libssl-dev libreadline6 libreadline6-dev libperl-dev gcc libjpeg62-dev libbz2-dev libtiff4-dev libwmf-dev libx11-dev libxt-dev libxext-dev libxml2-dev libfreetype6-dev liblcms1-dev libexif-dev perl libjasper-dev libltdl3-dev graphviz gs-gpl pkg-config unzip
   SHELL
 
   # Use Chef Solo to provision our virtual machine

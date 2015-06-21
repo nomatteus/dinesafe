@@ -43,7 +43,7 @@ Run this on server to generate sitemap and ping search engines:
 
     rake sitemap:refresh
 
-Or, generate sitemap but don't ping search engines: 
+Or, generate sitemap but don't ping search engines:
 
     rake sitemap:refresh:no_ping
 
@@ -78,6 +78,25 @@ Fix typos (based on list of manual fixes in task):
 
     rake dinesafe:fix_data_typos
 
+Vagrant
+-------
+
+You can use Vagrant to run the app in a virtual machine.
+
+* Install Vagrant, Parallels. (With some modification, could use VirtualBox instead.)
+* `vagrant plugin install vagrant-librarian-chef-nochef`
+* `vagrant plugin install vagrant-parallels`
+* `vagrant up`
+
+Then run these commands on the VM:
+
+* `vagrant ssh` to connect to the VM
+* `cd /vagrant`
+* `sudo -u postgres psql -d template1 -c "ALTER USER postgres WITH PASSWORD 'password';"`
+* `bundle`
+* `bundle exec rake db:setup`
+* `bundle exec rake dinesafe:update_data`
+
 The App
 -------
 
@@ -89,39 +108,39 @@ Toronto Open Data
 
 For convenience, info from this link has been copied below.
 
-**Owner**  
+**Owner**
 Public Health - Healthy Environments Program
 
-**Currency**  
+**Currency**
 Current - updated bi-weekly
 
-**Format**  
+**Format**
 XML
 
-**Attributes**  
-`ROW_ID` - Represents the Row Number  
-`ESTABLISHMENT_ID` – Unique identifier for an establishment  
-`INSPECTION_ID` - Unique identifier for each Inspection  
-`ESTABLISHMENT_NAME` – Business name of the establishment  
-`ESTABLISHMENTTYPE` – Establishment type ie restaurant, mobile cart  
-`ESTABLISHMENT_ADDRESS` – Municipal address of the establishment  
-`ESTABLISHMENT_STATUS` – Pass, Conditional Pass, Closed  
-`MINIMUM_INSPECTIONS_PERYEAR` – Every eating and drinking establishment in the City of Toronto receives a minimum of 1, 2, or 3 inspections each year depending on the specific type of establishment, the food preparation processes, volume and type of food served and other related criteria  
-`INFRACTION_DETAILS` – Description of the Infraction  
-`INSPECTION_DATE` – Calendar date the inspection was conducted  
-`SEVERITY` – Level of the infraction, i.e. S – Significant, M – Minor, C – Crucial  
-`ACTION` – Enforcement activity based on the infractions noted during a food safety inspection  
-`COURT_OUTCOME` – The registered court decision resulting from the issuance of a ticket or summons for outstanding infractions to the Health Protection and Promotion Act  
-`AMOUNT_FINED` – Fine determined in a court outcome  
-Comments  
+**Attributes**
+`ROW_ID` - Represents the Row Number
+`ESTABLISHMENT_ID` – Unique identifier for an establishment
+`INSPECTION_ID` - Unique identifier for each Inspection
+`ESTABLISHMENT_NAME` – Business name of the establishment
+`ESTABLISHMENTTYPE` – Establishment type ie restaurant, mobile cart
+`ESTABLISHMENT_ADDRESS` – Municipal address of the establishment
+`ESTABLISHMENT_STATUS` – Pass, Conditional Pass, Closed
+`MINIMUM_INSPECTIONS_PERYEAR` – Every eating and drinking establishment in the City of Toronto receives a minimum of 1, 2, or 3 inspections each year depending on the specific type of establishment, the food preparation processes, volume and type of food served and other related criteria
+`INFRACTION_DETAILS` – Description of the Infraction
+`INSPECTION_DATE` – Calendar date the inspection was conducted
+`SEVERITY` – Level of the infraction, i.e. S – Significant, M – Minor, C – Crucial
+`ACTION` – Enforcement activity based on the infractions noted during a food safety inspection
+`COURT_OUTCOME` – The registered court decision resulting from the issuance of a ticket or summons for outstanding infractions to the Health Protection and Promotion Act
+`AMOUNT_FINED` – Fine determined in a court outcome
+Comments
 The data set is as current as the date of the extraction. It is not a substitute for the notification and posting requirements of Municipal Code Chapter 545 - Licensing.
 
-**Website**  
+**Website**
 http://www.toronto.ca/fooddisclosure
 
-**Contact**  
-Open Data Team  
+**Contact**
+Open Data Team
 opendata@toronto.ca
 
-**Data**  
+**Data**
 DineSafe
