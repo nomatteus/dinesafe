@@ -41,17 +41,21 @@ namespace :dinesafe do
     end
   end
 
-  # TODO: Could turn this into a task to delete all establishments not in current XML
-  #       For now, that's being done in xml_import task.
-  desc "Get a list of all establishment ids in doc/dinesafe.xml"
-  task current_establishment_ids: :environment do
+  desc "Soft delete any establishment that is not in doc/dinesafe.xml"
+  task soft_delete_all_but_current_establishments: :environment do
     doc = Nokogiri::XML(open(Rails.root.to_s + "/doc/dinesafe.xml"))
     rows = doc.xpath("//ROW")
     total_rows = rows.length
-    establishment_ids = rows.collect { |row| row.xpath("ESTABLISHMENT_ID") }
-    puts "There are #{total_rows} establishments in the current XML file."
-    puts "establishment_ids: "
-    puts establishment_ids.join(", ")
+    establishment_ids = rows.collect { |row| row.xpath("ESTABLISHMENT_ID").text.to_i }.reject { |id| id == 0 }.uniq
+    puts "There are #{establishment_ids.count} establishment ids in the current XML file."
+    if establishment_ids.count > 0
+      puts "BEFORE Deletion: There are #{Establishment.count} visible establishments in database."
+      puts "Deleting..."
+      Establishment.where.not(id: establishment_ids).update_all(deleted_at: Time.zone.now)
+      puts "AFTER Deletion: There are #{Establishment.count} visible establishments in database."
+    else
+      puts "No establishments found, possible error, aborting..."
+    end
   end
 
   desc "Import/update data from dinesafe.xml file"
