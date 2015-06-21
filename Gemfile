@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails',              '~>4.0.5'
+gem 'rails',              '~>4.1.11'
 gem 'pg',                 '~>0.17.1'
 
 # Add new gems here
