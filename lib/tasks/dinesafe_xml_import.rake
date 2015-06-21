@@ -1,7 +1,7 @@
 # encoding: UTF-8
 require 'open-uri'
 
-namespace :dinesafe do 
+namespace :dinesafe do
   desc "Update task"
   task update_data: :environment do
     Rake::Task["dinesafe:update_xml"].execute
@@ -16,14 +16,14 @@ namespace :dinesafe do
 
 
   desc "Download and extract latest dinesafe.xml file"
-  task :update_xml => :environment do 
+  task :update_xml => :environment do
     file_url = "http://opendata.toronto.ca/public.health/dinesafe/dinesafe.zip"
     # TODO: Sometimes the xml filename isn't "dinesafe.xml" (was "dinesafe2011.xml" once),
     #       so should adapt script to work with any .xml filename within the zip.
-    dinesafe_xml_file = Rails.root.to_s + "/doc/dinesafe.xml"
-    dinesafe_xml_temp_file = Rails.root.to_s + "/doc/DELETE_OLD_dinesafe.xml"
-    dinesafe_zip_temp_path = Rails.root.to_s + "/doc/tmp_dinesafe.zip"
-    dinesafe_zip_folder = Rails.root.to_s + "/doc"
+    dinesafe_xml_file       = Rails.root.to_s + "/doc/dinesafe.xml"
+    dinesafe_xml_temp_file  = Rails.root.to_s + "/doc/DELETE_OLD_dinesafe.xml"
+    dinesafe_zip_temp_path  = Rails.root.to_s + "/doc/tmp_dinesafe.zip"
+    dinesafe_zip_folder     = Rails.root.to_s + "/doc"
 
     # Move current dinesafe.xml to temporary file
     if File.exist? dinesafe_xml_file
@@ -63,13 +63,13 @@ namespace :dinesafe do
       establishment = Establishment.find_or_create_by(id: row.xpath("ESTABLISHMENT_ID").text.to_i)
       current_address = establishment.address
       establishment.update_attributes({
-        :latest_name    => row.xpath("ESTABLISHMENT_NAME").text,
-        :latest_type    => row.xpath("ESTABLISHMENTTYPE").text,
-        :address        => row.xpath("ESTABLISHMENT_ADDRESS").text,
+        latest_name:  row.xpath("ESTABLISHMENT_NAME").text,
+        latest_type:  row.xpath("ESTABLISHMENTTYPE").text,
+        address:      row.xpath("ESTABLISHMENT_ADDRESS").text,
       })
 
       if current_address != establishment.address
-        Rails.logger.info "Change detected! Old: #{current_address} New: #{establishment.address}" 
+        Rails.logger.info "Change detected! Old: #{current_address} New: #{establishment.address}"
       end
       #puts "Updated establishment ID: #{establishment.id}"
 
@@ -82,26 +82,26 @@ namespace :dinesafe do
       #  From what I've seen in the data, this is the case, and it makes sense.
       inspection = Inspection.find_or_create_by(id: row.xpath("INSPECTION_ID").text.to_i)
       inspection.update_attributes({
-        :establishment_id              => establishment.id,
-        :establishment_name            => row.xpath("ESTABLISHMENT_NAME").text.strip,
-        :establishment_type            => row.xpath("ESTABLISHMENTTYPE").text.strip,
-        :status                        => row.xpath("ESTABLISHMENT_STATUS").text.strip,
-        :minimum_inspections_per_year  => row.xpath("MINIMUM_INSPECTIONS_PERYEAR").text.to_i,
-        :date                          => row.xpath("INSPECTION_DATE").text.strip,
+        establishment_id:              establishment.id,
+        establishment_name:            row.xpath("ESTABLISHMENT_NAME").text.strip,
+        establishment_type:            row.xpath("ESTABLISHMENTTYPE").text.strip,
+        status:                        row.xpath("ESTABLISHMENT_STATUS").text.strip,
+        minimum_inspections_per_year:  row.xpath("MINIMUM_INSPECTIONS_PERYEAR").text.to_i,
+        date:                          row.xpath("INSPECTION_DATE").text.strip,
       })
       # Create each infraction if there is one.
       infraction_attributes = {
-        :inspection_id      => inspection.id,
-        :details            => row.xpath("INFRACTION_DETAILS").text.strip, # ** infraction
-        :severity           => row.xpath("SEVERITY").text.strip, # ** infraction
-        :action             => row.xpath("ACTION").text.strip, # ** infraction
-        :court_outcome      => row.xpath("COURT_OUTCOME").text.strip, # ** infraction
-        :amount_fined       => row.xpath("AMOUNT_FINED").text.to_f # ** infraction
+        inspection_id:      inspection.id,
+        details:            row.xpath("INFRACTION_DETAILS").text.strip, # ** infraction
+        severity:           row.xpath("SEVERITY").text.strip, # ** infraction
+        action:             row.xpath("ACTION").text.strip, # ** infraction
+        court_outcome:      row.xpath("COURT_OUTCOME").text.strip, # ** infraction
+        amount_fined:       row.xpath("AMOUNT_FINED").text.to_f # ** infraction
       }
-      if (infraction_attributes[:details].present? or 
-        infraction_attributes[:severity].present? or 
-        infraction_attributes[:action].present? or 
-        infraction_attributes[:court_outcome].present? or 
+      if (infraction_attributes[:details].present? or
+        infraction_attributes[:severity].present? or
+        infraction_attributes[:action].present? or
+        infraction_attributes[:court_outcome].present? or
         infraction_attributes[:amount_fined] > 0)
           # This combination of attributes should always be unique
           infraction = Infraction.where(
@@ -120,12 +120,12 @@ namespace :dinesafe do
   desc "Update latlng establishments (uses geocode table, so update geocode info first)"
   task :update_latlngs => :environment do
     Establishment.where("latlng IS NULL").each do |establishment|
-      g = Geocode.where(:address => establishment.address).first
+      g = Geocode.where(address: establishment.address).first
       if g.present?
         establishment.update_attribute(:latlng, g.latlng)
       else
         # Create new geocode record so it will be caught in next geocoding run
-        geocode = Geocode.create(:address => establishment.address)
+        geocode = Geocode.create(address: establishment.address)
         if geocode
           print "new Geocode created: #{geocode.id}\n"
         else
