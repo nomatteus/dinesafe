@@ -102,6 +102,9 @@ Vagrant.configure(2) do |config|
     v.update_guest_tools = true
   end
 
+  # Forward SSH
+  config.ssh.forward_agent = true
+
   # config.vm.provision :shell, :path => "install.sh"
 
   # Disable automatic box update checking. If you disable this, then

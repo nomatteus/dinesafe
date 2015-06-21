@@ -1,5 +1,5 @@
 set :domain, "107.170.180.61"
-set :branch, "master"
+set :branch, "release"
 set :rails_env, "production"
 
 role :web, domain
