@@ -1,9 +1,10 @@
 class Establishment < ActiveRecord::Base
   include Rails.application.routes.url_helpers
+  acts_as_paranoid
 
   has_many :inspections, -> { order("date ASC") }
 
-  scope :near, ->(lat, lng) { 
+  scope :near, ->(lat, lng) {
     select("get_distance_km(#{lat}, #{lng}, latlng[0], latlng[1]) as distance, *")
     .order("distance ASC")
   }

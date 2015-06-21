@@ -16,7 +16,7 @@ gem 'jbuilder',           '~>1.0.2'
 # Deploy with Capistrano
 gem 'capistrano',         '~>2.14.1'
 gem 'capistrano-ext'
-gem 'rvm-capistrano'
+gem 'rvm-capistrano',     require: false
 
 # Site monitoring/errors
 gem 'newrelic_rpm'
@@ -29,6 +29,9 @@ gem 'whenever',           '~>0.9.2', require: false
 
 # Progress bar for rake tasks
 gem 'ruby-progressbar',   '~>1.5.1'
+
+# Soft Delete
+gem 'paranoia',           '~>2.1.3'
 
 # To use debugger
 # gem 'ruby-debug19'#, :require => 'ruby-debug'

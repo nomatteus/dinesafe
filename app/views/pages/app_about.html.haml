@@ -3,7 +3,7 @@
 #content
   %h2 About the App
 
-  %p Dinesafe Toronto app shows the history of all health inspections for every food establishment in Toronto, going back up to 3 years. This app arranges those inspections in a timeline-like scorebar, so you can have a quick overview of an establishment's inspections.
+  %p Dinesafe Toronto app shows the history of all health inspections for every food establishment in Toronto, going back up to 5 years. This app arranges those inspections in a timeline-like scorebar, so you can have a quick overview of an establishment's inspections.
 
   %h3 Overview of Inspection History
 
@@ -14,7 +14,7 @@
 
   %ul
     %li
-      App Homepage: 
+      App Homepage:
       = link_to "http://dinesafe.to/app", "http://dinesafe.to/app", :target => "_blank"
     %li
       Contact:
@@ -22,19 +22,20 @@
 
   %strong Made by Matt Ruten in Toronto
 
-  %ul  
+  %ul
     %li
-      Twitter: 
+      Twitter:
       = link_to "@mattruten", "http://twitter.com/mattruten", :target => "_blank"
       (#{link_to "Open in Twitter App", "twitter://user?screen_name=mattruten"})
     %li
       Email:
       = link_to "matt@ruten.ca", "mailto:matt@ruten.ca"
 
-  View app code and contribute at 
+  View app code and contribute at
   = link_to "https://github.com/nomatteus/dinesafe-ios", "https://github.com/nomatteus/dinesafe-ios", :target => "_blank"
 
+  %p Build your own app using Toronto Open Data: #{link_to "toronto.ca/open", "http://toronto.ca/open", :target => "_blank"}
+
   %p
-    %em 
-      This app contains public sector Datasets made available under the City of Toronto's Open Data Licence v2.0.
-      Visit #{link_to "toronto.ca/open", "http://toronto.ca/open", :target => "_blank"}
+    %em
+      Contains information licensed under the #{link_to "Open Government Licence – Toronto", "http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=4a37e03bb8d1e310VgnVCM10000071d60f89RCRD", target: "blank"}.
