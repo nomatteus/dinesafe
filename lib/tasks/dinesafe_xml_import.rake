@@ -54,19 +54,26 @@ namespace :dinesafe do
       total: total_rows,
     )
 
+    # Keep track of all establishment IDs we encounter in the import
+    # Any ID *not* in this import will be hidden
+    establishment_ids = []
+
     rows.each do |row|
       # Note: It appears ROW_ID will not always refer to the same establishment/restaurant
       #       Instead, we might have to use the Inspection ID as unique key
       #       So, don't rely on/use ROW_ID at all!
 
       # Create or Update Establishment
-      establishment = Establishment.find_or_create_by(id: row.xpath("ESTABLISHMENT_ID").text.to_i)
+      establishment = Establishment.with_deleted.find_or_create_by(id: row.xpath("ESTABLISHMENT_ID").text.to_i)
       current_address = establishment.address
       establishment.update_attributes({
         latest_name:  row.xpath("ESTABLISHMENT_NAME").text,
         latest_type:  row.xpath("ESTABLISHMENTTYPE").text,
         address:      row.xpath("ESTABLISHMENT_ADDRESS").text,
+        # Undelete in case establishment was previously deleted, then added again.
+        deleted_at:   nil,
       })
+      establishment_ids << establishment.id
 
       if current_address != establishment.address
         Rails.logger.info "Change detected! Old: #{current_address} New: #{establishment.address}"
@@ -115,6 +122,9 @@ namespace :dinesafe do
 
       progress_bar.increment
     end
+
+    # [Soft] Delete all establishments that are not currently in the database.
+    Establishment.where.not(id: establishment_ids).update_all(deleted_at: Time.zone.now)
   end
 
   desc "Update latlng establishments (uses geocode table, so update geocode info first)"
