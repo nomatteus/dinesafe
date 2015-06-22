@@ -10,6 +10,7 @@ one:
   latest_type: Food Take Out
   address: 1550 Jane St
   latlng: 43.6982039,-79.5027124
+  earth_coord: (840136.058119947, -4534166.44419922, 4406419.53249671)
 
 two:
   id: 2
@@ -17,4 +18,5 @@ two:
   latest_type: Restaurance
   address: 1550 Bloor St W
   latlng: 43.688205,-79.5027122
+  earth_coord: (840276.160962324, -4534922.48289205, 4405614.7225674)
 
