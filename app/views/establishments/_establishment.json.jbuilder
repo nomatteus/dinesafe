@@ -1,3 +1,5 @@
+# NOTE: Not used anymore, moved inline to speed things up.
+# TODO: Get rid of JBuilder completely.
 json.(establishment, :id,
                      :latest_type )
 json.latest_name establishment.name
