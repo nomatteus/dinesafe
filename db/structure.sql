@@ -23,6 +23,34 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+--
+-- Name: cube; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS cube WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION cube; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION cube IS 'data type for multidimensional cubes';
+
+
+--
+-- Name: earthdistance; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS earthdistance WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION earthdistance; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION earthdistance IS 'calculate great-circle distances on the surface of the Earth';
+
+
 SET search_path = public, pg_catalog;
 
 --
@@ -32,36 +60,36 @@ SET search_path = public, pg_catalog;
 CREATE FUNCTION get_distance_km(alat double precision, alon double precision, lat double precision, lon double precision) RETURNS double precision
     LANGUAGE plpgsql
     AS $$
-      DECLARE
-          radius_earth FLOAT;
-          radian_lat FLOAT;
-          radian_lon FLOAT;
-          distance_v FLOAT;
-          distance_h FLOAT;
-          distance FLOAT;
-      BEGIN
-          -- Insert earth radius
-          SELECT INTO radius_earth 6378.137;
-       
-          -- Calculate difference between lat and alat
-          SELECT INTO radian_lat radians(lat - alat);
-       
-          -- Calculate difference between lon and alon
-          SELECT INTO radian_lon radians(lon - alon);
-       
-          -- Calculate vertical distance
-          SELECT INTO distance_v (radius_earth * radian_lat);
-       
-          -- Calculate horizontal distance
-          SELECT INTO distance_h (cos(radians(alat)) * radius_earth * radian_lon);
-       
-          -- Calculate distance(km)
-          SELECT INTO distance sqrt(pow(distance_h,2) + pow(distance_v,2));
-       
-          -- Returns distance
-          RETURN DISTANCE;
-      END;
-      $$;
+          DECLARE
+              radius_earth FLOAT;
+              radian_lat FLOAT;
+              radian_lon FLOAT;
+              distance_v FLOAT;
+              distance_h FLOAT;
+              distance FLOAT;
+          BEGIN
+              -- Insert earth radius
+              SELECT INTO radius_earth 6378.137;
+           
+              -- Calculate difference between lat and alat
+              SELECT INTO radian_lat radians(lat - alat);
+           
+              -- Calculate difference between lon and alon
+              SELECT INTO radian_lon radians(lon - alon);
+           
+              -- Calculate vertical distance
+              SELECT INTO distance_v (radius_earth * radian_lat);
+           
+              -- Calculate horizontal distance
+              SELECT INTO distance_h (cos(radians(alat)) * radius_earth * radian_lon);
+           
+              -- Calculate distance(km)
+              SELECT INTO distance sqrt(pow(distance_h,2) + pow(distance_v,2));
+           
+              -- Returns distance
+              RETURN DISTANCE;
+          END;
+          $$;
 
 
 SET default_tablespace = '';
@@ -80,7 +108,8 @@ CREATE TABLE establishments (
     latlng point,
     latest_name character varying(255),
     latest_type character varying(255),
-    deleted_at timestamp without time zone
+    deleted_at timestamp without time zone,
+    earth_coord earth
 );
 
 
@@ -286,10 +315,17 @@ CREATE INDEX index_establishments_on_deleted_at ON establishments USING btree (d
 
 
 --
--- Name: index_establishments_on_latlng; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_establishments_on_latest_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_establishments_on_latlng ON establishments USING gist (latlng);
+CREATE INDEX index_establishments_on_latest_name ON establishments USING btree (latest_name);
+
+
+--
+-- Name: index_inspections_on_date; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_inspections_on_date ON inspections USING btree (date);
 
 
 --
@@ -344,4 +380,9 @@ INSERT INTO schema_migrations (version) VALUES ('20121117222003');
 
 INSERT INTO schema_migrations (version) VALUES ('20121207041154');
 
+INSERT INTO schema_migrations (version) VALUES ('20130131122838');
+
 INSERT INTO schema_migrations (version) VALUES ('20150621165743');
+
+INSERT INTO schema_migrations (version) VALUES ('20150622001914');
+
