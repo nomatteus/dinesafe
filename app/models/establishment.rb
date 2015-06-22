@@ -4,8 +4,10 @@ class Establishment < ActiveRecord::Base
 
   has_many :inspections, -> { order("date ASC") }
 
+  after_save :update_earth_coord
+
   scope :near, ->(lat, lng) {
-    select("get_distance_km(#{lat}, #{lng}, latlng[0], latlng[1]) as distance, *")
+    select("earth_distance(ll_to_earth(#{lat}, #{lng}), earth_coord)/1000 as distance, *")
     .order("distance ASC")
   }
 
@@ -50,6 +52,12 @@ class Establishment < ActiveRecord::Base
 
   def share_url
     Dinesafe::SITE_URL + establishment_landing_path(self.id, self.slug)
+  end
+
+private
+
+  def update_earth_coord
+    Establishment.where(id: self.id).update_all("earth_coord = ll_to_earth(latlng[0], latlng[1])")
   end
 
 end

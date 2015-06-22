@@ -24,3 +24,4 @@ config/initializers/secret_token.rb
 .vagrant/*
 cookbooks/*
 Cheffile.lock
+doc/_matt_notes/*

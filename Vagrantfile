@@ -41,6 +41,7 @@ Vagrant.configure(2) do |config|
     chef.add_recipe "rvm::vagrant"
     chef.add_recipe "vim"
     chef.add_recipe "postgresql::server"
+    chef.add_recipe "postgresql::contrib"
 
     # Install Ruby 2.2.1 and Bundler
     chef.json = {
@@ -72,6 +73,10 @@ Vagrant.configure(2) do |config|
         },
         password: {
           postgres: "password"
+        },
+        # NOTE: Not yet tested provisioning with extensions...
+        contrib: {
+          extensions: ["cube", "earthdistance"]
         }
       }
     }

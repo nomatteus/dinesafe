@@ -2,15 +2,6 @@ require 'test_helper'
 
 class EstablishmentTest < ActiveSupport::TestCase
 
-  # test "establishment proximity search" do
-    # flunk
-    # how to test :near scope?
-    # create array of ~3 places (or add them to yaml)
-    # then run scope with limit of 1 and make sure it's
-    #  the closest one.
-    # Or run with limit of 3 and check that they're all in
-    # the correct order
-  # end
   def setup
     @est1 = establishments(:one)
     @est2 = establishments(:two)
@@ -70,6 +61,39 @@ class EstablishmentTest < ActiveSupport::TestCase
     assert_difference "Establishment.count", -1 do
       @est1.update_column(:deleted_at, Time.zone.now)
     end
+  end
+
+  test "near scope" do
+    assert_not_nil @est1.earth_coord
+    assert_not_nil @est2.earth_coord
+    # Note that establishment 1 is a bit above establishment 2
+    # First, use a point south of both points.
+    establishments = Establishment.near(43.6411026,-79.4677921).to_a
+    assert_equal [@est2, @est1], establishments
+    assert_in_delta 5.95, establishments[0][:distance], 0.01
+    assert_in_delta 6.95, establishments[1][:distance], 0.01
+
+    # Then use a point north of both points
+    establishments = Establishment.near(43.7720739,-79.5962059).to_a
+    assert_equal [@est1, @est2], establishments
+    assert_in_delta 11.14, establishments[0][:distance], 0.01
+    assert_in_delta 11.98, establishments[1][:distance], 0.01
+  end
+
+  test "earth_coord field updated on create/save" do
+    establishment = Establishment.create!(
+      latest_name: "An establishment",
+      latest_type: "Restaurant",
+      address: "1550 Jane St",
+      latlng: "43.6982039,-79.5027124"
+    )
+    establishment.reload
+    assert_equal "(840136.058119947, -4534166.44419922, 4406419.53249671)", establishment.earth_coord
+
+    # Test that it's updated when latlng updates
+    establishment.update_attribute(:latlng, "43.682324,-79.5134422")
+    establishment.reload
+    assert_equal "(839509.172955397, -4535524.39301286, 4405141.29911097)", establishment.earth_coord
   end
 
 end
