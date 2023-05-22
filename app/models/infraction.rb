@@ -1,4 +1,4 @@
-class Infraction < ActiveRecord::Base
+class Infraction < ApplicationRecord
   belongs_to :inspection
 
   def severity_for_api

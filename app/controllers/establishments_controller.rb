@@ -1,5 +1,5 @@
 class EstablishmentsController < ApplicationController
-  before_filter :load_establishment, :only => [ :show, :show_app ]
+  before_action :load_establishment, :only => [ :show, :show_app ]
 
   def index
     @current_page = params[:page].to_i > 0 ? params[:page].to_i : 1
@@ -15,25 +15,24 @@ class EstablishmentsController < ApplicationController
     if establishments_scope.count(:all) > 0
       @establishments = establishments_scope
                           .includes(:inspections)
-                          .paginate(:page => @current_page, :per_page => @per_page)
+                          .limit(@per_page)
+                          .offset((@current_page - 1) * @per_page)
                           .order(:latest_name)
     end
 
     respond_to do |format|
-      # format.html # index.html.erb
-      format.json # index.json.jbuilder
+      format.json
     end
   end
 
   def show
     respond_to do |format|
-      format.json # show.json.jbuilder 
+      format.json
     end
   end
 
   # Establishment view with app promo (landing page style)
   def show_app
-    # raise params[:id].to_yaml
     render :layout => "application_responsive"
   end
 

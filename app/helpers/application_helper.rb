@@ -16,7 +16,7 @@ module ApplicationHelper
       desc = "This establishment has #{@establishment.inspections.count} total inspections. Visit link to view full history, and see if this place has passed all inspections."
     else
       title = "Dinesafe Toronto iOS App - Restaurant Health Inspections"
-      desc = "View restaurant health inspections on the go. Browse nearby establishments, or search for your faves. View inspection history up to 5 years."
+      desc = "View restaurant health inspections on the go. Browse nearby establishments, or search for your faves. View inspection history up to 10+ years."
     end
     %Q{
       <meta property="og:title" content="#{title}"/>

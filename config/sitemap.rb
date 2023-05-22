@@ -34,7 +34,7 @@ SitemapGenerator::Sitemap.create do
   # add press_release_path
 
   # Establishment Landing Pages
-  Establishment.all.each do |establishment|
+  Establishment.find_each do |establishment|
     add establishment_landing_path(establishment, establishment.slug)
   end
 

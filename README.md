@@ -1,9 +1,7 @@
 Dinesafe Toronto API
 ====================
 
-[![Code Climate](https://codeclimate.com/github/nomatteus/dinesafe.png)](https://codeclimate.com/github/nomatteus/dinesafe)
-
-see doc/TODO.md for todo items
+NOTE: This is the old `README`, and some parts may no longer apply.
 
 Setup
 -----
@@ -47,8 +45,6 @@ Or, generate sitemap but don't ping search engines:
 
     rake sitemap:refresh:no_ping
 
-TODO: Move sitemap updating to a cron job.
-
 Rake Tasks
 ----------
 
@@ -77,28 +73,6 @@ Update establishment addresses from geocodes (and create blank Geocodes for unkn
 Fix typos (based on list of manual fixes in task):
 
     rake dinesafe:fix_data_typos
-
-Vagrant
--------
-
-You can use Vagrant to run the app in a virtual machine.
-
-* Install Vagrant, Parallels. (With some modification, could use VirtualBox instead.)
-* `vagrant plugin install vagrant-librarian-chef-nochef`
-* `vagrant plugin install vagrant-parallels`
-* `vagrant up`
-
-Then run these commands on the VM:
-
-* `vagrant ssh` to connect to the VM
-* `cd /vagrant`
-* `sudo -u postgres psql -d template1 -c "ALTER USER postgres WITH PASSWORD 'password';"`
-* `bundle`
-* `bundle exec rake db:setup`
-* `bundle exec rake dinesafe:update_data`
-
-The App
--------
 
 
 Toronto Open Data

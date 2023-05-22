@@ -1,5 +1,6 @@
-# For more info on routes: http://guides.rubyonrails.org/routing.html
-Dinesafe::Application.routes.draw do
+Rails.application.routes.draw do
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
   scope "/app" do
     get "/app_store"  => redirect(Dinesafe.conf.app_store_link)
     get "/" => "pages#app_landing", :as => :app_landing
@@ -17,7 +18,6 @@ Dinesafe::Application.routes.draw do
   # get "/app/privacy"    => "pages#app_privacy"
   # get "/app/about"      => "pages#app_about"
   # get "/app/contact"      => "pages#app_contact"
-
 
   get "inspections/index"
   get "inspections/map"

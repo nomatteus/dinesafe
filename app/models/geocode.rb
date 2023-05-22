@@ -1,2 +1,2 @@
-class Geocode < ActiveRecord::Base
+class Geocode < ApplicationRecord
 end
