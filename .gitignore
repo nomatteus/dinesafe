@@ -30,8 +30,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# settings (using konf gem, should deprecate)
-config/settings.yml
-
 db/dumps/
 doc/_matt_notes/*
+
+# Local-specific env
+.env.development.local
+

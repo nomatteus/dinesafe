@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   scope "/app" do
-    get "/app_store"  => redirect(Dinesafe.conf.app_store_link)
+    get "/app_store"  => redirect { ENV["DINESAFE_APP_STORE_LINK"] }
     get "/" => "pages#app_landing", :as => :app_landing
     get "/privacy"    => "pages#app_privacy"
     get "/about"      => "pages#app_about"

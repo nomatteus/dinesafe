@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.1"
+ruby "3.2.2"
 
 gem "rails", "~> 7.0.4.3"
 
@@ -34,14 +34,14 @@ gem "sassc-rails", "~> 2.1.2"
 
 gem "haml", "~> 5.2.2"
 
-# Configuration (TODO: remove)
-gem "konf", "~> 0.0.2"
-
 # SEO
 gem "sitemap_generator", "~> 6.2.1"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+
+# Env
+gem "dotenv-rails", "~> 2.8.1"
 
 # ProgressBar for Data Import
 gem "progressbar", "~> 1.13.0"

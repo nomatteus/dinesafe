@@ -6,7 +6,14 @@ NOTE: This is the old `README`, and some parts may no longer apply.
 Setup
 -----
 
-Create settings.yml: `cp config/settings.example.yml config/settings.yml`.
+Setup `GOOGLE_MAPS_BROWSER_API_KEY` if needed (only required for displaying
+app pages on Dinesafe site, not API).
+
+Create `.env.development.local` file. Add: 
+
+```
+GOOGLE_MAPS_BROWSER_API_KEY=<your_api_key>
+```
 
 Transferring The Database
 -------------------------

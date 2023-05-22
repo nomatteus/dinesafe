@@ -16,7 +16,7 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
 
     <%= facebook_og_tags %>
-    <meta name="apple-itunes-app" content="app-id=<%= Dinesafe.conf.app_store_id %>">
+    <meta name="apple-itunes-app" content="app-id=<%= ENV["DINESAFE_APP_STORE_ID"] %>">
 
     <%= stylesheet_link_tag "landing/normalize.min.css" %>
     <%= stylesheet_link_tag "landing/main.css" %>
