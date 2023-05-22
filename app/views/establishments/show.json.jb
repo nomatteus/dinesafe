@@ -1,0 +1,44 @@
+inspections_data = @establishment.inspections.map do |inspection|
+  infractions_data = inspection.infractions_by_severity.map do |infraction|
+    {
+      id: infraction.id,
+      details: infraction.details,
+      action: infraction.action,
+      court_outcome: infraction.court_outcome,
+      amount_fined: infraction.amount_fined,
+      severity: infraction.severity_for_api,
+    }
+  end 
+
+  {
+    id: inspection.id,
+    status: inspection.status,
+    date: inspection.date,
+    minimum_inspections_per_year: inspection.minimum_inspections_per_year,
+    establishment_type: inspection.establishment_type,
+    establishment_name: inspection.establishment_name.present? ? inspection.establishment_name.titleize : "",
+    infractions: infractions_data,
+  }
+end
+
+establishment_data = {
+  id: @establishment.id,
+  latest_type: @establishment.latest_type,
+  latest_name: @establishment.name,
+  address: @establishment.address.present? ? @establishment.address.titleize : "",
+  latlng: @establishment.latlng_dict,
+  
+  inspections: inspections_data,
+  share: {
+    text_short: @establishment.share_text_short,
+    text_long: @establishment.share_text_long,
+    text_long_html: @establishment.share_text_long_html,
+    url: @establishment.share_url
+  }
+}
+
+establishment_data[:distance] = @establishment.distance.to_f if @establishment[:distance].present?
+
+{
+  data: establishment_data
+}

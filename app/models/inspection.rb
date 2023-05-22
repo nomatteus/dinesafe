@@ -1,4 +1,4 @@
-class Inspection < ActiveRecord::Base
+class Inspection < ApplicationRecord
   # Default sort for inspections: "Crucial", "Significant", "Minor"
   SORT_ORDER = "CSM"
 

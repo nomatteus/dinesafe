@@ -1,4 +1,4 @@
-class Establishment < ActiveRecord::Base
+class Establishment < ApplicationRecord
   include Rails.application.routes.url_helpers
   acts_as_paranoid
 
@@ -34,7 +34,6 @@ class Establishment < ActiveRecord::Base
 
   # Short version of share text. TWEET Length or less.
   def share_text_short
-    # TODO: Update this. Make configurable in settings.yml?
     "I'm looking at #{self.latest_name.titleize} on Dinesafe."
   end
 

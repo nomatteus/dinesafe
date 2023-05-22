@@ -3,7 +3,16 @@
 Installing SSL Cert from Let's Encrypt using this guide:
 https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04
 
-## Updating via certbot
+## Updating via certbot (cron)
+
+This is set in the root crontab to run twice daily (as recommended by let's encrypt):
+
+      52 0,12 * * * certbot renew --post-hook "service nginx restart" >> /var/log/cron.log 2>&1
+
+Check `/var/log/cron.log` for output.
+
+
+## Updating via certbot (manually)
 
 Run command again:
 
@@ -11,7 +20,7 @@ Run command again:
 
 Or run:
 
-    sudo certbox renew
+    sudo certbot renew
 
 ## Locations
 

@@ -1,6 +1,7 @@
 production:
   host: dinesafe.to
-  google_maps_browser_api_key: 
+  google_maps_browser_api_key:
+  google_maps_geocoding_api_key: 
   app_store_link: # http://...
   app_store_id: # 9-digit app store ID
   newrelic_license_key: 
@@ -8,6 +9,7 @@ production:
 development:
   host: dinesafe.dev
   google_maps_browser_api_key: 
+  google_maps_geocoding_api_key:
   app_store_link: # http://...
   app_store_id: # 9-digit app store ID
   newrelic_license_key: 
@@ -15,6 +17,7 @@ development:
 test: 
   host: 
   google_maps_browser_api_key: 
+  google_maps_geocoding_api_key:
   app_store_link:
   app_store_id:
   newrelic_license_key: 
