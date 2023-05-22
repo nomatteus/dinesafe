@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: dinesafe_production
-  username: dinesafe
-  password: <%= ENV["DINESAFE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
