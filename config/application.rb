@@ -20,5 +20,7 @@ module Dinesafe
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.active_record.schema_format = :sql
+
+    config.autoload_paths << "#{root}/lib"
   end
 end

@@ -83,6 +83,7 @@ namespace :dinesafe do
   desc "Download and import latest dinesafe xml file"
   task :update_data_new => :environment do
     Rails.logger.info("Starting dinesafe:update_data_new data import")
+    sentry_checkin_id = SentryUtils.cron_start("dinesafe-data-update")
 
     uri = URI('https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/ea1d6e57-87af-4e23-b722-6c1f5aa18a8d/resource/c573c64d-69b6-4d5b-988a-f3c6aa73f0b0/download/Dinesafe.json')
     result = Net::HTTP.get(uri)
@@ -210,6 +211,15 @@ namespace :dinesafe do
     # it's still active (even if it doesn't have any inspection data)
     all_establishment_ids = json.map { |j| j["Establishment ID"] }.uniq
     Establishment.where.not(id: all_establishment_ids).update_all(deleted_at: Time.zone.now)
+
+    SentryUtils.cron_end("dinesafe-data-update", sentry_checkin_id)
+
+    # Run sitemap refresh after data update 
+    # (Same job since render charges per cron job, and want to run this right after update)
+    sentry_checkin_id2 = SentryUtils.cron_start("dinesafe-sitemap-update")
+    Rails.logger.info("Invoking sitemap:refresh job...")
+    Rake::Task['sitemap:refresh'].invoke
+    SentryUtils.cron_end("dinesafe-sitemap-update", sentry_checkin_id2)
   end
 
   # Current data file has incorrect establishment status for all but the most recent inspection.
