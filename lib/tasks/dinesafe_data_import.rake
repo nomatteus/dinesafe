@@ -97,10 +97,12 @@ namespace :dinesafe do
       .group_by { |j| j["Establishment ID"] }
       .transform_values { |est_json| est_json.group_by { |j| j["Inspection Date"] } }
 
+    total_size = grouped.size
+
     progress_bar = ProgressBar.create(
       throttle_rate: 1,
       format: "%a |%b>%i| %p%% %e Establishments: %c/%C",
-      total: grouped.size,
+      total: total_size,
     )
 
     # Log last updated dates so we can calculate how many records created/updated
@@ -110,8 +112,10 @@ namespace :dinesafe do
       infraction: Infraction.maximum(:updated_at),
     }
 
+    current_est_count = 0
     grouped.each do |est_id, est_data|
-      Rails.logger.info "Establishment: #{est_id}"
+      current_est_count += 1
+      Rails.logger.info "Establishment: #{est_id} (progress: #{current_est_count}/#{total_size})"
 
       establishment = Establishment.with_deleted.find_or_create_by(id: est_id.to_i)
       current_address = establishment.address
@@ -134,6 +138,14 @@ namespace :dinesafe do
       if current_address != establishment.address
         Rails.logger.info "Change detected! Old: #{current_address} New: #{establishment.address} (Establishment ID: #{est_id})"
       end
+
+      # Optimization: Detect whether the file contains a new inspection for this establishment;
+      # If not, then skip inspection/infraction processing.
+      file_inspection_dates = est_data.keys
+      db_inspection_dates = establishment.inspections.pluck(:date).map(&:to_s)
+
+      # Skip processing inspections, unless we have a new one present
+      next unless (file_inspection_dates - db_inspection_dates).present?
 
       # Find latest inspection date (used in workaround to bad "Status" data for past inspections)
       latest_inspection_date = est_data.keys.sort.last
@@ -203,8 +215,8 @@ namespace :dinesafe do
       inspection: Inspection.where("updated_at > ?", last_updated[:inspection]).count,
       infraction: Infraction.where("updated_at > ?", last_updated[:infraction]).count,
     }
-    puts "Number of records updated/created:"
-    puts updated_counts
+    Rails.logger.info "Number of records updated/created:"
+    Rails.logger.info updated_counts
 
     # Delete all establishments that are no longer in the file (assume they are now closed)
     # Note that we use the initial list, as if an establishment is in the file, we'll assume
