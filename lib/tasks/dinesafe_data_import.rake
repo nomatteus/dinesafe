@@ -115,6 +115,8 @@ namespace :dinesafe do
     current_est_count = 0
     grouped.each do |est_id, est_data|
       current_est_count += 1
+      progress_bar.increment
+
       Rails.logger.info "Establishment: #{est_id} (progress: #{current_est_count}/#{total_size})"
 
       establishment = Establishment.with_deleted.find_or_create_by(id: est_id.to_i)
@@ -205,8 +207,6 @@ namespace :dinesafe do
           end
         end
       end
-
-      progress_bar.increment
     end
 
     # Report on changed 
