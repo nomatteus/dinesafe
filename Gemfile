@@ -47,6 +47,7 @@ gem "dotenv-rails", "~> 2.8.1"
 gem "progressbar", "~> 1.13.0"
 
 # Monitoring/Alerts/Logs
+gem "stackprof", "~> 0.2.25" # for sentry profiling
 gem "sentry-ruby", "~> 5.9.0"
 gem "sentry-rails", "~> 5.9.0"
 
