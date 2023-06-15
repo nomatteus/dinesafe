@@ -87,11 +87,6 @@ namespace :dinesafe do
     uri = URI('https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/ea1d6e57-87af-4e23-b722-6c1f5aa18a8d/resource/c573c64d-69b6-4d5b-988a-f3c6aa73f0b0/download/Dinesafe.json')
     result = Net::HTTP.get(uri)
 
-    # TODO: Manually run imports for these 2 files (maybe locally), to backfill data.
-    # result = IO.read(Rails.root.join("doc/dinesafe_xml/ds - downloaded Jan 26, 2021.json"))
-    # result = IO.read(Rails.root.join("doc/dinesafe_xml/ds - downloaded feb 9 2022.json"))
-    # result = IO.read(Rails.root.join("doc/dinesafe_xml/Dinesafe (1) - downloaded May 13, 2023.json"))
-
     json = JSON.parse(result)
 
     # Group by Establishment (by ID), then Inspection (by Date)
@@ -139,6 +134,9 @@ namespace :dinesafe do
         Rails.logger.info "Change detected! Old: #{current_address} New: #{establishment.address} (Establishment ID: #{est_id})"
       end
 
+      # Find latest inspection date (used in workaround to bad "Status" data for past inspections)
+      latest_inspection_date = est_data.keys.sort.last
+
       est_data.each do |inspection_date, inspection_data|
         # We no longer have Inspection IDs, so lookup inspections by date
         inspection = establishment.inspections.find_or_create_by(date: inspection_date.strip)
@@ -146,13 +144,25 @@ namespace :dinesafe do
         # We'll have multiple records if there are multiple infractions, but inspection data is same in all
         inspection_record = inspection_data.first
 
-        inspection.update!(
+        inspection_update_attrs = {
           establishment_name: est_record.fetch("Establishment Name").strip,
           establishment_type: est_record.fetch("Establishment Type").strip,
-          status: inspection_record.fetch("Establishment Status").strip,
+
           # This is not present in Jan 26, 2021 file. Hopefully will not end up with any actual 0 values after all imports
-          minimum_inspections_per_year: inspection_record.fetch("Min. Inspections Per Year", nil)&.to_i,
-        )
+          # (Will plan to remove this from the app, as it's not really relevant/important)
+          minimum_inspections_per_year: inspection_record.fetch("Min. Inspections Per Year", nil)&.to_i
+        }
+
+        # Only update status for _latest inspection_, as currently there's a bug that uses the latest status for all inspections
+        if inspection_date.strip == latest_inspection_date
+          inspection_update_attrs[:status] = inspection_record.fetch("Establishment Status").strip
+        elsif inspection.status.blank?
+          # If this is a new inspection & not the latest, set initial status to "Unknown"
+          # Workaround to data bug
+          inspection_update_attrs[:status] = "Unknown"
+        end
+
+        inspection.update!(inspection_update_attrs)
 
         # for each infraction (i.e. each record in inspection_data)
         inspection_data.each do |infraction_record|
@@ -200,6 +210,44 @@ namespace :dinesafe do
     # it's still active (even if it doesn't have any inspection data)
     all_establishment_ids = json.map { |j| j["Establishment ID"] }.uniq
     Establishment.where.not(id: all_establishment_ids).update_all(deleted_at: Time.zone.now)
+  end
+
+  # Current data file has incorrect establishment status for all but the most recent inspection.
+  # We can use the dinesafe website API to look up and backfill the correct status.
+  # Note that there are 6 establishments with inspections that were too old to find status for, so will remain unknown:
+  #   establishment_ids: 9418809, 10486198, 10576720, 10623437, 10720839, 10754584
+  # This was a one-time task, but keeping it around for a while in case we to backfill additional data.
+  desc "(temp) Backfill Inspection Status using alternative API"
+  task :backfill_inspection_status => :environment do
+    raise "!!! No need to run this regularly, unless additional backfill is needed."
+
+    # Find establishment(s) with "Unknown" inspection status.
+    est_limit = 1000 # How many to process at once
+    establishment_ids = Establishment.joins(:inspections).where(inspections: { status: "Unknown" }).distinct.limit(est_limit).pluck(:id)
+
+    # API call to look up each establishment
+    establishment_ids.each do |establishment_id|
+      establishment = Establishment.find(establishment_id)
+      uri = URI("https://secure.toronto.ca/opendata/ds/est_summary/v1?format=json&est_id=#{establishment.id}")
+      result = JSON.parse(Net::HTTP.get(uri))
+
+      # Update inspection statuses for establishment as needed
+      inspections_by_date = result["inspections"].group_by { |insp| insp["insDate"] }
+
+      establishment.inspections.unknown.each do |unknown_inspection|
+        date = unknown_inspection.date.to_s
+        status = inspections_by_date[date]&.first&.dig("insStatus")
+        if status.present?
+          puts "Updating est_id #{establishment.id}, insp_id #{unknown_inspection.id}, inspection date #{date} to status: #{status}"
+          unknown_inspection.update!(status: status)
+        else
+          puts "!!! Inspection Status NOT FOUND! est_id #{establishment.id}, insp_id #{unknown_inspection.id}, inspection date #{date}"
+        end
+      end
+
+      # sleep between API calls
+      sleep 0.1 + 0.5*rand
+    end
   end
 end
 

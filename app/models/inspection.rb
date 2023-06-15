@@ -8,6 +8,7 @@ class Inspection < ApplicationRecord
   scope :pass, -> { where(status: "Pass") }
   scope :conditional, -> { where(status: "Conditional Pass") }
   scope :closed, -> { where(status: "Closed") }
+  scope :unknown, -> { where(status: "Unknown") }
 
   # Returns list of infractions, sorted by severity (as defined in SORT_ORDER)
   def infractions_by_severity
