@@ -1,4 +1,4 @@
-establishments_data = @establishments.map do |establishment|
+establishments_data = @establishments&.map do |establishment|
   inspections_data = establishment.inspections.map do |inspection|
     {
       id: inspection.id,
@@ -31,7 +31,7 @@ establishments_data = @establishments.map do |establishment|
 end
 
 {
-  data: establishments_data,
+  data: Array(establishments_data),
   paging: {
     current_page: @current_page,
     total_pages: @total_pages,
