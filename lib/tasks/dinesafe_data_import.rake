@@ -116,6 +116,8 @@ namespace :dinesafe do
     grouped.each do |est_id, est_data|
       current_est_count += 1
       progress_bar.increment
+
+      # Spread out queries a bit (helps on Render started db; otherwise not required)
       sleep 0.01
 
       Rails.logger.info "Establishment: #{est_id} (progress: #{current_est_count}/#{total_size})"
