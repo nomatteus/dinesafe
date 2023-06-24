@@ -23,6 +23,13 @@
     <%= stylesheet_link_tag "landing/flexslider.css" %>
     <%= javascript_include_tag "landing/vendor/modernizr-2.6.1-respond-1.1.0.min.js" %>
 
+    <!-- plausible analytics -->
+    <script defer data-domain="dinesafe.to" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Fathom -->
+      <script src="https://cdn.usefathom.com/script.js" data-site="RGTRCLTL" defer></script>
+    <!-- / Fathom -->
+
     <% if (content_for?(:head)) %>
       <%= yield :head %>
     <% end %>
@@ -81,5 +88,10 @@
         g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
         s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
+
+    <!-- Simple Analytics -->
+    <!-- 100% privacy-first analytics -->
+    <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
   </body>
 </html>
