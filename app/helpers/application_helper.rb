@@ -38,9 +38,8 @@ module ApplicationHelper
   end
 
   def onclick_conversion_track
-    conversion_track = "trackConversion(1071773858, '5_HnCMu2pQQQovGH_wM')"
-    event_track = "_gaq.push(['_trackEvent', 'App Store Link', 'Click'])"
-    "#{conversion_track};#{event_track};return true;".html_safe
+    event_track = "window.fathom && window.fathom.trackGoal('8NP740OM', 0);"
+    "#{event_track};return true;".html_safe
   end
 
 end
