@@ -4,9 +4,6 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
-    <% if content_for?(:ga_experiments_head) %>
-      <%= yield :ga_experiments_head %>
-    <% end %>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><%= content_for?(:title) ? content_for(:title) : "Dinesafe Toronto iOS App - Restaurant Health Inspections" %></title>
