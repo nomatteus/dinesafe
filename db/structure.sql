@@ -1,27 +1,13 @@
---
--- PostgreSQL database dump
---
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
+SET row_security = off;
 
 --
 -- Name: cube; Type: EXTENSION; Schema: -; Owner: -
@@ -51,13 +37,11 @@ CREATE EXTENSION IF NOT EXISTS earthdistance WITH SCHEMA public;
 COMMENT ON EXTENSION earthdistance IS 'calculate great-circle distances on the surface of the Earth';
 
 
-SET search_path = public, pg_catalog;
-
 --
 -- Name: get_distance_km(double precision, double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION get_distance_km(alat double precision, alon double precision, lat double precision, lon double precision) RETURNS double precision
+CREATE FUNCTION public.get_distance_km(alat double precision, alon double precision, lat double precision, lon double precision) RETURNS double precision
     LANGUAGE plpgsql
     AS $$
           DECLARE
@@ -94,13 +78,25 @@ CREATE FUNCTION get_distance_km(alat double precision, alon double precision, la
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
--- Name: establishments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE establishments (
+CREATE TABLE public.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: establishments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.establishments (
     id integer NOT NULL,
     address character varying(255),
     created_at timestamp without time zone,
@@ -109,7 +105,7 @@ CREATE TABLE establishments (
     latest_name character varying(255),
     latest_type character varying(255),
     deleted_at timestamp without time zone,
-    earth_coord earth
+    earth_coord public.earth
 );
 
 
@@ -117,7 +113,7 @@ CREATE TABLE establishments (
 -- Name: establishments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE establishments_id_seq
+CREATE SEQUENCE public.establishments_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -129,14 +125,14 @@ CREATE SEQUENCE establishments_id_seq
 -- Name: establishments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE establishments_id_seq OWNED BY establishments.id;
+ALTER SEQUENCE public.establishments_id_seq OWNED BY public.establishments.id;
 
 
 --
--- Name: geocodes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: geocodes; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE geocodes (
+CREATE TABLE public.geocodes (
     id integer NOT NULL,
     address character varying(255),
     postal_code character varying(255),
@@ -151,7 +147,7 @@ CREATE TABLE geocodes (
 -- Name: geocodes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE geocodes_id_seq
+CREATE SEQUENCE public.geocodes_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -163,14 +159,14 @@ CREATE SEQUENCE geocodes_id_seq
 -- Name: geocodes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE geocodes_id_seq OWNED BY geocodes.id;
+ALTER SEQUENCE public.geocodes_id_seq OWNED BY public.geocodes.id;
 
 
 --
--- Name: infractions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: infractions; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE infractions (
+CREATE TABLE public.infractions (
     id integer NOT NULL,
     inspection_id integer,
     details character varying(255),
@@ -187,7 +183,7 @@ CREATE TABLE infractions (
 -- Name: infractions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE infractions_id_seq
+CREATE SEQUENCE public.infractions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -199,14 +195,14 @@ CREATE SEQUENCE infractions_id_seq
 -- Name: infractions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE infractions_id_seq OWNED BY infractions.id;
+ALTER SEQUENCE public.infractions_id_seq OWNED BY public.infractions.id;
 
 
 --
--- Name: inspections; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: inspections; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE inspections (
+CREATE TABLE public.inspections (
     id integer NOT NULL,
     establishment_id integer,
     status character varying(255),
@@ -223,7 +219,7 @@ CREATE TABLE inspections (
 -- Name: inspections_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE inspections_id_seq
+CREATE SEQUENCE public.inspections_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -235,154 +231,161 @@ CREATE SEQUENCE inspections_id_seq
 -- Name: inspections_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE inspections_id_seq OWNED BY inspections.id;
+ALTER SEQUENCE public.inspections_id_seq OWNED BY public.inspections.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE schema_migrations (
+CREATE TABLE public.schema_migrations (
     version character varying(255) NOT NULL
 );
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: establishments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY establishments ALTER COLUMN id SET DEFAULT nextval('establishments_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY geocodes ALTER COLUMN id SET DEFAULT nextval('geocodes_id_seq'::regclass);
+ALTER TABLE ONLY public.establishments ALTER COLUMN id SET DEFAULT nextval('public.establishments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: geocodes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY infractions ALTER COLUMN id SET DEFAULT nextval('infractions_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY inspections ALTER COLUMN id SET DEFAULT nextval('inspections_id_seq'::regclass);
+ALTER TABLE ONLY public.geocodes ALTER COLUMN id SET DEFAULT nextval('public.geocodes_id_seq'::regclass);
 
 
 --
--- Name: establishments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: infractions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY establishments
+ALTER TABLE ONLY public.infractions ALTER COLUMN id SET DEFAULT nextval('public.infractions_id_seq'::regclass);
+
+
+--
+-- Name: inspections id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.inspections ALTER COLUMN id SET DEFAULT nextval('public.inspections_id_seq'::regclass);
+
+
+--
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: establishments establishments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.establishments
     ADD CONSTRAINT establishments_pkey PRIMARY KEY (id);
 
 
 --
--- Name: geocodes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: geocodes geocodes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY geocodes
+ALTER TABLE ONLY public.geocodes
     ADD CONSTRAINT geocodes_pkey PRIMARY KEY (id);
 
 
 --
--- Name: infractions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: infractions infractions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY infractions
+ALTER TABLE ONLY public.infractions
     ADD CONSTRAINT infractions_pkey PRIMARY KEY (id);
 
 
 --
--- Name: inspections_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: inspections inspections_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY inspections
+ALTER TABLE ONLY public.inspections
     ADD CONSTRAINT inspections_pkey PRIMARY KEY (id);
 
 
 --
--- Name: index_establishments_on_deleted_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_establishments_on_deleted_at; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_establishments_on_deleted_at ON establishments USING btree (deleted_at);
-
-
---
--- Name: index_establishments_on_latest_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_establishments_on_latest_name ON establishments USING btree (latest_name);
+CREATE INDEX index_establishments_on_deleted_at ON public.establishments USING btree (deleted_at);
 
 
 --
--- Name: index_inspections_on_date; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_establishments_on_latest_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_inspections_on_date ON inspections USING btree (date);
-
-
---
--- Name: index_inspections_on_establishment_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_inspections_on_establishment_id ON inspections USING btree (establishment_id);
+CREATE INDEX index_establishments_on_latest_name ON public.establishments USING btree (latest_name);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_establishments_on_latlng; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+CREATE INDEX index_establishments_on_latlng ON public.establishments USING gist (latlng);
+
+
+--
+-- Name: index_infractions_on_inspection_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_infractions_on_inspection_id ON public.infractions USING btree (inspection_id);
+
+
+--
+-- Name: index_inspections_on_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_inspections_on_date ON public.inspections USING btree (date);
+
+
+--
+-- Name: index_inspections_on_establishment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_inspections_on_establishment_id ON public.inspections USING btree (establishment_id);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
 
 
 --
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20111130195323');
+INSERT INTO "schema_migrations" (version) VALUES
+('20111130195323'),
+('20111202170638'),
+('20111205223704'),
+('20120417224952'),
+('20121111072059'),
+('20121111075800'),
+('20121112065027'),
+('20121114030257'),
+('20121117040447'),
+('20121117062637'),
+('20121117170332'),
+('20121117211553'),
+('20121117212248'),
+('20121117213519'),
+('20121117222003'),
+('20121207041154'),
+('20130131122838'),
+('20150621165743'),
+('20150622001914'),
+('20230701205846');
 
-INSERT INTO schema_migrations (version) VALUES ('20111202170638');
-
-INSERT INTO schema_migrations (version) VALUES ('20111205223704');
-
-INSERT INTO schema_migrations (version) VALUES ('20120417224952');
-
-INSERT INTO schema_migrations (version) VALUES ('20121111072059');
-
-INSERT INTO schema_migrations (version) VALUES ('20121111075800');
-
-INSERT INTO schema_migrations (version) VALUES ('20121112065027');
-
-INSERT INTO schema_migrations (version) VALUES ('20121114030257');
-
-INSERT INTO schema_migrations (version) VALUES ('20121117040447');
-
-INSERT INTO schema_migrations (version) VALUES ('20121117062637');
-
-INSERT INTO schema_migrations (version) VALUES ('20121117170332');
-
-INSERT INTO schema_migrations (version) VALUES ('20121117211553');
-
-INSERT INTO schema_migrations (version) VALUES ('20121117212248');
-
-INSERT INTO schema_migrations (version) VALUES ('20121117213519');
-
-INSERT INTO schema_migrations (version) VALUES ('20121117222003');
-
-INSERT INTO schema_migrations (version) VALUES ('20121207041154');
-
-INSERT INTO schema_migrations (version) VALUES ('20130131122838');
-
-INSERT INTO schema_migrations (version) VALUES ('20150621165743');
-
-INSERT INTO schema_migrations (version) VALUES ('20150622001914');
 
