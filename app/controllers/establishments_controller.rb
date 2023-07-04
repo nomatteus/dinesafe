@@ -6,10 +6,7 @@ class EstablishmentsController < ApplicationController
     @per_page = params[:per_page].to_i > 0 ? params[:per_page].to_i : 30
 
     establishments_scope = establishment_proximity_scope
-    if params[:search].present?
-      params[:search].strip!
-      establishments_scope = establishments_scope.where("latest_name ILIKE ?", "%#{params[:search]}%")
-    end
+    establishments_scope = establishment_search_scope(establishments_scope)
 
     @total_pages = (establishments_scope.count(:all).to_f / @per_page.to_f).ceil
     if establishments_scope.count(:all) > 0
@@ -51,6 +48,32 @@ protected
       Establishment.near(lat.to_f, lng.to_f)
     else
       Establishment
+    end
+  end
+
+  def establishment_search_scope(establishments_scope)
+    return establishments_scope unless params[:search].present?
+
+    params[:search].strip!
+
+    # Find the first number to use as number of days for some searches (may be nil)
+    num_days = params[:search].scan(/\d+/).first&.to_i
+
+    case params[:search]
+    when /new:/i
+      # Search for new establishments, i.e. first ever inspection in the last X days
+      # TODO
+    when /recent:/i
+      # Search for establishments with inspections, i.e. last inspection was in the last X days (default 7)
+      establishments_scope.joins(:inspections).where("inspections.date >= now() - interval '? days'", num_days || 7)
+    when /closed:/i
+      # Search for establishments with a closed inspection. Optionally in the last X days. 
+      # TODO
+    when /conditional:/i
+      # Search for establishments with a conditional inspection. Optionally in the last X days. 
+      # TODO
+    else
+      establishments_scope.where("latest_name ILIKE ?", "%#{params[:search]}%")
     end
   end
 
