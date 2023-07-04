@@ -11,6 +11,7 @@ class Establishment < ApplicationRecord
     select("earth_distance(ll_to_earth(#{lat}, #{lng}), earth_coord)/1000 as distance, *")
     .order("distance ASC")
   }
+  scope :restaurants, -> { where(latest_type: "Restaurant") }
 
   def latlng_dict
     return if self.latlng.nil?

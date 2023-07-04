@@ -56,6 +56,9 @@ protected
 
     params[:search].strip!
 
+    # Allow searching by restaurant type (to exclude the various other establishment types)
+    establishments_scope = establishments_scope.restaurants if params[:search].match?("type:restaurant")
+
     # Find the first number to use as number of days for some searches (may be nil)
     num_days = params[:search].scan(/\d+/).first&.to_i
 
