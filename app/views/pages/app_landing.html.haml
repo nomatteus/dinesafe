@@ -55,12 +55,12 @@
       %section
         %h6 1.
         %h2 Scorebar
-        %p Get a quick colour-coded overview of the inspection history of each establishment as you browse!
+        %p Get a quick colour-coded overview of the establishment's inspection history as you browse!
       / INSERT FEATURE TEXT
       %section
         %h6 2.
-        %h2 Up to 5 Year History
-        %p View inspection history as far back as 2010 for some establishments. Data is updated biweekly.
+        %h2= "Up to #{Date.current.year - 2010} Year History"
+        %p View inspection history as far back as 2010 for some establishments. Data is updated daily.
       / INSERT FEATURE TEXT
       %section.last
         %h6 3.
