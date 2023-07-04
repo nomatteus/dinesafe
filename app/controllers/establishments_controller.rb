@@ -59,10 +59,20 @@ protected
     # Find the first number to use as number of days for some searches (may be nil)
     num_days = params[:search].scan(/\d+/).first&.to_i
 
+    # Support different types of searches to allow searching for different types of 
+    # establishments/inspections. Note that this is a bit hacky for now, but allows
+    # testing out different search views without making iOS app updates.
     case params[:search]
     when /new:/i
       # Search for new establishments, i.e. first ever inspection in the last X days
-      # TODO
+      # TODO: These subqueries are slow--denormalize fields to support these searches to the establishment record
+      #       (e.g. `min_inspection_date`, `max_inspection_date`, `last_closed_inspection_date`, `last_conditional_inspection_date`)
+      #       These 4 fields would support all searches below (add indexes to all fields, and should be quite performant)
+      establishments_scope
+        .where(
+          "(select min(\"inspections\".date) from \"inspections\" where \"inspections\".establishment_id = \"establishments\".id) >= now() - interval '? days'", 
+          num_days || 7
+        )
     when /recent:/i
       # Search for establishments with inspections, i.e. last inspection was in the last X days (default 7)
       establishments_scope
