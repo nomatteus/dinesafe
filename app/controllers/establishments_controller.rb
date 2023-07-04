@@ -11,7 +11,7 @@ class EstablishmentsController < ApplicationController
     @total_pages = (establishments_scope.count(:all).to_f / @per_page.to_f).ceil
     if establishments_scope.count(:all) > 0
       @establishments = establishments_scope
-                          .joins(:inspections)
+                          .includes(:inspections)
                           .limit(@per_page)
                           .offset((@current_page - 1) * @per_page)
                           .order(:latest_name)
