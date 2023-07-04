@@ -5,6 +5,7 @@ class Establishment < ApplicationRecord
   has_many :inspections, -> { order("date ASC") }
 
   after_save :update_earth_coord
+  after_save :update_denormalized_dates
 
   scope :near, ->(lat, lng) {
     select("earth_distance(ll_to_earth(#{lat}, #{lng}), earth_coord)/1000 as distance, *")
@@ -57,6 +58,15 @@ private
 
   def update_earth_coord
     Establishment.where(id: self.id).update_all("earth_coord = ll_to_earth(latlng[0], latlng[1])")
+  end
+
+  def update_denormalized_dates
+    Establishment.where(id: self.id).update_all(
+      min_inspection_date: self.inspections.minimum(:date),
+      max_inspection_date: self.inspections.maximum(:date),
+      last_closed_inspection_date: self.inspections.closed.maximum(:date),
+      last_conditional_inspection_date: self.inspections.conditional.maximum(:date),
+    )
   end
 
 end

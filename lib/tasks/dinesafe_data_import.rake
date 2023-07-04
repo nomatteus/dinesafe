@@ -80,7 +80,7 @@ namespace :dinesafe do
     IO.write(json_path, JSON.generate(new_json))
   end
 
-  desc "Download and import latest dinesafe xml file"
+  desc "Download and import latest dinesafe data file"
   task :update_data_new => :environment do
     Rails.logger.info("Starting dinesafe:update_data_new data import")
     sentry_checkin_id = SentryUtils.cron_start("dinesafe-data-update")
@@ -210,6 +210,9 @@ namespace :dinesafe do
           end
         end
       end
+
+      # Trigger callbacks to update inspection date fields (needs to run after all inspections imported)
+      establishment.save!
     end
 
     # Report on changed 
