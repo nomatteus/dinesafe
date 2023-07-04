@@ -61,7 +61,7 @@ private
   end
 
   def update_denormalized_dates
-    Establishment.where(id: self.id).update_all(
+    Establishment.with_deleted.where(id: self.id).update_all(
       min_inspection_date: self.inspections.minimum(:date),
       max_inspection_date: self.inspections.maximum(:date),
       last_closed_inspection_date: self.inspections.closed.maximum(:date),
