@@ -105,7 +105,11 @@ CREATE TABLE public.establishments (
     latest_name character varying(255),
     latest_type character varying(255),
     deleted_at timestamp without time zone,
-    earth_coord public.earth
+    earth_coord public.earth,
+    min_inspection_date date,
+    max_inspection_date date,
+    last_closed_inspection_date date,
+    last_conditional_inspection_date date
 );
 
 
@@ -319,6 +323,20 @@ CREATE INDEX index_establishments_on_deleted_at ON public.establishments USING b
 
 
 --
+-- Name: index_establishments_on_last_closed_inspection_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_establishments_on_last_closed_inspection_date ON public.establishments USING btree (last_closed_inspection_date);
+
+
+--
+-- Name: index_establishments_on_last_conditional_inspection_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_establishments_on_last_conditional_inspection_date ON public.establishments USING btree (last_conditional_inspection_date);
+
+
+--
 -- Name: index_establishments_on_latest_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -330,6 +348,20 @@ CREATE INDEX index_establishments_on_latest_name ON public.establishments USING 
 --
 
 CREATE INDEX index_establishments_on_latlng ON public.establishments USING gist (latlng);
+
+
+--
+-- Name: index_establishments_on_max_inspection_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_establishments_on_max_inspection_date ON public.establishments USING btree (max_inspection_date);
+
+
+--
+-- Name: index_establishments_on_min_inspection_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_establishments_on_min_inspection_date ON public.establishments USING btree (min_inspection_date);
 
 
 --
@@ -386,6 +418,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20130131122838'),
 ('20150621165743'),
 ('20150622001914'),
-('20230701205846');
+('20230701205846'),
+('20230704184752');
 
 
