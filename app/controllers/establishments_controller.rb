@@ -65,7 +65,11 @@ protected
       # TODO
     when /recent:/i
       # Search for establishments with inspections, i.e. last inspection was in the last X days (default 7)
-      establishments_scope.joins(:inspections).where("inspections.date >= now() - interval '? days'", num_days || 7)
+      establishments_scope
+        .where(
+          "(select max(\"inspections\".date) from \"inspections\" where \"inspections\".establishment_id = \"establishments\".id) >= now() - interval '? days'", 
+          num_days || 7
+        )
     when /closed:/i
       # Search for establishments with a closed inspection. Optionally in the last X days. 
       # TODO

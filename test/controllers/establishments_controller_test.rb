@@ -161,6 +161,15 @@ class EstablishmentsControllerTest < ActionController::TestCase
     assert_equal est.id, parsed_body["data"][0]["id"]
   end
 
+  test "recent search" do
+    est = establishments(:two)
+    get :index, :format => :json, params: { :search => "recent:10000", :near => "43.688205,-79.5027122" }
+    parsed_body = JSON.parse(response.body)
+    assert_response :success
+    assert_equal 2, parsed_body["data"].length
+    assert_equal est.id, parsed_body["data"][0]["id"]
+  end
+
   test "index method paging" do
     # test setting no paging parameters uses default value
     get :index, :format => :json
