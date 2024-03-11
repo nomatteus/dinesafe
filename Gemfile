@@ -48,8 +48,8 @@ gem "progressbar", "~> 1.13.0"
 
 # Monitoring/Alerts/Logs
 gem "stackprof", "~> 0.2.25" # for sentry profiling
-gem "sentry-ruby", "~> 5.9.0"
-gem "sentry-rails", "~> 5.9.0"
+gem "sentry-ruby", "~> 5.16.1"
+gem "sentry-rails", "~> 5.16.1"
 gem "appsignal", "~> 3.4.4"
 
 group :development, :test do
