@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
-gem "rails", "~> 7.0.4.3"
+gem "rails", "~> 7.0.4"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -35,7 +35,7 @@ gem "sassc-rails", "~> 2.1.2"
 gem "haml", "~> 5.2.2"
 
 # SEO
-gem "sitemap_generator", "~> 6.2.1"
+gem "sitemap_generator", "~> 6.3.0"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
