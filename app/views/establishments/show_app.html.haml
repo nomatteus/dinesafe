@@ -4,15 +4,79 @@
     .ctaColumn
       / LOGO Replace
       %h1 Dinesafe Toronto App
-      / START HEADER TEXT
-      %h3 Results for #{@establishment.name}
+      %h3 Inspection History for #{@establishment.name}
+
+      .address
+        - search_text = "#{@establishment.name}, #{@establishment.address_full}"
+        = link_to @establishment.address_full, "https://maps.google.ca/?q=#{search_text}", target: "_blank"
+      .type
+        %em= @establishment.latest_type
+
+      .establishment-content
+        
+        .scorebar-container
+          .scorebar
+            - previous_year = nil
+            - # 19 is the most inspections that can fit in the scorebar on any screen size
+            - extended_inspection_max_index = @establishment.inspections.size - 19
+            - @establishment.inspections.each.with_index do |inspection, i|
+              - year = inspection.date.year
+              .inspection{class: "#{inspection.status.parameterize} #{i <= extended_inspection_max_index ? 'extended' : ''}", title: inspection.date}
+                .box-top
+                .box-bottom
+                .right-line
+                - if year != previous_year
+                  .year= year
+
+              - previous_year = inspection.date.year
+
+        / .google-map
+        /   %img{:src => google_static_map_link(@establishment.latlng_dict, "240x140")}
+
+        %h4 Inspection Details
+        .inspections-list
+          - @inspections.reverse.each do |inspection|
+            .inspection.dinesafe-card
+              .inspection-heading{class: inspection.status.parameterize}
+                .inspection-status
+                  = "#{inspection.status}"
+                .inspection-date
+                  - new_days = 30
+                  - if inspection.date >= new_days.days.ago
+                    %strong 
+                      %em{title: "Inspected within the last #{new_days} days."} New!
+                  = inspection.date.strftime('%B %e, %Y')
+              - if inspection.infractions.present?
+                .infractions
+                  .infractions-heading
+                    %strong 
+                      %em Infractions
+                  - inspection.infractions_by_severity.each do |infraction|
+                    .infraction
+                      .infraction-severity= infraction.severity_for_api
+                      .infraction-details= infraction.details
+
+      %hr
+
+      %p
+        Dinesafe App available on iOS! 
+        View restaurant health inspections on the go. 
+        %br
+        Browse nearby establishments,
+        or search for your faves. View inspection history up to 13+ years.
+
+      %ul.app-store.clearfix
+        %li
+          %a{:href => app_store_link, :target => "_blank", :onclick => onclick_conversion_track}
+            = image_tag "landing/appStore_Btn@2x.png", :alt => "Download App"
+
       .iphone-frame
         .iphone-screen
           .establishment-wrap
             .name= @establishment.name
             .scorebar
               - previous_year = nil
-              - @establishment.inspections.last(13).each do |inspection|
+              - @establishment.inspections.last(11).each do |inspection|
                 - year = inspection.date.year
                 .inspection{:class => inspection.status.parameterize}
                   .box-top
@@ -32,12 +96,9 @@
               %li= "Conditional Pass: #{@establishment.inspections.conditional.count}"
               %li= "Closed: #{@establishment.inspections.closed.count}"
               %li= "Total: #{@establishment.inspections.count} inspections"
-      %p
-        View restaurant health inspections on the go. Browse nearby establishments,
-        or search for your faves. View inspection history up to 13+ years.
+
       %ul.app-store.clearfix
         %li
           %a{:href => app_store_link, :target => "_blank", :onclick => onclick_conversion_track}
             = image_tag "landing/appStore_Btn@2x.png", :alt => "Download App"
-
 

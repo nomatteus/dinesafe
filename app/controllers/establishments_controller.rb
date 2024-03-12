@@ -30,6 +30,8 @@ class EstablishmentsController < ApplicationController
 
   # Establishment view with app promo (landing page style)
   def show_app
+    @inspections = @establishment.inspections
+
     render :layout => "application_responsive"
   end
 
