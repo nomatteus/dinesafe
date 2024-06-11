@@ -4,4 +4,4 @@
 # User-Agent: *
 # Disallow: /
 
-Sitemap: http://dinesafe.to/sitemap.xml.gz
+Sitemap: https://dinesafe.to/sitemap.xml.gz
