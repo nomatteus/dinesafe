@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  # Health check endpoint
+  get "/healthz", controller: :health_check, action: :healthz
+
   scope "/app" do
     get "/app_store"  => redirect { ENV["DINESAFE_APP_STORE_LINK"] }
     get "/" => "pages#app_landing", :as => :app_landing

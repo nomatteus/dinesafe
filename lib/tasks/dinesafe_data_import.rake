@@ -231,11 +231,12 @@ namespace :dinesafe do
     Establishment.where.not(id: all_establishment_ids).update_all(deleted_at: Time.zone.now)
 
     # Run sitemap refresh after data update 
+    # NOTE: This is disabled, as we can't run this in a job via Render (running as a deploy/start task instead)
     # (Same job since render charges per cron job, and want to run this right after update)
-    Rails.logger.info("Invoking sitemap:refresh job...")
+    # Rails.logger.info("Invoking sitemap:refresh job...")
     # Use `no_ping`, as both Google and Bing have deprecated sitemap pings
     # (Should still use it via robots.txt though)
-    Rake::Task['sitemap:refresh:no_ping'].invoke
+    # Rake::Task['sitemap:refresh:no_ping'].invoke
 
     Sentry.capture_check_in("dinesafe-data-update", :ok, check_in_id: sentry_checkin_id)
   end
