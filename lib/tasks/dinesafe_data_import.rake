@@ -85,7 +85,7 @@ namespace :dinesafe do
     Rails.logger.info("Starting dinesafe:update_data_new data import")
     sentry_checkin_id = Sentry.capture_check_in("dinesafe-data-update", :in_progress)
 
-    uri = URI('https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/ea1d6e57-87af-4e23-b722-6c1f5aa18a8d/resource/c573c64d-69b6-4d5b-988a-f3c6aa73f0b0/download/Dinesafe.json')
+    uri = URI('https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/b6b4f3fb-2e2c-47e7-931d-b87d22806948/resource/e9df9d33-727e-4758-9a84-67ebefec1453/download/Dinesafe.json')
     result = Net::HTTP.get(uri)
 
     json = JSON.parse(result)
