@@ -47,16 +47,16 @@ class EstablishmentsController < ApplicationController
 protected
 
   def track_fathom_event(event_name)
-    return unless Rails.env.production?
-    return unless ENV['FATHOM_API_KEY'] && ENV['FATHOM_SITE_ID']
+    # return unless Rails.env.production?
+    # return unless ENV['FATHOM_API_KEY'] && ENV['FATHOM_SITE_ID']
     
-    client = Fathom::Client.new(api_key: ENV['FATHOM_API_KEY'])
-    client.events.create(site_id: ENV['FATHOM_SITE_ID'], **{
-      name: event_name
-    })
-    Rails.logger.info "Successfully tracked Fathom event: '#{event_name}'"
+    # client = Fathom::Client.new(api_key: ENV['FATHOM_API_KEY'])
+    # client.events.create(site_id: ENV['FATHOM_SITE_ID'], **{
+    #   name: event_name
+    # })
+    # Rails.logger.info "Successfully tracked Fathom event: '#{event_name}'"
   rescue => e
-    Rails.logger.error "Failed to track Fathom event '#{event_name}': #{e.message}"
+    # Rails.logger.error "Failed to track Fathom event '#{event_name}': #{e.message}"
   end
 
   def load_establishment
