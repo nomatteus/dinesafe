@@ -17,12 +17,21 @@ class EstablishmentsController < ApplicationController
                           .order(:latest_name)
     end
 
+    # Track Fathom event only if page param is explicitly set and current_page == 1
+    if params[:page].present? && @current_page == 1
+      event_name = params[:search]&.strip.present? ? "iOS API: Establishments Search Performed" : 'iOS API: Establishments List Viewed'
+      track_fathom_event(event_name)
+    end
+
     respond_to do |format|
       format.json
     end
   end
 
   def show
+    # Track Fathom event for index page loads
+    track_fathom_event('iOS API: Establishment Details Viewed')
+
     respond_to do |format|
       format.json
     end
@@ -36,6 +45,19 @@ class EstablishmentsController < ApplicationController
   end
 
 protected
+
+  def track_fathom_event(event_name)
+    return unless Rails.env.production?
+    return unless ENV['FATHOM_API_KEY'] && ENV['FATHOM_SITE_ID']
+    
+    client = Fathom::Client.new(api_key: ENV['FATHOM_API_KEY'])
+    client.events.create(site_id: ENV['FATHOM_SITE_ID'], **{
+      name: event_name
+    })
+    Rails.logger.info "Successfully tracked Fathom event: '#{event_name}'"
+  rescue => e
+    Rails.logger.error "Failed to track Fathom event '#{event_name}': #{e.message}"
+  end
 
   def load_establishment
     @establishment = establishment_proximity_scope
