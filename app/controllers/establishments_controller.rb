@@ -17,21 +17,12 @@ class EstablishmentsController < ApplicationController
                           .order(:latest_name)
     end
 
-    # Track Fathom event only if page param is explicitly set and current_page == 1
-    if params[:page].present? && @current_page == 1
-      goal_code = params[:search]&.strip.present? ? ENV['FATHOM_ESTABLISHMENT_SEARCH_EVENT_ID'] : ENV['FATHOM_ESTABLISHMENT_LIST_EVENT_ID']
-      track_fathom_event(goal_code)
-    end
-
     respond_to do |format|
       format.json
     end
   end
 
   def show
-    # Track Fathom event for establishment detail views
-    track_fathom_event(ENV['FATHOM_ESTABLISHMENT_DETAILS_EVENT_ID'])
-
     respond_to do |format|
       format.json
     end
@@ -45,39 +36,6 @@ class EstablishmentsController < ApplicationController
   end
 
 protected
-
-  # Temp: Track Fathom events manually
-  def track_fathom_event(goal_code)
-    return unless Rails.env.production?
-    return unless goal_code
-    
-    uri = URI("https://cdn.usefathom.com/")
-    params = {
-      gcode: goal_code,
-      gval: 0,
-      qs: '{}',
-      p: '/ios-app',
-      h: 'https://dinesafe.to',
-      r: '',
-      sid: 8.times.map { ('A'..'Z').to_a.sample }.join,
-      cid: rand(10_000_000..99_999_999)
-    }
-    uri.query = URI.encode_www_form(params)
-    
-    req = Net::HTTP::Post.new(uri)
-    req['User-Agent'] = "DineSafe-API/1.0"
-    req['Accept'] = "*/*"
-    req['Origin'] = "https://dinesafe.to"
-    req['Content-Length'] = "0"
-    
-    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-      http.request(req)
-    end
-    
-    Rails.logger.info "Successfully tracked Fathom event: #{goal_code}"
-  rescue => e
-    Rails.logger.error "Failed to track Fathom event '#{goal_code}': #{e.message}"
-  end
 
   def load_establishment
     @establishment = establishment_proximity_scope
