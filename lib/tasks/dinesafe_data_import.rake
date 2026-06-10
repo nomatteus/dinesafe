@@ -227,7 +227,8 @@ namespace :dinesafe do
     # Delete all establishments that are no longer in the file (assume they are now closed)
     # Note that we use the initial list, as if an establishment is in the file, we'll assume
     # it's still active (even if it doesn't have any inspection data)
-    all_establishment_ids = json.map { |j| j["Establishment ID"] }.uniq
+    all_establishment_ids = json.map { |j| j["Establishment ID"] }.compact.uniq
+    raise "Safety check failed: no establishment IDs found in data file — aborting bulk delete to prevent mass deletion" if all_establishment_ids.empty?
     Establishment.where.not(id: all_establishment_ids).update_all(deleted_at: Time.zone.now)
 
     # Run sitemap refresh after data update 
